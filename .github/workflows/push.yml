@@ -1,0 +1,51 @@
+name: After saving wordpress
+
+on: # トリガー
+  repository_dispatch:
+    type: after_saving_wordpress
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["20.x"]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Set API_KEY environment variable
+        run: echo "WP_API_KEY=${{ secrets.WP_API_KEY }}" >> $GITHUB_ENV
+      - name: Verify WP_API_KEY
+        run: |
+          if [ -z "$WP_API_KEY" ]; then
+            echo "WP_API_KEY is not set"
+          else
+            echo "WP_API_KEY is set"
+          fi
+      - name: npm install # パッケージをインストール
+        run: npm install
+      - name: generate # SSG
+        run: npm run generate
+        env:
+          WP_API_KEY: ${{ secrets.WP_API_KEY }}
+          SITE_DOMAIN: ${{ secrets.SITE_DOMAIN }}
+        #continue-on-error: true #エラーをスルー
+
+      - name: List output files
+        run: ls -la dist/ # ファイルリストを表示
+
+      - name: Deploy via FTP⏫
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_SERVER }} # FTPサーバのホスト
+          username: ${{ secrets.FTP_USERNAME }} # FTPサーバのアカウント名
+          password: ${{ secrets.FTP_PASSWORD }} # FTPサーバのパスワード
+          server-dir: ${{ secrets.DEPLOY_DIR }} # アップロード先のリモートパス
+          local-dir: ./dist/ # ローカルのアップロードしたいフォルダのパス
+          useDiff: false
