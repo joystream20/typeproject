@@ -76,6 +76,7 @@ onMounted(() => {
       }
     )
   }
+  
 
 })
 </script>
@@ -83,6 +84,9 @@ onMounted(() => {
 <template>
 <div v-if="_post && _post[0]">
   <div v-html="_post[0].content.rendered"></div>
+  <div v-if="_slug === 'fitfont'">
+    <FitfontSimulator />
+  </div>
 </div>
 </template>
 

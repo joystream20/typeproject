@@ -1,0 +1,1726 @@
+[
+  {
+    "foundryName": "Type Project",
+    "families": [
+      {
+        "familyName": "Tokyo CityFont",
+        "styles": [
+          {
+            "styleName": "EL",
+            "woff": "TokyoCityFontStdN-EL"
+          },
+          {
+            "styleName": "L",
+            "woff": "TokyoCityFontStdN-L"
+          },
+          {
+            "styleName": "R",
+            "woff": "TokyoCityFontStdN-R"
+          },
+          {
+            "styleName": "M",
+            "woff": "TokyoCityFontStdN-M"
+          },
+          {
+            "styleName": "B",
+            "woff": "TokyoCityFontStdN-B"
+          }
+        ]
+      },
+      {
+        "familyName": "Tokyo CityFont Cond",
+        "styles": [
+          {
+            "styleName": "EL",
+            "woff": "TokyoCityFontCondStdN-EL"
+          },
+          {
+            "styleName": "L",
+            "woff": "TokyoCityFontCondStdN-L"
+          },
+          {
+            "styleName": "R",
+            "woff": "TokyoCityFontCondStdN-R"
+          },
+          {
+            "styleName": "M",
+            "woff": "TokyoCityFontCondStdN-M"
+          },
+          {
+            "styleName": "B",
+            "woff": "TokyoCityFontCondStdN-B"
+          }
+        ]
+      },
+      {
+        "familyName": "Tokyo CityFont Comp",
+        "styles": [
+          {
+            "styleName": "EL",
+            "woff": "TokyoCityFontCompStdN-EL"
+          },
+          {
+            "styleName": "L",
+            "woff": "TokyoCityFontCompStdN-L"
+          },
+          {
+            "styleName": "R",
+            "woff": "TokyoCityFontCompStdN-R"
+          },
+          {
+            "styleName": "M",
+            "woff": "TokyoCityFontCompStdN-M"
+          },
+          {
+            "styleName": "B",
+            "woff": "TokyoCityFontCompStdN-B"
+          }
+        ]
+      },
+      {
+        "familyName": "TP JPN National Parks Mincho",
+        "styles": [
+          {
+            "styleName": "L",
+            "woff": "TPJPNNationalParksMin-L"
+          },
+          {
+            "styleName": "R",
+            "woff": "TPJPNNationalParksMin-R"
+          }
+        ]
+      },
+      {
+        "familyName": "Hama Mincho Italic",
+        "styles": [
+          {
+            "styleName": "Caption EL",
+            "woff": "HamaMinchoItalic-CaptionEL"
+          },
+          {
+            "styleName": "Caption L",
+            "woff": "HamaMinchoItalic-CaptionL"
+          },
+          {
+            "styleName": "Caption R",
+            "woff": "HamaMinchoItalic-CaptionR"
+          },
+          {
+            "styleName": "Caption M",
+            "woff": "HamaMinchoItalic-CaptionM"
+          },
+          {
+            "styleName": "Caption B",
+            "woff": "HamaMinchoItalic-CaptionB"
+          },
+          {
+            "styleName": "Caption H",
+            "woff": "HamaMinchoItalic-CaptionH"
+          },
+          {
+            "styleName": "Text EL",
+            "woff": "HamaMinchoItalic-TextEL"
+          },
+          {
+            "styleName": "Text L",
+            "woff": "HamaMinchoItalic-TextL"
+          },
+          {
+            "styleName": "Text R",
+            "woff": "HamaMinchoItalic-TextR"
+          },
+          {
+            "styleName": "Text M",
+            "woff": "HamaMinchoItalic-TextM"
+          },
+          {
+            "styleName": "Text B",
+            "woff": "HamaMinchoItalic-TextB"
+          },
+          {
+            "styleName": "Text H",
+            "woff": "HamaMinchoItalic-TextH"
+          },
+          {
+            "styleName": "Headline EL",
+            "woff": "HamaMinchoItalic-HeadlineEL"
+          },
+          {
+            "styleName": "Headline L",
+            "woff": "HamaMinchoItalic-HeadlineL"
+          },
+          {
+            "styleName": "Headline R",
+            "woff": "HamaMinchoItalic-HeadlineR"
+          },
+          {
+            "styleName": "Headline M",
+            "woff": "HamaMinchoItalic-HeadlineM"
+          },
+          {
+            "styleName": "Headline B",
+            "woff": "HamaMinchoItalic-HeadlineB"
+          },
+          {
+            "styleName": "Headline H",
+            "woff": "HamaMinchoItalic-HeadlineH"
+          },
+          {
+            "styleName": "Display EL",
+            "woff": "HamaMinchoItalic-DisplayEL"
+          },
+          {
+            "styleName": "Display L",
+            "woff": "HamaMinchoItalic-DisplayL"
+          },
+          {
+            "styleName": "Display R",
+            "woff": "HamaMinchoItalic-DisplayR"
+          },
+          {
+            "styleName": "Display M",
+            "woff": "HamaMinchoItalic-DisplayM"
+          },
+          {
+            "styleName": "Display B",
+            "woff": "HamaMinchoItalic-DisplayB"
+          },
+          {
+            "styleName": "Display H",
+            "woff": "HamaMinchoItalic-DisplayH"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "foundryName": "Commercial Type",
+    "families": [
+      {
+        "familyName": "Atlas Grotesk",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "AtlasGrotesk-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "AtlasGrotesk-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "AtlasGrotesk-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "AtlasGrotesk-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "AtlasGrotesk-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Austin",
+        "styles": [
+          {
+            "styleName": "Light",
+            "woff": "Austin-Light"
+          },
+          {
+            "styleName": "Roman",
+            "woff": "Austin-Roman"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "Austin-Medium"
+          },
+          {
+            "styleName": "Text Roman",
+            "woff": "AustinText-Roman"
+          },
+          {
+            "styleName": "Text Roman No 2",
+            "woff": "AustinText-RomanNo2"
+          },
+          {
+            "styleName": "Text Semibold",
+            "woff": "AustinText-Semibold"
+          }
+        ]
+      },
+      {
+        "familyName": "Caponi",
+        "styles": [
+          {
+            "styleName": "Text Regular",
+            "woff": "CaponiText-Regular"
+          },
+          {
+            "styleName": "Text Regular No 2",
+            "woff": "CaponiText-RegularNo2"
+          },
+          {
+            "styleName": "Text Medium",
+            "woff": "CaponiText-Medium"
+          },
+          {
+            "styleName": "Text Semibold",
+            "woff": "CaponiText-Semibold"
+          },
+          {
+            "styleName": "Display Regular",
+            "woff": "CaponiDisplay-Regular"
+          },
+          {
+            "styleName": "Display Regular No 2",
+            "woff": "CaponiDisplay-RegularNo2"
+          },
+          {
+            "styleName": "Display Medium",
+            "woff": "CaponiDisplay-Medium"
+          },
+          {
+            "styleName": "Display Semibold",
+            "woff": "CaponiDisplay-Semibold"
+          },
+          {
+            "styleName": "Slab Regular",
+            "woff": "CaponiSlab-Regular"
+          },
+          {
+            "styleName": "Slab Regular No 2",
+            "woff": "CaponiSlab-RegularNo2"
+          },
+          {
+            "styleName": "Slab Medium",
+            "woff": "CaponiSlab-Medium"
+          },
+          {
+            "styleName": "Slab Semibold",
+            "woff": "CaponiSlab-Semibold"
+          }
+        ]
+      },
+      {
+        "familyName": "Chiswick Grotesque",
+        "styles": [
+          {
+            "styleName": "Extralight",
+            "woff": "ChiswickGrotesque-Extralight"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ChiswickGrotesque-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ChiswickGrotesque-Regular"
+          }
+        ]
+      },
+      {
+        "familyName": "Chiswick Sans",
+        "styles": [
+          {
+            "styleName": "Regular",
+            "woff": "ChiswickSans-Regular"
+          },
+          {
+            "styleName": "Semibold",
+            "woff": "ChiswickSans-Semibold"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "ChiswickSans-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Dala Floda",
+        "styles": [
+          {
+            "styleName": "Roman",
+            "woff": "DalaFloda-Roman"
+          },
+          {
+            "styleName": "Roman No. 2",
+            "woff": "DalaFloda-RomanNo2"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "DalaFloda-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Darby Sans",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "DarbySans-Thin"
+          },
+          {
+            "styleName": "Extralight",
+            "woff": "DarbySans-XLight"
+          },
+          {
+            "styleName": "Light",
+            "woff": "DarbySans-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "DarbySans-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "DarbySans-Medium"
+          },
+          {
+            "styleName": "Poster Extraight",
+            "woff": "DarbySansPoster-XLight"
+          },
+          {
+            "styleName": "Poster Light",
+            "woff": "DarbySansPoster-Light"
+          }
+        ]
+      },
+      {
+        "familyName": "Duplicate Ionic",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "DuplicateIonic-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "DuplicateIonic-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "DuplicateIonic-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "DuplicateIonic-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Duplicate Sans",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "DuplicateSans-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "DuplicateSans-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "DuplicateSans-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "DuplicateSans-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "DuplicateSans-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Duplicate Slab",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "DuplicateSlab-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "DuplicateSlab-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "DuplicateSlab-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "DuplicateSlab-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Graphik",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "Graphik-Thin"
+          },
+          {
+            "styleName": "Extralight",
+            "woff": "Graphik-Extralight"
+          },
+          {
+            "styleName": "Light",
+            "woff": "Graphik-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "Graphik-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "Graphik-Medium"
+          },
+          {
+            "styleName": "Semibold",
+            "woff": "Graphik-Semibold"
+          }
+        ]
+      },
+      {
+        "familyName": "Guardian Egyptian",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "GuardianEgyp-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "GuardianEgyp-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "GuardianEgyp-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "GuardianEgyp-Medium"
+          },
+          {
+            "styleName": "Text Regular",
+            "woff": "GuardianTextEgyp-Regular"
+          },
+          {
+            "styleName": "Text Medium",
+            "woff": "GuardianTextEgyp-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Guardian Sans",
+        "styles": [
+          {
+            "styleName": "Text Regular",
+            "woff": "GuardianTextSans-Regular"
+          },
+          {
+            "styleName": "Text Medium",
+            "woff": "GuardianTextSans-Medium"
+          },
+          {
+            "styleName": "Text Bold",
+            "woff": "GuardianTextSans-Bold"
+          },
+          {
+            "styleName": "Headline Thin",
+            "woff": "GuardianSans-Thin"
+          },
+          {
+            "styleName": "Headline Light",
+            "woff": "GuardianSans-Light"
+          },
+          {
+            "styleName": "Headline Regular",
+            "woff": "GuardianSans-Regular"
+          },
+          {
+            "styleName": "Headline Medium",
+            "woff": "GuardianSans-Medium"
+          },
+          {
+            "styleName": "Headline Semibold",
+            "woff": "GuardianSans-Semibold"
+          },
+          {
+            "styleName": "Headline Narrow Thin",
+            "woff": "GuardianSansNarrow-Thin"
+          },
+          {
+            "styleName": "Headline Narrow Light",
+            "woff": "GuardianSansNarrow-Light"
+          },
+          {
+            "styleName": "Headline Narrow Regular",
+            "woff": "GuardianSansNarrow-Regular"
+          },
+          {
+            "styleName": "Headline Narrow Medium",
+            "woff": "GuardianSansNarrow-Medium"
+          },
+          {
+            "styleName": "Headline Narrow Semibold",
+            "woff": "GuardianSansNarrow-Semibold"
+          },
+          {
+            "styleName": "Headline Condensed Thin",
+            "woff": "GuardianSansCond-Thin"
+          },
+          {
+            "styleName": "Headline Condensed Light",
+            "woff": "GuardianSansCond-Light"
+          },
+          {
+            "styleName": "Headline Condensed Regular",
+            "woff": "GuardianSansCond-Regular"
+          },
+          {
+            "styleName": "Headline Condensed Medium",
+            "woff": "GuardianSansCond-Medium"
+          },
+          {
+            "styleName": "Headline Condensed Semibold",
+            "woff": "GuardianSansCond-Semibold"
+          },
+          {
+            "styleName": "Headline X Condensed Thin",
+            "woff": "GuardianSansXCond-Thin"
+          },
+          {
+            "styleName": "Headline X Condensed Light",
+            "woff": "GuardianSansXCond-Light"
+          },
+          {
+            "styleName": "Headline X Condensed Regular",
+            "woff": "GuardianSansXCond-Regular"
+          },
+          {
+            "styleName": "Headline X Condensed Medium",
+            "woff": "GuardianSansXCond-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Lyon",
+        "styles": [
+          {
+            "styleName": "Text Regular",
+            "woff": "LyonText-Regular"
+          },
+          {
+            "styleName": "Text Regular No. 2",
+            "woff": "LyonText-RegularNo2"
+          },
+          {
+            "styleName": "Text Semibold",
+            "woff": "LyonText-Semibold"
+          },
+          {
+            "styleName": "Display Light",
+            "woff": "LyonDisplay-Light"
+          },
+          {
+            "styleName": "Display Regular",
+            "woff": "LyonDisplay-Regular"
+          },
+          {
+            "styleName": "Display Medium",
+            "woff": "LyonDisplay-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Produkt",
+        "styles": [
+          {
+            "styleName": "Extralight",
+            "woff": "Produkt-Extralight"
+          },
+          {
+            "styleName": "Light",
+            "woff": "Produkt-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "Produkt-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "Produkt-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Publico",
+        "styles": [
+          {
+            "styleName": "Text Roman",
+            "woff": "PublicoText-Roman"
+          },
+          {
+            "styleName": "Text Semibold",
+            "woff": "PublicoText-Semibold"
+          },
+          {
+            "styleName": "Headline Light",
+            "woff": "PublicoHeadline-Light"
+          },
+          {
+            "styleName": "Headline Roman",
+            "woff": "PublicoHeadline-Roman"
+          },
+          {
+            "styleName": "Headline Medium",
+            "woff": "PublicoHeadline-Medium"
+          },
+          {
+            "styleName": "Banner Light",
+            "woff": "PublicoBanner-Light"
+          },
+          {
+            "styleName": "Banner Roman",
+            "woff": "PublicoBanner-Roman"
+          },
+          {
+            "styleName": "Banner Medium",
+            "woff": "PublicoBanner-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Stag",
+        "styles": [
+          {
+            "styleName": "Light",
+            "woff": "Stag-Light"
+          },
+          {
+            "styleName": "Book",
+            "woff": "Stag-Book"
+          }
+        ]
+      },
+      {
+        "familyName": "Stag Sans",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "StagSans-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "StagSans-Light"
+          },
+          {
+            "styleName": "Book",
+            "woff": "StagSans-Book"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "StagSans-Medium"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "foundryName": "Production Type",
+    "families": [
+      {
+        "familyName": "Cogito",
+        "styles": [
+          {
+            "styleName": "Light",
+            "woff": "Cogito-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "Cogito-Regular"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "Cogito-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Gemeli",
+        "styles": [
+          {
+            "styleName": "Light",
+            "woff": "Gemeli-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "Gemeli-Regular"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "Gemeli-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Granville",
+        "styles": [
+          {
+            "styleName": "Light",
+            "woff": "Granville-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "Granville-Regular"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "Granville-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Stratos",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "stratos-thin"
+          },
+          {
+            "styleName": "ExtraLight",
+            "woff": "stratos-extralight"
+          },
+          {
+            "styleName": "Light",
+            "woff": "stratos-light"
+          },
+          {
+            "styleName": "SemiLight",
+            "woff": "stratos-semilight"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "stratos-regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "stratos-medium"
+          },
+          {
+            "styleName": "SemiBold",
+            "woff": "stratos-semibold"
+          }
+        ]
+      },
+      {
+        "familyName": "Trianon",
+        "styles": [
+          {
+            "styleName": "Display ExtraLight",
+            "woff": "TrianonDisplay-ExtraLight"
+          },
+          {
+            "styleName": "Display Light",
+            "woff": "TrianonDisplay-Light"
+          },
+          {
+            "styleName": "Display Regular",
+            "woff": "TrianonDisplay-Regular"
+          },
+          {
+            "styleName": "Text ExtraLight",
+            "woff": "TrianonText-ExtraLight"
+          },
+          {
+            "styleName": "Text Light",
+            "woff": "TrianonText-Light"
+          },
+          {
+            "styleName": "Text Regular",
+            "woff": "TrianonText-Regular"
+          },
+          {
+            "styleName": "Text Regular no2",
+            "woff": "TrianonText-Regularno2"
+          },
+          {
+            "styleName": "Text Bold",
+            "woff": "TrianonText-Bold"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "foundryName": "Typotheque",
+    "families": [
+      {
+        "familyName": "Fedra Sans",
+        "styles": [
+          {
+            "styleName": "Light",
+            "woff": "FedraSansStd-Light"
+          },
+          {
+            "styleName": "Book",
+            "woff": "FedraSansStd-Book"
+          },
+          {
+            "styleName": "Demi",
+            "woff": "FedraSansStd-Demi"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "FedraSansStd-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "FedraSansStd-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Fedra Serif A",
+        "styles": [
+          {
+            "styleName": "Book",
+            "woff": "FSerStdA-Book"
+          },
+          {
+            "styleName": "Demi",
+            "woff": "FSerStdA-Demi"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "FSerStdA-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "FSerStdA-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Greta Sans",
+        "styles": [
+          {
+            "styleName": "Hairline",
+            "woff": "GretaSansStd-Hairline"
+          },
+          {
+            "styleName": "Thin",
+            "woff": "GretaSansStd-Thin"
+          },
+          {
+            "styleName": "ExtraLight",
+            "woff": "GretaSansStd-Extralight"
+          },
+          {
+            "styleName": "Light",
+            "woff": "GretaSansStd-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "GretaSansStd-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "GretaSansStd-Medium"
+          },
+          {
+            "styleName": "SemiBold",
+            "woff": "GretaSansStd-SemiBold"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "GretaSansStd-Bold"
+          },
+          {
+            "styleName": "Heavy",
+            "woff": "GretaSansStd-Heavy"
+          },
+          {
+            "styleName": "Black",
+            "woff": "GretaSansStd-Black"
+          }
+        ]
+      },
+      {
+        "familyName": "Greta Sans Condensed",
+        "styles": [
+          {
+            "styleName": "Hairline",
+            "woff": "GretaSansCondensedStd-Hairline"
+          },
+          {
+            "styleName": "Thin",
+            "woff": "GretaSansCondensedStd-Thin"
+          },
+          {
+            "styleName": "ExtraLight",
+            "woff": "GretaSansCondensedStd-ExtraLight"
+          },
+          {
+            "styleName": "Light",
+            "woff": "GretaSansCondensedStd-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "GretaSansCondensedStd-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "GretaSansCondensedStd-Medium"
+          },
+          {
+            "styleName": "SemiBold",
+            "woff": "GretaSansCondensedStd-SemiBold"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "GretaSansCondensedStd-Bold"
+          },
+          {
+            "styleName": "Heavy",
+            "woff": "GretaSansCondensedStd-Heavy"
+          },
+          {
+            "styleName": "Black",
+            "woff": "GretaSansCondensedStd-Black"
+          }
+        ]
+      },
+      {
+        "familyName": "Greta Sans Compressed",
+        "styles": [
+          {
+            "styleName": "Hairline",
+            "woff": "GretaSansCompressedStd-Hairline"
+          },
+          {
+            "styleName": "Thin",
+            "woff": "GretaSansCompressedStd-Thin"
+          },
+          {
+            "styleName": "ExtraLight",
+            "woff": "GretaSansCompressedStd-ExtraLight"
+          },
+          {
+            "styleName": "Light",
+            "woff": "GretaSansCompressedStd-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "GretaSansCompressedStd-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "GretaSansCompressedStd-Medium"
+          },
+          {
+            "styleName": "SemiBold",
+            "woff": "GretaSansCompressedStd-SemiBold"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "GretaSansCompressedStd-Bold"
+          },
+          {
+            "styleName": "Heavy",
+            "woff": "GretaSansCompressedStd-Heavy"
+          }
+        ]
+      },
+      {
+        "familyName": "Greta Text",
+        "styles": [
+          {
+            "styleName": "Light",
+            "woff": "GretaTextStdLight"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "GretaTextStdRegular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "GretaTextStdMedium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "GretaTextStdBold"
+          }
+        ]
+      },
+      {
+        "familyName": "Lava",
+        "styles": [
+          {
+            "styleName": "Regular",
+            "woff": "LavaStd-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "LavaStd-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "LavaStd-Bold"
+          },
+          {
+            "styleName": "Heavy",
+            "woff": "LavaStd-Heavy"
+          }
+        ]
+      },
+      {
+        "familyName": "Neutral",
+        "styles": [
+          {
+            "styleName": "Regular",
+            "woff": "NeutralStd-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "NeutralStd-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "NeutralStd-Bold"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "foundryName": "Grilli Type",
+    "families": [
+      {
+        "familyName": "GT Alpina",
+        "styles": [
+          {
+            "styleName": "Fine Thin",
+            "woff": "GT-Alpina-Fine-Thin-Trial"
+          },
+          {
+            "styleName": "Fine Light",
+            "woff": "GT-Alpina-Fine-Light-Trial"
+          },
+          {
+            "styleName": "Fine Regular",
+            "woff": "GT-Alpina-Fine-Regular-Trial"
+          },
+          {
+            "styleName": "Fine Medium",
+            "woff": "GT-Alpina-Fine-Medium-Trial"
+          },
+          {
+            "styleName": "Fine Bold",
+            "woff": "GT-Alpina-Fine-Bold-Trial"
+          },
+          {
+            "styleName": "Standard Thin",
+            "woff": "GT-Alpina-Thin-Trial"
+          },
+          {
+            "styleName": "Standard Light",
+            "woff": "GT-Alpina-Light-Trial"
+          },
+          {
+            "styleName": "Standard Regular",
+            "woff": "GT-Alpina-Regular-Trial"
+          },
+          {
+            "styleName": "Standard Medium",
+            "woff": "GT-Alpina-Medium-Trial"
+          },
+          {
+            "styleName": "Standard Bold",
+            "woff": "GT-Alpina-Bold-Trial"
+          }
+        ]
+      },
+      {
+        "familyName": "GT America",
+        "styles": [
+          {
+            "styleName": "Standard Ultra Light",
+            "woff": "GT-America-Standard-Ultra-Light-Trial"
+          },
+          {
+            "styleName": "Standard Thin",
+            "woff": "GT-America-Standard-Thin-Trial"
+          },
+          {
+            "styleName": "Standard Light",
+            "woff": "GT-America-Standard-Light-Trial"
+          },
+          {
+            "styleName": "Standard Regular",
+            "woff": "GT-America-Standard-Regular-Trial"
+          },
+          {
+            "styleName": "Standard Medium",
+            "woff": "GT-America-Standard-Medium-Trial"
+          },
+          {
+            "styleName": "Standard Bold",
+            "woff": "GT-America-Standard-Bold-Trial"
+          }
+        ]
+      },
+      {
+        "familyName": "GT Super",
+        "styles": [
+          {
+            "styleName": "Text Book",
+            "woff": "GT-Super-Text-Book-Trial"
+          },
+          {
+            "styleName": "Text Regular",
+            "woff": "GT-Super-Text-Regular-Trial"
+          },
+          {
+            "styleName": "Text Medium",
+            "woff": "GT-Super-Text-Medium-Trial"
+          },
+          {
+            "styleName": "Display Light",
+            "woff": "GT-Super-Display-Light-Trial"
+          },
+          {
+            "styleName": "Display Regular",
+            "woff": "GT-Super-Display-Regular-Trial"
+          },
+          {
+            "styleName": "Display Medium",
+            "woff": "GT-Super-Display-Medium-Trial"
+          }
+        ]
+      },
+      {
+        "familyName": "GT Sectra",
+        "styles": [
+          {
+            "styleName": "Book",
+            "woff": "GT-Sectra-Book-Trial"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "GT-Sectra-Regular-Trial"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "GT-Sectra-Medium-Trial"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "GT-Sectra-Bold-Trial"
+          },
+          {
+            "styleName": "Display Light",
+            "woff": "GT-Sectra-Display-Light-Trial"
+          },
+          {
+            "styleName": "Display Regular",
+            "woff": "GT-Sectra-Display-Regular-Trial"
+          },
+          {
+            "styleName": "Display Medium",
+            "woff": "GT-Sectra-Display-Medium-Trial"
+          }
+        ]
+      },
+      {
+        "familyName": "GT Zirkon",
+        "styles": [
+          {
+            "styleName": "Ultra Light",
+            "woff": "GT-Zirkon-Ultra-Light-Trial"
+          },
+          {
+            "styleName": "Thin",
+            "woff": "GT-Zirkon-Thin-Trial"
+          },
+          {
+            "styleName": "Light",
+            "woff": "GT-Zirkon-Light-Trial"
+          },
+          {
+            "styleName": "Book",
+            "woff": "GT-Zirkon-Book-Trial"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "GT-Zirkon-Regular-Trial"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "GT-Zirkon-Medium-Trial"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "GT-Zirkon-Bold-Trial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "foundryName": "Dinamo",
+    "families": [
+      {
+        "familyName": "Arizona Mix",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "ABCArizonaMix-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ABCArizonaMix-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCArizonaMix-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCArizonaMix-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Arizona Sans",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "ABCArizonaSans-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ABCArizonaSans-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCArizonaSans-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCArizonaSans-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "ABCArizonaSans-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Arizona Serif",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "ABCArizonaSerif-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ABCArizonaSerif-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCArizonaSerif-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCArizonaSerif-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Arizona Text",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "ABCArizonaText-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ABCArizonaText-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCArizonaText-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCArizonaText-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Diatype",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "ABCDiatype-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ABCDiatype-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCDiatype-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCDiatype-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "ABCDiatype-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Favorit",
+        "styles": [
+          {
+            "styleName": "Light",
+            "woff": "ABCFavorit-Light"
+          },
+          {
+            "styleName": "Book",
+            "woff": "ABCFavorit-Book"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCFavorit-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCFavorit-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "ABCFavorit-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Laica A",
+        "styles": [
+          {
+            "styleName": "Regular",
+            "woff": "LaicaA-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "LaicaA-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "LaicaA-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Laica B",
+        "styles": [
+          {
+            "styleName": "Regular",
+            "woff": "LaicaB-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "LaicaB-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "LaicaB-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Marfa",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "ABCMarfa-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ABCMarfa-Light"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCMarfa-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCMarfa-Medium"
+          },
+          {
+            "styleName": "Semibold",
+            "woff": "ABCMarfa-Semibold"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "ABCMarfa-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Monument Grotesk",
+        "styles": [
+          {
+            "styleName": "Regular",
+            "woff": "MonumentGrotesk-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "MonumentGrotesk-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "MonumentGrotesk-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Social",
+        "styles": [
+          {
+            "styleName": "Hairline",
+            "woff": "ABCSocial-Hairline"
+          },
+          {
+            "styleName": "Thin",
+            "woff": "ABCSocial-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ABCSocial-Light"
+          },
+          {
+            "styleName": "Book",
+            "woff": "ABCSocial-Book"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCSocial-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCSocial-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "ABCSocial-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Social Condensed",
+        "styles": [
+          {
+            "styleName": "Hairline",
+            "woff": "ABCSocialCondensed-Hairline"
+          },
+          {
+            "styleName": "Thin",
+            "woff": "ABCSocialCondensed-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ABCSocialCondensed-Light"
+          },
+          {
+            "styleName": "Book",
+            "woff": "ABCSocialCondensed-Book"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCSocialCondensed-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCSocialCondensed-Medium"
+          }
+        ]
+      },
+      {
+        "familyName": "Social Extended",
+        "styles": [
+          {
+            "styleName": "Hairline",
+            "woff": "ABCSocialExtended-Hairline"
+          },
+          {
+            "styleName": "Thin",
+            "woff": "ABCSocialExtended-Thin"
+          },
+          {
+            "styleName": "Light",
+            "woff": "ABCSocialExtended-Light"
+          },
+          {
+            "styleName": "Book",
+            "woff": "ABCSocialExtended-Book"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "ABCSocialExtended-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "ABCSocialExtended-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "ABCSocialExtended-Bold"
+          }
+        ]
+      },
+      {
+        "familyName": "Whyte",
+        "styles": [
+          {
+            "styleName": "Thin",
+            "woff": "Whyte-Thin"
+          },
+          {
+            "styleName": "Extralight",
+            "woff": "Whyte-Extralight"
+          },
+          {
+            "styleName": "Light",
+            "woff": "Whyte-Light"
+          },
+          {
+            "styleName": "Book",
+            "woff": "Whyte-Book"
+          },
+          {
+            "styleName": "Regular",
+            "woff": "Whyte-Regular"
+          },
+          {
+            "styleName": "Medium",
+            "woff": "Whyte-Medium"
+          },
+          {
+            "styleName": "Bold",
+            "woff": "Whyte-Bold"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "foundryName": "Blaze Type",
+    "families": [
+      {
+        "familyName": "Apoc Normal",
+        "styles": [
+          { "styleName": "Hairline", "woff": "ApocNormal-Hairline" },
+          { "styleName": "Light", "woff": "ApocNormal-Light" },
+          { "styleName": "Regular", "woff": "ApocNormal-Regular" },
+          { "styleName": "Bold", "woff": "ApocNormal-Bold" },
+          { "styleName": "Ultra Bold", "woff": "ApocNormal-UltraBold" },
+          { "styleName": "Dark", "woff": "ApocNormal-Dark" }
+        ]
+      },
+      {
+        "familyName": "Area Normal",
+        "styles": [
+          { "styleName": "Hairline", "woff": "AreaNormal-Hairline" },
+          { "styleName": "Thin", "woff": "AreaNormal-Thin" },
+          { "styleName": "Extralight", "woff": "AreaNormal-Extralight" },
+          { "styleName": "Light", "woff": "AreaNormal-Light" },
+          { "styleName": "Regular", "woff": "AreaNormal-Regular" },
+          { "styleName": "Medium", "woff": "AreaNormal-Medium" },
+          { "styleName": "Semibold", "woff": "AreaNormal-Semibold" },
+          { "styleName": "Bold", "woff": "AreaNormal-Bold" },
+          { "styleName": "Extrabold", "woff": "AreaNormal-Extrabold" },
+          { "styleName": "Black", "woff": "AreaNormal-Black" },
+          { "styleName": "Extrablack", "woff": "AreaNormal-Extrablack" }
+        ]
+      },
+      {
+        "familyName": "Inferi",
+        "styles": [
+          { "styleName": "Thin", "woff": "Inferi-Thin" },
+          { "styleName": "Extra Light", "woff": "Inferi-ExtraLight" },
+          { "styleName": "Ultra Light", "woff": "Inferi-UltraLight" },
+          { "styleName": "Light", "woff": "Inferi-Light" },
+          { "styleName": "Book", "woff": "Inferi-Book" },
+          { "styleName": "Normal", "woff": "Inferi-Normal" },
+          { "styleName": "Regular", "woff": "Inferi-Regular" },
+          { "styleName": "Medium", "woff": "Inferi-Medium" },
+          { "styleName": "Semi Bold", "woff": "Inferi-SemiBold" }
+        ]
+      },
+      {
+        "familyName": "Rules",
+        "styles": [
+          { "styleName": "Ultra Light", "woff": "Rules-UltraLight" },
+          { "styleName": "Light", "woff": "Rules-Light" },
+          { "styleName": "Regular", "woff": "Rules-Regular" },
+          { "styleName": "Medium", "woff": "Rules-Medium" },
+          { "styleName": "Bold", "woff": "Rules-Bold" },
+          { "styleName": "ExtraBold", "woff": "Rules-ExtraBold" }
+        ]
+      },
+      {
+        "familyName": "Sigurd",
+        "styles": [
+          { "styleName": "Light", "woff": "Sigurd-Light" },
+          { "styleName": "Regular", "woff": "Sigurd-Regular" },
+          { "styleName": "Bold", "woff": "Sigurd-Bold" }
+        ]
+      },
+      {
+        "familyName": "Slussen",
+        "styles": [
+          { "styleName": "Light", "woff": "Slussen-Light" },
+          { "styleName": "Regular", "woff": "Slussen-Regular" },
+          { "styleName": "Medium", "woff": "Slussen-Medium" },
+          { "styleName": "Semibold", "woff": "Slussen-Semibold" },
+          { "styleName": "Bold", "woff": "Slussen-Bold" },
+          { "styleName": "Black", "woff": "Slussen-Black" }
+        ]
+      },
+      {
+        "familyName": "Slussen Condensed",
+        "styles": [
+          { "styleName": "Thin", "woff": "Slussen-Condensed-Thin" },
+          {
+            "styleName": "Extralight",
+            "woff": "Slussen-Condensed-Extralight"
+          },
+          { "styleName": "Light", "woff": "Slussen-Condensed-Light" },
+          { "styleName": "Regular", "woff": "Slussen-Condensed-Regular" },
+          { "styleName": "Medium", "woff": "Slussen-Condensed-Medium" },
+          { "styleName": "Semibold", "woff": "Slussen-Condensed-SemiBold" }
+        ]
+      },
+      {
+        "familyName": "Slussen Compressed",
+        "styles": [
+          { "styleName": "Thin", "woff": "Slussen-Compressed-Thin" },
+          {
+            "styleName": "Extralight",
+            "woff": "Slussen-Compressed-Extralight"
+          },
+          { "styleName": "Regular", "woff": "Slussen-Compressed-Regular" },
+          { "styleName": "Medium", "woff": "Slussen-Compressed-Medium" },
+          { "styleName": "Semibold", "woff": "Slussen-Compressed-SemiBold" }
+        ]
+      }
+    ]
+  }
+]
