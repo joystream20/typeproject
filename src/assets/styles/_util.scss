@@ -8,6 +8,22 @@ $wsx : 375;
 @use "sass:string";
 @use "sass:math";
 
+.u_f_bd{
+  font-family: "A+mfCv-TPスカイ セミクラシック ロー B";
+}
+
+.u_bd{
+  border:1px solid;
+}
+.u_bd_a{
+  a{
+    border:1px solid;
+    &:hover{
+      box-shadow: none;
+    }
+  }
+}
+
 .u_sp{
 
 }
@@ -138,6 +154,9 @@ $wsx : 375;
 .u_mx880{
   max-width:880px;
 }
+.u_mx845{
+  max-width:845px;
+}
 .u_mx1000{
   max-width: 1000px;
 }
@@ -151,6 +170,10 @@ $wsx : 375;
   margin-left: auto;
   margin-right:auto;
 }
+.u_mlr_auto_sp{
+  margin-left: auto !important;
+  margin-right:auto !important;
+}
 .u_ml_auto_i{
   margin-right: 0 !important;
   margin-left: auto !important;
@@ -160,6 +183,10 @@ $wsx : 375;
   margin-right: auto !important;
 }
 
+.u_nw{
+  white-space: nowrap;
+  display: inline-block;
+  }
 
 @for $i from 1 through 30{
   .u_gp#{$i}p{
@@ -167,6 +194,9 @@ $wsx : 375;
   }
   .u_gp-#{$i}_e{
     gap:#{math.div($i,10)}em;
+  }
+  .u_gpy#{$i}_e{
+    gap:#{$i}em 0;
   }
 }
 
@@ -212,6 +242,10 @@ $wsx : 375;
 
 
 @media screen and (min-width: #{calc($ww * 1px)}) { 
+  .u_mlr_auto_sp{
+    margin-left:unset !important;
+    margin-right:unset !important;
+  }
   .u_sp{
     display: none;
   }
@@ -226,6 +260,16 @@ $wsx : 375;
   }
   .u_f_d_rl{
     flex-direction: row-reverse;
+  }
+
+  @for $i from 1 through 10{
+    .u_wpc#{$i * 10}{
+      flex-basis:calc(#{$i * 10} * 1%);
+    }
+    // .u_wpcx#{$i * 10}{
+    //   width:calc(#{$i * 10px});
+    // }
+    
   }
 
   // @for $i from 1 through 100{

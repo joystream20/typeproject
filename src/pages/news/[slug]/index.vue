@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
 const {locale} = useI18n()
 
 const config = useRuntimeConfig()
@@ -37,6 +38,8 @@ if(_post.value){
   })
 }
 
+
+
 onMounted(() => {
   // console.log(_post)
   stClass.value = {type:"single",cls:"news",lng:locale.value}
@@ -53,6 +56,9 @@ onMounted(() => {
     }
   }
   }
+
+  useLinkClickHandler()
+  
 })
 </script>
 

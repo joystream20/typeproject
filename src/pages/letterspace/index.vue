@@ -22,20 +22,21 @@ type Post = {
       image:string;
       text:string;
       url:string;
+      blank:boolean;
     }[]
   }
 }
 
 
 
-const {data:_page, status: _status, error:_error} = await useFetch<Post[]>(`${langApi}/pages/?slug=case`)
+const {data:_page, status: _status, error:_error} = await useFetch<Post[]>(`${langApi}/pages/?slug=letterspace`)
 if (_error.value) {
     console.error('Error fetching data:', _error.value);
   } else {
     
   }
 onMounted(() => {
-  stClass.value = {type:"page",cls:"case",lng:locale.value}
+  stClass.value = {type:"page",cls:"letterspace",lng:locale.value}
   // console.log(_page)
 })
 </script>
@@ -52,15 +53,33 @@ onMounted(() => {
     <div class="sec__inner">
       <ul class="postList">
         <li class="postList-item" v-for="(child, index) of _page[0].acf.case_list" :key="index">
-          <div class="image">
-            <NuxtLink :to="`${child.url}`">
-              <NuxtImg v-if="child.image" :src="child.image" :alt="child.text"  />
-              <img v-else src="@/assets/images/img_def.png" alt="">
-            </NuxtLink>
-          </div>
-          <div class="txtContainer">
-            <p class="ttl">{{ child.text}}</p>
-          </div>
+          <template v-if="child.blank"> 
+            
+              <div class="image">
+                <a :href="`${child.url}`" target="_blank">
+                <NuxtImg v-if="child.image" :src="child.image" :alt="child.text"  />
+                <img v-else src="@/assets/images/img_def.png" alt="">
+              </a>
+              </div>
+              <div class="txtContainer">
+                <p class="ttl">{{ child.text}}</p>
+              </div>
+            
+          </template>
+          <template v-else>
+           
+              <div class="image">
+                <NuxtLink :to="`${child.url}`">
+                <NuxtImg v-if="child.image" :src="child.image" :alt="child.text"  />
+                <img v-else src="@/assets/images/img_def.png" alt="">
+              </NuxtLink>
+              </div>
+              <div class="txtContainer">
+                <p class="ttl">{{ child.text}}</p>
+              </div>
+            
+          </template>
+          
         </li>
       </ul>
     </div>

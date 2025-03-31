@@ -7,7 +7,16 @@ let langApi = config.public.wpApiKey
 if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
 }
-const _rest_url = `${langApi}/interviews?per_page=4&context=embed`
+type Props = {
+  taxonomy?:string,
+  term?:string
+}
+const {taxonomy, term} = defineProps<Props>()
+let _rest_url = `${langApi}/interviews?per_page=4&context=embed`
+
+if(taxonomy && term){
+  _rest_url = `${_rest_url}&taxonomy=${taxonomy}&term=${term}`
+}
 // type Post = {
 //   id:number;
 //   title:{rendered:string};

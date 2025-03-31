@@ -13,6 +13,9 @@ type Post = {
     url:string,
     url_f:string
   },
+  title:{
+    rendered:string;
+  }
   content: {
     rendered:string
   }
@@ -33,17 +36,18 @@ onMounted(() => {
 <div v-if="_page && _page[0]">
   <div class="alignfull" v-if="_page[0].thumbnail">
     <div class="heroImage">
+      <h1 class="page-ttl">{{ _page[0].title.rendered }}</h1>
       <NuxtImg :src="`${_page[0].thumbnail.url_f}`" alt="" loading="lazy" format="webp" />
     </div>
   </div>
-  <PageNav />
+  <PageNav current="history" />
   <div v-if="_page" class="pogeContainer" v-html="_page[0].content.rendered"></div>
 </div>
 </template>
 
 <style scoped lang="scss">
 .heroImage{
-  aspect-ratio:1/.38;
+  // aspect-ratio:1/.625;
   img{
     object-fit: cover;
     width:100%;

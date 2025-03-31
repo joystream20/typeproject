@@ -7,20 +7,29 @@ const route = useRoute()
 const _state = ref<boolean | null>(null)
 
 
+const store_url = ref<string>('https://shop.typeproject.com/')
 watch(()=> _state.value, (newState) => {
-  console.log(newState)
+  // console.log(newState)
 })
 
 watch(route, (newRoute)=>{
   // console.log(newRoute.path)
+  // console.log(locale.value)
   _state.value = false
+  if(locale.value === 'en'){
+    store_url.value = 'https://shop.typeproject.com/en/'
+  }else{
+    store_url.value = 'https://shop.typeproject.com/'
+  }
 })
-
-
 
 const btnClick = () => {
   _state.value = !_state.value
   // console.log('click', _state.value)
+}
+
+if(locale.value === 'en'){
+  store_url.value = 'https://shop.typeproject.com/en/'
 }
 
 </script>
@@ -67,7 +76,13 @@ const btnClick = () => {
             <NuxtLinkLocale :to="{name:'news'}">{{ t('news') }}</NuxtLinkLocale>
           </li>
           <li class="navList-item">
+            <NuxtLinkLocale :to="{name:'letterspace'}">{{ t('letterspace') }}</NuxtLinkLocale>
+          </li>
+          <li class="navList-item">
             <NuxtLinkLocale :to="{name:'about'}">{{ t('company') }}</NuxtLinkLocale>
+          </li>
+          <li class="navList-item">
+            <a :href="store_url" target="_blank">{{ t('store') }}</a>
           </li>
         </ul>
         <div class="hmMenuContainer-back" @click="btnClick()"></div>

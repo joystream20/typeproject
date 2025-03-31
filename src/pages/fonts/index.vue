@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { FontPost } from '../../types/type'
-import { useHeaderSize } from '@/composables/useHeaderSize';
+import { useHeaderSize } from '../../composables/useHeaderSize';
+import { useRoute } from 'vue-router'
 
 interface FontTerm {
   name:string;
   slug: string;
+  description:string;
   terms:{id:number, name:string, slug:string,tax:string}[]
 }[]
 
@@ -15,10 +17,15 @@ let langApiCumtom = config.public.wpApiCustom
 let fonts_arr:Array<{id:string; tax:string[]}> = []
 const sort_arr:Array<string> = []
 const sort_back_arr:Ref<Array<string>> = ref([])
+const sort_check_arr:Ref<Array<Array<{id:number,name:string,slug:string,tax:string}>>> = ref([])
 const fonts_list_arr:Ref<Array<string>> = ref([])
 const stClass = changeClass();
+const router = useRoute()
 
-// const headerHeight = useHeaderSize()
+const headerHeight = useHeaderSize()
+const headerH = computed(() => {
+  return headerHeight.value + "px"
+})
 
 if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
@@ -59,6 +66,7 @@ onBeforeMount(() => {
         )
         fonts_arr.push({id:id,tax:_arr})
     });
+    
   }
   // console.log(fonts_list_arr.value)
 
@@ -67,20 +75,35 @@ onBeforeMount(() => {
       _tax => {
         sort_arr.push("")
         sort_back_arr.value.push("")
+        sort_check_arr.value.push(_tax.terms)
+        // console.log(_tax.terms)
       }
     )
+    // console.log(sort_check_arr)
+
   }
+
+  
 
   // console.log(fonts_arr)
 })
 
 onMounted(() => {
   stClass.value = {type:"archive",cls:"fonts",lng:locale.value}
-  console.log(_posts)
+  // console.log(_posts)
+  if(router.query.filter){
+    const index = sort_check_arr.value.findIndex((fontGroup:{id:number,name:string,slug:string,tax:string}[]) => 
+    fontGroup.some(font => font.slug === router.query.filter)
+    );
+    console.log(index)
+    onSort(index,String(router.query.filter))
+  }
+  
+  // console.log(sort_arr)
 })
 
 const onSort = (index:number, slug:string) => {
-  // console.log(index,slug)
+  console.log(index,slug)
   // console.log(fonts_arr)
   setTimeout(() => {
     // console.log(sort_arr.value[index])
@@ -124,6 +147,16 @@ const onSort = (index:number, slug:string) => {
 //   return _posts.filter(_p => {fonts_list_arr.value.includes(_p.id)})
 //   // return fonts_list_arr.includes(id)
 // }
+const openState = ref<boolean[]>(
+  _fontsAllTerm.value ? _fontsAllTerm.value.map(() => true) : [])
+
+const isOpen = (index:number) => {
+  return openState.value[index] || false
+}
+
+const toggleInputList = (index:number):void => {
+  openState.value[index] = !openState.value[index]
+}
 
 </script>
 
@@ -134,19 +167,26 @@ const onSort = (index:number, slug:string) => {
       <div class="contentsContainer u_d_fl _rs">
         <div class="termContainer">
           <div class="termList" v-for="(tax,index) in _fontsAllTerm" :key="index">
-            <h3 class="termList-ttl">{{ tax.name }}</h3>
-      
-              <ul class="inputList">
-                <li class="inputList-item" v-for="term in tax.terms" :key="term.id">
-                  <div class="input"><input :name="tax.slug" :id="term.slug" type="radio" :value="term.slug"  v-model="sort_back_arr[index]" ><label @click="() => onSort(index, term.slug)" :for="term.slug" class="txt"><span class="tx">{{ term.name }}</span></label></div>
-                  <!-- v-model="sort_arr[index]" -->
-                </li>
-              </ul>
+            
+            <h3 class="termList-ttl" :class="{'on' :isOpen(index)}" @click="toggleInputList(index)">{{locale === 'ja' ? tax.name : tax.description }}
+              <span class="btn"></span>
+            </h3>
+
+
+                <div class="inputListContainer" :class="{'on' :isOpen(index)}">
+                  <ul class="inputList">
+                    <li class="inputList-item" v-for="term in tax.terms" :key="term.id">
+                      <div class="input"><input :name="tax.slug" :id="term.slug" type="radio" :value="term.slug"  v-model="sort_back_arr[index]" ><label @click="() => onSort(index, term.slug)" :for="term.slug" class="txt"><span class="tx">{{ term.name }}</span></label></div>
+                      <!-- v-model="sort_arr[index]" -->
+                    </li>
+                  </ul>
+                </div>
+             
       
           </div>
         </div>
         <div class="fontListContainer  u_fx1">
-          <ul v-if="_posts" class="fontList">
+          <ul v-if="_posts" class="fontList" :style="`top:${headerH}`">
             <li :class="`fontList-item font_${font.id} font_${font.slug}`" v-for="font in _posts.filter(_p => fonts_list_arr.includes(_p.id))" :key="font.id" >
           <div class="image">
             <NuxtLinkLocale :to="`/fonts/${font.slug}`">
@@ -170,6 +210,7 @@ const onSort = (index:number, slug:string) => {
 
 <style scoped lang="scss">
 $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
+
 .input{
     
     input[type=radio]{
@@ -178,7 +219,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
       &:checked{
         & + .txt{
           &:before{
-            background-color: #777;
+            background-color: #38cbd6;
           }
         }
       }
@@ -213,6 +254,58 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     &-ttl{
       font-size:1.125em;
       font-weight: normal;
+      cursor: pointer;
+      display: flex;
+      align-content: center;
+      justify-content: space-between;
+      .btn{//b3b3b3
+        width:1em;
+        height: 1em;
+        border:1px solid #909090;
+        border-radius: 0;
+        padding:2px;
+        position:relative;
+        display: block;
+        &:before{
+          content: "";
+          width:70%;
+          height: 1px;
+          background-color: #909090;
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+          z-index: 1;
+        }
+        &::after{
+          content:"";
+          height: 70%;
+          width:1px;
+          background-color: #909090;
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+
+        }
+        
+      }
+      &.on{
+          .btn{
+            &::after{
+              opacity: 0;
+            }
+          }
+        }
+    }
+
+    .inputListContainer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .7s ease;
+      &.on{
+        max-height: 400px;
+      }
     }
   }
   .inputList{
@@ -225,6 +318,8 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   display: flex;
   flex-wrap:wrap;
   gap:20px;
+  position:sticky;
+
   &-item{
     flex-basis: calc(50% - 10px);
     
@@ -259,6 +354,11 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     
   }
 }
+
+
+
+
+
 
 @media screen and (min-width: #{calc($ww * 1px)}) {
   .fontList{

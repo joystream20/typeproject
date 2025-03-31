@@ -26,5 +26,8 @@
   "new" : "新しい順",
   "old" : "古い順",
   "family_title": "ファミリー・仕様",
-  "story" : "開発ストーリー"
+  "story" : "開発ストーリー",
+  "selectfont": "選択してください",
+  "letterspace": "レタースペースから",
+  "store": "ストア"
 }

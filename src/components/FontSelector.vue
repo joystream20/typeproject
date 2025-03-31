@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const {locale,t} = useI18n()
 type Props = {
   fonts:{
     name:string;
@@ -23,6 +23,7 @@ const onChangeFont = (e:Event) => {
 <div v-if="fonts">
   <div class="wrap">
     <select class="fontSelector" @change="onChangeFont">
+      <option value="">{{ t('selectfont') }}</option>
       <option v-for="font in fonts" :value="font.font_family" :key="font.name">{{ font.name }}</option>
     </select>
   </div>

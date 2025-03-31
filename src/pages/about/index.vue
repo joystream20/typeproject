@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
+
 const config = useRuntimeConfig()
 const {locale,t} = useI18n()
 let langApi = config.public.wpApiKey
@@ -14,6 +16,9 @@ type Post = {
     url:string,
     url_f:string
   }
+  title:{
+    rendered:string
+  }
   content:{
     rendered:string
   }
@@ -28,8 +33,12 @@ if (_error.value) {
   useHead({
   title:`${t('about')} | ${config.public.siteTitle}`
 })
+
+
+
 onMounted(() => {
   stClass.value = {type:"page",cls:"about",lng:locale.value}
+  useLinkClickHandler()
 })
 </script>
 
@@ -37,10 +46,11 @@ onMounted(() => {
 <div v-if="_page && _page[0]">
   <div class="alignfull" v-if="_page[0].thumbnail">
     <div class="heroImage">
+      <h1 class="page-ttl">{{ _page[0].title.rendered }}</h1>
       <NuxtImg :src="`${_page[0].thumbnail.url_f}`" loading="lazy" format="webp" alt="" preload />
     </div>
   </div>
-  <PageNav />
+  <PageNav current="about" />
   <div v-if="_page" class="pogeContainer" v-html="_page[0].content.rendered"></div>
 </div>
 </template>

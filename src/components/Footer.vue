@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const {locale,t} = useI18n()
+
 </script>
 
 <template>

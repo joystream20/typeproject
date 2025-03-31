@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
+
 const config = useRuntimeConfig()
 const {locale,t} = useI18n()
 const route = useRoute()
@@ -9,6 +11,7 @@ const stClass = changeClass();
 import {Swiper} from "swiper";
 import 'swiper/css';
 import { Autoplay, Thumbs, Pagination, Navigation } from 'swiper/modules'
+import { createElementBlock } from "vue";
 const modules = [Thumbs, Autoplay]//[Autoplay]
 
 if(locale.value === 'en'){
@@ -50,6 +53,15 @@ type Post = {
   buy_tpconnect:string;
   'font-type'?:{
     id:number
+  }[],
+  tax_info:{
+    slug:string,
+    terms:{
+      id:number;
+      name:string;
+      slug:string;
+      tax:string;
+    }[]
   }[]
 }
 
@@ -69,14 +81,19 @@ const testText = ref("Excellent compatibility between Ja")
 
 const linkUrl = ref('')
 
+
+onUpdated(() => {
+  console.log('update')
+  
+})
 onMounted(() => {
+  console.log('mounted')
   stClass.value = {type:"single",cls:`fonts ${_slug}`,lng:locale.value}
 
   if(_post.value && _post.value.length){
   current_slug.value = _post.value[0].acf.contrast_list[0].slug
   // console.log(document.querySelector('.swiperContainer'))
   const swiperContainer = document.querySelector('.swiperContainer');
-  // console.log(_post)
 
   if(swiperContainer){
 
@@ -110,6 +127,23 @@ onMounted(() => {
       }
     })
   }
+
+  const taxContainer = document.querySelector('.taxContainer')
+  const termList:HTMLElement = document.createElement('ul');
+  termList.classList.add('termList')
+
+  let items:string=""
+
+  const keywordTerms = _post.value[0].tax_info.filter(item => item.slug === 'keyword').map(item => item.terms)
+  keywordTerms[0].forEach(
+    _term => {
+      items += `<li class="termList-item"><a class="_nuxtLink" href="/fonts?filter=${_term.slug}">${_term.name}</a></li>`
+    }
+  )
+  termList.innerHTML = items
+  taxContainer?.appendChild(termList)
+
+
 }
   const btn_fiu = document.querySelector('.btn_fontinuse a');
   if(btn_fiu){
@@ -132,6 +166,8 @@ onMounted(() => {
   //     delay:2500
   //   }
   // })
+
+  useLinkClickHandler()
 
 })
 
@@ -502,11 +538,11 @@ overflow: hidden;
     padding-right:var(--wp--preset--spacing--30);
   }
   .sec{
-    &__header{
-      &-ttl{
-      // font-size: var(--wp--preset--font-size--large);
-    }
-    }
+    // &__header{
+    //   &-ttl{
+    //   font-size: var(--wp--preset--font-size--large);
+    // }
+    // }
     &__container{
 
     margin-top:var(--wp--preset--spacing--30);

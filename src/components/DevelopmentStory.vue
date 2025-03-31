@@ -7,7 +7,18 @@ let langApi = config.public.wpApiKey
 if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
 }
-const _rest_url = `${langApi}/story?per_page=4&context=embed`
+
+type Props = {
+  taxonomy?:string,
+  term?:string
+}
+const {taxonomy, term} = defineProps<Props>()
+
+let _rest_url = `${langApi}/story?per_page=4&context=embed`
+
+if(taxonomy && term){
+  _rest_url = `${_rest_url}&taxonomy=${taxonomy}&term=${term}`
+}
 
 const {data: _posts, status:_status, error:_error} = await useFetch<Post[]>(`${_rest_url}`)
   if (_error.value) {

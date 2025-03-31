@@ -6,7 +6,10 @@ const error = useError()
   <div class="error_wrap">
     <div class="inner">
       <Error404 v-if="error.statusCode===404" />
-      <div v-else>Error</div>
+      <div v-else>
+        <p>Error</p>
+        <p>{{ error.message }}</p>
+        </div>
     </div>
   </div>
 </template>

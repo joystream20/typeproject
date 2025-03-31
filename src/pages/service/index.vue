@@ -30,7 +30,7 @@ onMounted(() => {
 <section class="sec_service sec">
     <div class="sec__inner">
       <h2 class="sec-ttl">{{ t('service') }}</h2>
-      <p class="all"><NuxtLinkLocale :to="`/service`"><span class="txt">{{ t('all_posts') }}</span></NuxtLinkLocale></p>
+      
       <div v-if="_services">
         <ul class="fontsList u_d_fl">
         <PostsList :posts="_services" type="service" />

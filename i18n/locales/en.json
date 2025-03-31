@@ -25,5 +25,8 @@
   "new" : "new",
   "old" : "old",
   "family_title": "Family・Specification",
-  "story" : "Story"
+  "story" : "Story",
+  "selectfont": "Please select",
+  "letterspace": "from Letter Space",
+  "store": "Store"
 }
