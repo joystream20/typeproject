@@ -41,7 +41,7 @@ jobs:
         env:
           WP_API_KEY: ${{ secrets.WP_API_KEY }}
           SITE_DOMAIN: ${{ secrets.SITE_DOMAIN }}
-        #continue-on-error: true #エラーをスルー
+        continue-on-error: true #エラーをスルー
 
       - name: List output files
         run: ls -la dist/ # ファイルリストを表示
@@ -54,4 +54,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }} # FTPサーバのパスワード
           server-dir: ${{ secrets.DEPLOY_DIR }} # アップロード先のリモートパス
           local-dir: ./dist/ # ローカルのアップロードしたいフォルダのパス
-          useDiff: false
+          useDiff: true
