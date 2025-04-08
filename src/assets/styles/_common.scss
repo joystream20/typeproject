@@ -80,14 +80,8 @@ a{
     $bw : 2px;
     margin-left:.7em;
     transform:rotate(45deg) !important;
-    
-    border:{
-      top:solid $bw;
-      right:solid $bw;
-      // bottom: solid transparent $bw;
-      // left: solid transparent $bw;
-    }
-
+    border-top:solid $bw;
+    border-right:solid $bw;
     }
   }
 }
@@ -144,8 +138,8 @@ a{
 .btn_hm{
   position:absolute;
   right:0;
-  top:0;
-
+  top:50%;
+  transform:translateY(-50%);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -212,9 +206,7 @@ a{
       &:nth-child(1){
         animation-name:bar1 ;
       }
-      &:nth-child(2){
-        // opacity: 0;
-      }
+
       &:nth-child(3){
         animation-name:bar3 ;
       }
@@ -302,6 +294,8 @@ a{
 
   .btn_hm{
     position:relative;
+    top:0;
+    transform:translateY(0);
   }
 
 }

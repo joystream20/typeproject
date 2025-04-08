@@ -6,10 +6,33 @@ const {locale, t} = useI18n()
 
 const config = useRuntimeConfig()
 let langApi = config.public.wpApiKey
+
+const _ttl = ref(t('fontinuse'))
+
+
+type Props = {
+  taxonomy?:string,
+  term?:string,
+  name?:string
+}
+const {taxonomy, term, name} = defineProps<Props>()
+
+if(name){
+  _ttl.value = `「${name}」${t('otheruses')}`
+}
+
 if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
+  if(name){
+    _ttl.value = `${t('otheruses')}「${name}」`
+  }
 }
-const _rest_url = `${langApi}/fontinuse?per_page=4&context=embed`
+
+let _rest_url = `${langApi}/fontinuse?per_page=4&context=embed`
+
+if(taxonomy && term){
+  _rest_url = `${_rest_url}&taxonomy=${taxonomy}&term=${term}`
+}
 
 // type Post = {
 //   id:number;
@@ -41,7 +64,7 @@ const {data: _posts, status:_status, error:_error} = await useFetch<Post[]>(`${_
  <section class="sec_interview sec">
       <div class="sec__inner">
         <header class="sec__header _wbt">
-          <h2 class="sec__header-ttl">{{ t('fontinuse') }}</h2>
+          <h2 class="sec__header-ttl">{{_ttl }}</h2>
           <p class="btn_all all"><NuxtLinkLocale :to="`/fontinuse`"><span class="txt">{{ t('all_posts') }}</span></NuxtLinkLocale></p>
         </header>
         <div v-if="_posts" class="sec__container">

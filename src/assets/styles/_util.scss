@@ -138,7 +138,11 @@ $wsx : 375;
   .u_fl_fd_rr_sp{
   flex-direction: row-reverse;
   }
-
+.u_mx360{
+  @media screen and (min-width: #{calc($ww * 1px)}) { 
+    max-width: 360px;
+  }
+}
 .u_mx550{
   max-width: 550px;
   &._rs{
@@ -181,6 +185,9 @@ $wsx : 375;
 .u_mr_auto_i{
   margin-left: 0 !important;
   margin-right: auto !important;
+}
+.u_pd_lr_30{
+  padding:0 var(--wp--preset--spacing--30);
 }
 
 .u_nw{

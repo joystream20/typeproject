@@ -9,7 +9,7 @@ type Props = {
 const { posts, type } = defineProps<Props>()
 
 onMounted(() => {
-
+// console.log(posts)
 })
 
 </script>
@@ -18,10 +18,15 @@ onMounted(() => {
 <ul class="postList" v-if="posts && posts.length">
   <li class="postList-item" v-for="post in posts" :key="post.id">
     <div class="image">
-      <NuxtLinkLocale :to="`/${type}/${post.slug}`">
-      <NuxtImg v-if="post.thumbnail.url" :src="`${post.thumbnail.url}`" :alt="`${post.title.rendered}`" width="246" format="webp" loading="lazy" />
-      <img v-else src="@/assets/images/img_def.png" alt="" />
-    </NuxtLinkLocale>
+     <!-- <p v-if="post.acf">{{ post.acf.link }}</p> -->
+      <a v-if="post.acf && post.acf.link" :href="`${post.acf.url}`" target="_blank">
+        <NuxtImg v-if="post.thumbnail.url" :src="`${post.thumbnail.url}`" :alt="`${post.title.rendered}`" width="246" format="webp" loading="lazy" />
+        <img v-else src="@/assets/images/img_def.png" alt="" />
+      </a>
+      <NuxtLinkLocale v-else :to="`/${type}/${post.slug}`">
+        <NuxtImg v-if="post.thumbnail.url" :src="`${post.thumbnail.url}`" :alt="`${post.title.rendered}`" width="246" format="webp" loading="lazy" />
+        <img v-else src="@/assets/images/img_def.png"  />
+      </NuxtLinkLocale>
     </div>
     <div class="txtContainer">
       <!-- <p class="ttl">{{ post.title.rendered }}</p> -->

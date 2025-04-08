@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
 const config = useRuntimeConfig()
 const {locale} = useI18n()
 let langApi = config.public.wpApiKey
@@ -29,6 +30,24 @@ const {data:_page, status: _status, error:_error} = await useFetch<Post[]>(`${la
 
 onMounted(() => {
   stClass.value = {type:"page",cls:"history",lng:locale.value}
+  const yearLists = document.querySelectorAll('.yearListContainer')
+
+  yearLists.forEach(
+    _year => {
+      const openState = ref<boolean>(false)
+      _year.addEventListener('click', (e) => {
+        openState.value = !openState.value
+        // console.log(openState.value)
+        if(openState.value === true){
+          _year.classList.add('on')
+        }else{
+          _year.classList.remove('on')
+        }
+      })
+    }
+  )
+  useLinkClickHandler()
+  
 })
 </script>
 

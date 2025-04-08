@@ -19,6 +19,7 @@ const sort_arr:Array<string> = []
 const sort_back_arr:Ref<Array<string>> = ref([])
 const sort_check_arr:Ref<Array<Array<{id:number,name:string,slug:string,tax:string}>>> = ref([])
 const fonts_list_arr:Ref<Array<string>> = ref([])
+const parent_check_arr:Ref<Array<boolean>> = ref([])
 const stClass = changeClass();
 const router = useRoute()
 
@@ -44,6 +45,8 @@ const {data: _fontsAllTerm, status:_fonts_all_term_st, error:_fonts_all_term_err
   } else {
     
   }
+
+// const _loading = ref(false)
 
 onBeforeMount(() => {
   // console.log('before mount')
@@ -80,6 +83,7 @@ onBeforeMount(() => {
       }
     )
     // console.log(sort_check_arr)
+    // console.log(_fontsAllTerm)
 
   }
 
@@ -89,22 +93,40 @@ onBeforeMount(() => {
 })
 
 onMounted(() => {
+  // console.log('onMounted')
+  // setTimeout(()=> {
+  //   _loading.value = true
+  // },1000)
+  
   stClass.value = {type:"archive",cls:"fonts",lng:locale.value}
   // console.log(_posts)
   if(router.query.filter){
     const index = sort_check_arr.value.findIndex((fontGroup:{id:number,name:string,slug:string,tax:string}[]) => 
     fontGroup.some(font => font.slug === router.query.filter)
     );
-    console.log(index)
+    
     onSort(index,String(router.query.filter))
   }
   
   // console.log(sort_arr)
 })
 
+// onBeforeUnmount(() => {
+//   console.log('beforeUnmounted')
+//   _loading.value = false
+// })
+type Result = {
+  parentName: string;
+  parentDescription: string;
+  termName: string;
+}
+const resultArr = ref<Result[]>([]);
+
 const onSort = (index:number, slug:string) => {
-  console.log(index,slug)
+  // console.log(index,slug)
   // console.log(fonts_arr)
+  
+  resultArr.value = []
   setTimeout(() => {
     // console.log(sort_arr.value[index])
     if(sort_arr[index] === slug){
@@ -125,20 +147,43 @@ const onSort = (index:number, slug:string) => {
       }
     )
     fonts_list_arr.value = judge_arr
+
+    // console.log(sort_arr)
+
+    sort_arr.forEach(sortString => {
+      if(sortString){
+        if(_fontsAllTerm.value){
+          _fontsAllTerm.value.forEach(parent => {
+            const matchTerm = parent.terms.find(term => term.slug === sortString)
+            if(matchTerm){
+              resultArr.value.push({
+                parentName: parent.name,
+                parentDescription: parent.description,
+                termName: matchTerm.name
+              })
+              
+            }
+          })
+        }
+      }
+    })
+    // console.log(resultArr.value)
+    // console.log(sort_arr)
    
   },100)
 
-  fonts_arr.forEach(
-    _font => {
+  //何もしてない
+  // fonts_arr.forEach(
+  //   _font => {
       
-      setTimeout(()=>{
-        if(sort_arr[index] === slug){
+  //     setTimeout(()=>{
+  //       if(sort_arr[index] === slug){
          
-        }
-      },100)
+  //       }
+  //     },100)
       
-    }
-  )
+  //   }
+  // )
   
 }
 
@@ -162,13 +207,25 @@ const toggleInputList = (index:number):void => {
 
 <template>
   <div class="is-layout-constrained has-global-padding">
-    <div class="alignwide">
-      <h1>{{t('fontlist')}}</h1>
+    <div class="alignwide page__container">
+      <header class="page__header" :style="`top:${headerH}`">
+        <div class="page__header-inner">
+          <h1 class="page__header-ttl u_f_bd">{{t('fontlist')}}</h1>
+          <div class="selectContainer">
+            <div class="selectContainer__inner" v-if="resultArr.length > 0">
+              <div class="selectContainer-item" v-for="(res, index) in resultArr" :key="index">
+                <span class="parent">{{ res.parentName }}</span>:
+                <span class="child">{{ res.termName }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
       <div class="contentsContainer u_d_fl _rs">
         <div class="termContainer">
           <div class="termList" v-for="(tax,index) in _fontsAllTerm" :key="index">
             
-            <h3 class="termList-ttl" :class="{'on' :isOpen(index)}" @click="toggleInputList(index)">{{locale === 'ja' ? tax.name : tax.description }}
+            <h3 class="termList-ttl" :class="{'on' :isOpen(index),'sel':sort_arr[index]}" @click="toggleInputList(index)">{{locale === 'ja' ? tax.name : tax.description }}
               <span class="btn"></span>
             </h3>
 
@@ -186,7 +243,7 @@ const toggleInputList = (index:number):void => {
           </div>
         </div>
         <div class="fontListContainer  u_fx1">
-          <ul v-if="_posts" class="fontList" :style="`top:${headerH}`">
+          <ul v-if="_posts" class="fontList" :style="`top:calc(${headerH} + clamp(1.125rem, 0.549rem + 2.46vw, 1.75rem) + 1em)`">
             <li :class="`fontList-item font_${font.id} font_${font.slug}`" v-for="font in _posts.filter(_p => fonts_list_arr.includes(_p.id))" :key="font.id" >
           <div class="image">
             <NuxtLinkLocale :to="`/fonts/${font.slug}`">
@@ -211,6 +268,39 @@ const toggleInputList = (index:number):void => {
 <style scoped lang="scss">
 $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 
+.page{
+  &__container{
+    position:relative;
+    padding-top:calc(clamp(1.25rem, 0.559rem + 2.95vw, 2rem) + 1em);
+  }
+  &__header{
+    padding:.5em 0;
+    border:none;
+    background-color: #eee;
+    width:100%;
+    top:0;
+    left:0;
+    position:fixed;
+    z-index: 10;
+    display: block;
+    opacity:1;
+    &-inner{
+      display: flex;
+      max-width:1440px;
+      margin-left: auto;
+      margin-right: auto;
+      // justify-content: space-between;
+      align-items: center;
+    }
+
+    &-ttl{
+      font-size:clamp(1.125rem, 0.549rem + 2.46vw, 1.75rem);
+      line-height: 1;
+      min-width: 8em;
+    }
+  }
+  
+}
 .input{
     
     input[type=radio]{
@@ -239,7 +329,8 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     }
 }
 .contentsContainer{
-  margin-top:1em;
+  // margin-top:1em;
+  // background-color: #eee;
   .termContainer{
     position:fixed;
     z-index: 1;
@@ -258,6 +349,9 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
       display: flex;
       align-content: center;
       justify-content: space-between;
+      &.sel{
+        color:#38cbd6;
+      }
       .btn{//b3b3b3
         width:1em;
         height: 1em;
@@ -355,12 +449,34 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   }
 }
 
+.selectContainer{
+  &__inner{
+    display: flex;
+    gap:0 1em;
+    flex-wrap: wrap;
+    font-size:.75em;
+  }
+  &-item{
+     .parent{
+      color:#38cbd6;
+      display: none;
+     } 
+    }
+}
+
 
 
 
 
 
 @media screen and (min-width: #{calc($ww * 1px)}) {
+  .page{
+    &__header{
+      &-ttl{
+        width:clamp(220px, 20%, 280px);
+      }
+    }
+  }
   .fontList{
     gap:12px;
     &-item{
@@ -374,7 +490,19 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   .termContainer{
     width:clamp(220px,20%,280px);
     position:relative;
+    background-color: transparent;
   }
+}
+
+.selectContainer{
+  &__inner{
+    font-size:.8em;
+  }
+  &-item{
+     .parent{
+      display: inline;
+     } 
+    }
 }
 }
 </style>

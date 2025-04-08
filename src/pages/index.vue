@@ -18,10 +18,10 @@ const stClass = changeClass();
 
 type toplistType = {
   id:number,
-  post_type:string,
-  slug: string,
+  href:string,
   thumb:string,
-  title:string
+  title:string,
+  blank:boolean
 }
 
 // const {counter, inc, decc} = useCounter()
@@ -106,14 +106,14 @@ onBeforeUnmount(() => {
           <div class="customPost">
             <div class="customPost__top ">
               <div class="customPost__top-left">
-                <TopList  v-for="(_post, index) in customArray[0]" :key="index" :title="_post.title" :post_type="_post.post_type" :src="_post.thumb" :slug="_post.slug" />
+                <TopList  v-for="(_post, index) in customArray[0]" :key="index" :title="_post.title" :href="_post.href" :src="_post.thumb" :blank="_post.blank" />
               </div>
               <div class="customPost__top-right">
-                <TopList v-for="(_post, index) in customArray[1]" :key="index" :title="_post.title" :post_type="_post.post_type" :src="_post.thumb" :slug="_post.slug" />
+                <TopList v-for="(_post, index) in customArray[1]" :key="index" :title="_post.title" :href="_post.href" :src="_post.thumb" :blank="_post.blank" />
               </div>
             </div>
             <div class="customPost__bottom ">
-              <TopList v-for="(_post, index) in customArray[2]" :key="index" :title="_post.title" :post_type="_post.post_type" :src="_post.thumb" :slug="_post.slug" />
+              <TopList v-for="(_post, index) in customArray[2]" :key="index" :title="_post.title" :href="_post.href" :src="_post.thumb" :blank="_post.blank" />
             </div>
           </div>
         </div>
@@ -213,6 +213,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .sec{
   &.sec_customPost{
     margin-top:1.25em;
+    min-height:450px;
   }
   margin-top:5em;
   &__header{

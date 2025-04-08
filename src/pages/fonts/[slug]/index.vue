@@ -83,11 +83,11 @@ const linkUrl = ref('')
 
 
 onUpdated(() => {
-  console.log('update')
+  // console.log('update')
   
 })
 onMounted(() => {
-  console.log('mounted')
+  // console.log('mounted')
   stClass.value = {type:"single",cls:`fonts ${_slug}`,lng:locale.value}
 
   if(_post.value && _post.value.length){
@@ -187,7 +187,7 @@ const onChangeSlug = (slug:string):void => {
 </script>
 
 <template>
-  <div v-if="_post">
+  <div class="postContainerWrap" v-if="_post">
     <div class="postContainer" v-html="_post[0].content.rendered"></div>
 
     <section :class="`typeContainer ${bw_cl}`">

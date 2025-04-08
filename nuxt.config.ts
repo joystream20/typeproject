@@ -153,7 +153,7 @@ export default defineNuxtConfig({
         {property: 'twitter:description', content: metaDescription},
         {property: 'twitter:image', content: metaImage},
         {property: 'twitter:card', content: 'summary_large_image'},
-        {name: 'robots', content: 'noindex,nofollow'}
+        // {name: 'robots', content: 'noindex,nofollow'}
       ],
       script: [
         {

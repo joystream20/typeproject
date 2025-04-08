@@ -210,7 +210,7 @@ html{
     background-color: #f5f5f5;
     display: flex;
     align-items: center;
-    padding:.7em .5em;
+    padding:1em .5em;
 
     &__inner{
       // padding:.5em 0;
@@ -261,6 +261,22 @@ html{
     border-bottom:1px solid #b3b3b3;
     .sec-ttl{
       font-size:1.2em;
+    }
+  }
+  &.fonts{
+    .page__header{
+      padding-left: var(--wp--style--root--padding-left);
+      padding-right: var(--wp--style--root--padding-left);
+      top:0;
+      // opacity: 0;
+      // z-index: -1;
+      // display: none;
+
+      &.on{
+        // display: block;
+        // opacity: 1;
+        // z-index: 10;
+      }
     }
   }
 }
@@ -335,12 +351,74 @@ html{
     }
   }
   &.history{
+    .historyColumn{
+      &__left{
+        &-listContainer{
+          display: flex;
+          justify-content: space-between;
+          position:relative;
+        }
+      }
+      .yearListContainer{
+        position:relative;
+        margin-top:0;
+        padding-right: 1.5em;
+        overflow: hidden;
+        max-height: 2em;
+        position:absolute;
+        right:0;
+        top:1em;
+        background-color: #fff;
+        transition:max-height .5s;
+        &:before{
+          content:">";
+          position:absolute;
+          transform:rotate(90deg);
+          right:.3em;
+          top:.3em;
+        }
+        &.on{
+          max-height:300px;
+        }
+        &-txt{
+          padding:.2em .5em;
+        }
+      }
+      .yearList{
+        font-family: 'A+mfCv-濱明朝 キャプション B StdN';
+        margin-top:0;
+        
+        > * + *{
+        }
+        &-item{
+          // &:first-child{
+          //   padding:.2em .5em;
+          // }
+          a{
+            padding:.2em .5em;
+            display: block;
+          }
+          border-top:#efefef;
+        }
+        
+      }
+    }
     .historyList{
+      margin-left: calc(clamp(1.875rem, 0.838rem + 4.42vw, 3rem) * 1.5);
+      margin-top:0;
+      padding:1em 0 1em 2em;
+      border-left:1px solid;
+      margin-top:.5em;
+      &-ttl{
+        font-family: 'A+mfCv-濱明朝 キャプション B StdN';
+        font-size:clamp(1.875rem, 0.838rem + 4.42vw, 3rem);
+      }
       > div + div{
-        margin-top:.5em;
+        margin-top:1em;
       }
       > div{
         display: flex;
+        flex-direction: column;
         dt{
           width:8em;
         }
@@ -375,6 +453,10 @@ html{
     }
   }
   &.fonts{
+    .wp-block-post-title{
+      font-size:clamp(1.125rem, 0.988rem + 0.59vw, 1.5rem);
+      min-width:10em;
+    }
     .topContainer{
       .listContainer{
         .wp-block-simple-definition-list-blocks{
@@ -497,6 +579,11 @@ html{
         width:100%;
       }
     }
+    &.single{
+      .contentsListWrapCover{
+        
+      }
+    }
   }
   .sec_support{
     margin-top:3em;
@@ -564,7 +651,8 @@ html{
       &__inner{
         display: flex;
         flex-direction: row;
-        padding:clamp(1rem, 0.56rem + 1.88vw, 2.25rem) 0;
+        // padding:clamp(1rem, 0.56rem + 1.88vw, 2.25rem) 0;
+        padding:clamp(1rem, 0.406rem + 1.22vw, 1.5rem) 0;
       }
       .gnav{
         margin-top:0;
@@ -581,20 +669,40 @@ html{
       .historyColumn{
         &__left{
           &-listContainer{
+            flex-direction: column;
             position:sticky;
             top:0;
           }
         }
+        .yearListContainer{
+          margin-top:1em;
+          position:static;
+          max-height: none;
+          background: transparent;
+          &::before{
+            content:none;
+          }
+        }
         .yearList{
+          // 
           > * + *{
             margin-top:.5em;
           }
           &-item{
-            
+            // &:first-child{
+            //   display: none;
+            // }
           }
         }
       }
       .historyList{
+        padding-left:3em;
+        > div + div{
+          margin-top:.5em;
+        }
+        > div{
+          flex-direction: row;
+        }
       }
     }
     &.staff{

@@ -25,6 +25,7 @@ type Post = {
       id:number;
       name:string;
       tax:string;
+      slug:string;
     }[]
   }[]
 }
@@ -78,20 +79,30 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="wrap">
-    <div v-if="_post && _post[0]" v-html="_post[0].content.rendered"></div>
-    <div class="catListContainer">
-      <dl class="catList u_d_fl" v-if="_post && _post[0].tax_info">
-        <div class="catList-item" v-for="(_tax, index) in _post[0].tax_info" :key="index">
-          <dt v-if="_tax.slug === 'font-type'">{{ t('font-type') }}</dt>
-          <dt v-else-if="_tax.slug === 'scene'">{{ t('scene') }}</dt>
-          <dd v-for="_term in _tax.terms" :key="_term.id">
-            <NuxtLinkLocale :to="`/fontinuse/${_term.tax}/${_term.id}`">
-              {{ _term.name }}
-            </NuxtLinkLocale>
-          </dd>
-        </div>
-      </dl>
+  <div>
+    <div ref="wrap">
+      <div v-if="_post && _post[0]" v-html="_post[0].content.rendered"></div>
+      <div class="catListContainer">
+        <dl class="catList u_d_fl" v-if="_post && _post[0].tax_info">
+          <div class="catList-item" v-for="(_tax, index) in _post[0].tax_info" :key="index">
+            <dt v-if="_tax.slug === 'font-type'">{{ t('font-type') }}</dt>
+            <dt v-else-if="_tax.slug === 'scene'">{{ t('scene') }}</dt>
+            <dd v-for="_term in _tax.terms" :key="_term.id">
+              <NuxtLinkLocale :to="`/fontinuse/${_term.tax}/${_term.id}`">
+                {{ _term.name }}
+              </NuxtLinkLocale>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+    <div v-if="_post && _post[0].tax_info">
+      <div v-for="(_tax, index) in _post[0].tax_info" :key="index">
+        <!-- <p>{{ _tax.slug }}</p> -->
+        <div v-for="_term in _tax.terms" :key="_term.id">
+            <FontInUseList :taxonomy="`${_tax.slug}`" :term="`${_term.slug}`" :name="`${_term.name}`" />
+          </div>
+      </div>
     </div>
   </div>
 </template>

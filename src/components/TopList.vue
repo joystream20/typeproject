@@ -3,17 +3,22 @@
 
 type Props = {
   title:string,
-  slug:string,
   src:string,
-  post_type:string
+  href:string,
+  blank:boolean
 }
-const {title, slug, src, post_type} = defineProps<Props>()
+const {title, src, href, blank} = defineProps<Props>()
 
 </script>
 <template>
 <div class="customPost-item">
   <div class="image">
-    <NuxtLinkLocale :to="`/${post_type}/${slug}`"><NuxtImg :src="src" :alt="`${title}`" loading="lazy" format="webp" preload /></NuxtLinkLocale>
+    <a v-if="blank" :href="href" target="_blank">
+      <NuxtImg :src="src" :alt="`${title}`" loading="lazy" format="webp" preload />
+    </a>
+    <NuxtLinkLocale v-else :to="`/${href}`">
+    <NuxtImg :src="src" :alt="`${title}`" loading="lazy" format="webp" preload />
+    </NuxtLinkLocale>
   </div>
   <div class="txtContainer">
     <h3 class="ttl">{{ title }}</h3>
@@ -24,7 +29,7 @@ const {title, slug, src, post_type} = defineProps<Props>()
 
   .customPost-item{
     .image{
-      aspect-ratio: 1/.65;
+      aspect-ratio: 1/.57;
     }
     img{
       object-fit: cover;

@@ -27,7 +27,11 @@ export type Post = {
   }[];
   categories_info:{
     id:number;name:string;
-  }[]
+  }[];
+  acf?:{
+    link?:boolean;
+    url?:string;
+  }
 }
 
 export type PostTopNews = {

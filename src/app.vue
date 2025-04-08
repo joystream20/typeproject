@@ -143,6 +143,19 @@ body{
   }
 }
 
+.page{
+    &.history{
+      .historyColumn{
+        &__right{
+          &-box{
+            padding-top:calc(v-bind(headerH) + 1em);
+            margin-top:calc((v-bind(headerH)) * -1);;
+          }
+        }
+      }
+    }
+  }
+
 @media screen and (min-width: #{calc($ww * 1px)}) { //897
   .page{
     &.history{
