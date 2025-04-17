@@ -98,7 +98,7 @@ a{
     max-width:1000px;
     margin-left:auto;
     margin-right:auto;
-    padding:3em 4em;
+    padding:3em 2em;
     // background-color: #fff;
     position:relative;
   }
@@ -131,7 +131,10 @@ a{
     position: absolute;
     top:0;right:0;bottom:0;left:0;
     background-color: #fff;
-    
+    background-image: url(../images/img_menu_back.png);
+    background-repeat: no-repeat;
+    background-size:calc(100% - 11em) auto;
+    background-position: right center;
   }
 }
 
@@ -296,6 +299,12 @@ a{
     position:relative;
     top:0;
     transform:translateY(0);
+  }
+
+  .hmMenuContainer{
+    &__inner{
+      padding:3em 4em;
+    }
   }
 
 }

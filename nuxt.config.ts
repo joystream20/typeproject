@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const {WP_API_KEY,SITE_DOMAIN,FONTAWESOME_URL} = process.env
-const siteUrl = 'https://tp.joystream.com'
+const siteUrl = 'https://damazeinc.xsrv.jp'
 const metaImage = '/ogp.png'
 const metaTitle = 'Type Project | タイププロジェクト'
 const metaDescription = 'タイププロジェクトは、機能性と独自性を核にした魅力ある書体づくりに挑む21世紀の文字カンパニーです。'
@@ -57,10 +57,10 @@ export default defineNuxtConfig({
 
   runtimeConfig:{
     public: {
-      wpApiKey:'https://tp.joystream.com/wp-json/wp/v2',//`${process.env.WP_API_KEY}/wp-json/wp/v2`,
-      wpApiKeyEn:'https://tp.joystream.com/en/wp-json/wp/v2',//`${process.env.WP_API_KEY}/en/wp-json/wp/v2`,
-      wpApiCustom:'https://tp.joystream.com/wp-json/custom/v0',//`${process.env.WP_API_KEY}/wp-json/custom/v0`,
-      wpApiCustomEn:'https://tp.joystream.com/en/wp-json/custom/v0',//`${process.env.WP_API_KEY}/en/wp-json/custom/v0`,
+      wpApiKey:'https://damazeinc.xsrv.jp/wp-json/wp/v2',//`${process.env.WP_API_KEY}/wp-json/wp/v2`,
+      wpApiKeyEn:'https://damazeinc.xsrv.jp/en/wp-json/wp/v2',//`${process.env.WP_API_KEY}/en/wp-json/wp/v2`,
+      wpApiCustom:'https://damazeinc.xsrv.jp/wp-json/custom/v0',//`${process.env.WP_API_KEY}/wp-json/custom/v0`,
+      wpApiCustomEn:'https://damazeinc.xsrv.jp/en/wp-json/custom/v0',//`${process.env.WP_API_KEY}/en/wp-json/custom/v0`,
       postsPerPage: _perPage,
       pagerNumPage:5,
       defaultFontFamily:"'A+mfCv-TPスカイ セミクラシック ロー M'",
@@ -79,7 +79,7 @@ export default defineNuxtConfig({
   fontawesome: {
     icons: {
       brands:['facebook-f','facebook', 'x-twitter', 'instagram'],
-      solid: ['cart-shopping','angle-right']
+      solid: ['cart-shopping','angle-right','turn-up']
     }
   },
 
@@ -237,18 +237,18 @@ async function fetchRoutes() {
 
   // APIエンドポイントリスト
   const apiEndpoints = [
-    { url: 'https://tp.joystream.com/wp-json/wp/v2/posts', prefix: '/news' },
-    { url: 'https://tp.joystream.com/en/wp-json/wp/v2/posts', prefix: '/en/news' },
-    { url: 'https://tp.joystream.com/wp-json/wp/v2/fontinuse', prefix: '/fontinuse' },
-    { url: 'https://tp.joystream.com/en/wp-json/wp/v2/fontinuse', prefix: '/en/fontinuse' },
-    { url: 'https://tp.joystream.com/wp-json/wp/v2/fonts', prefix: '/fonts' },
-    { url: 'https://tp.joystream.com/en/wp-json/wp/v2/fonts', prefix: '/en/fonts' },
-    { url: 'https://tp.joystream.com/wp-json/wp/v2/service', prefix: '/service' },
-    { url: 'https://tp.joystream.com/en/wp-json/wp/v2/service', prefix: '/en/service' },
-    { url: 'https://tp.joystream.com/wp-json/wp/v2/interviews', prefix: '/interviews' },
-    { url: 'https://tp.joystream.com/en/wp-json/wp/v2/interviews', prefix: '/en/interviews' },
-    { url: 'https://tp.joystream.com/wp-json/wp/v2/story', prefix: '/story' },
-    { url: 'https://tp.joystream.com/en/wp-json/wp/v2/story', prefix: '/en/story' },
+    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/posts', prefix: '/news' },
+    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/posts', prefix: '/en/news' },
+    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/fontinuse', prefix: '/fontinuse' },
+    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/fontinuse', prefix: '/en/fontinuse' },
+    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/fonts', prefix: '/fonts' },
+    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/fonts', prefix: '/en/fonts' },
+    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/service', prefix: '/service' },
+    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/service', prefix: '/en/service' },
+    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/interviews', prefix: '/interviews' },
+    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/interviews', prefix: '/en/interviews' },
+    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/story', prefix: '/story' },
+    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/story', prefix: '/en/story' },
   ];
 
   try {

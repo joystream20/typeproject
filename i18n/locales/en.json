@@ -29,5 +29,7 @@
   "selectfont": "Please select",
   "letterspace": "from Letter Space",
   "store": "Store",
-  "otheruses":"Other uses of"
+  "otheruses":"Other uses of",
+  "support":"Support",
+  "filter":"Filter"
 }

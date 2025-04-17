@@ -8,7 +8,7 @@ interface FontTerm {
   slug: string;
   description:string;
   terms:{id:number, name:string, slug:string,tax:string}[]
-}[]
+}
 
 const config = useRuntimeConfig()
 const {locale, t} = useI18n()
@@ -23,8 +23,10 @@ const parent_check_arr:Ref<Array<boolean>> = ref([])
 const stClass = changeClass();
 const router = useRoute()
 
-const headerHeight = useHeaderSize()
+const {headerHeight} = useHeaderSize()
+
 const headerH = computed(() => {
+  // console.log(headerHeight.value)
   return headerHeight.value + "px"
 })
 
@@ -111,6 +113,10 @@ onMounted(() => {
   // console.log(sort_arr)
 })
 
+onBeforeRouteLeave(() => {
+  selectedOptions.value = []
+})
+
 // onBeforeUnmount(() => {
 //   console.log('beforeUnmounted')
 //   _loading.value = false
@@ -121,12 +127,15 @@ type Result = {
   termName: string;
 }
 const resultArr = ref<Result[]>([]);
+const selectedOptions = useState<Result[]>('selectedOptions', () => [])
+
 
 const onSort = (index:number, slug:string) => {
   // console.log(index,slug)
   // console.log(fonts_arr)
   
   resultArr.value = []
+  selectedOptions.value = []
   setTimeout(() => {
     // console.log(sort_arr.value[index])
     if(sort_arr[index] === slug){
@@ -161,7 +170,11 @@ const onSort = (index:number, slug:string) => {
                 parentDescription: parent.description,
                 termName: matchTerm.name
               })
-              
+              selectedOptions.value.push({
+                parentName: parent.name,
+                parentDescription: parent.description,
+                termName: matchTerm.name
+              })
             }
           })
         }
@@ -203,26 +216,27 @@ const toggleInputList = (index:number):void => {
   openState.value[index] = !openState.value[index]
 }
 
+const repBr = (txt:string):string => {
+  const _t = txt.replace('・', '<br>')
+  return `<span>${_t}</span>`
+}
+
 </script>
 
 <template>
   <div class="is-layout-constrained has-global-padding">
     <div class="alignwide page__container">
-      <header class="page__header" :style="`top:${headerH}`">
-        <div class="page__header-inner">
-          <h1 class="page__header-ttl u_f_bd">{{t('fontlist')}}</h1>
-          <div class="selectContainer">
-            <div class="selectContainer__inner" v-if="resultArr.length > 0">
-              <div class="selectContainer-item" v-for="(res, index) in resultArr" :key="index">
-                <span class="parent">{{ res.parentName }}</span>:
-                <span class="child">{{ res.termName }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+
       <div class="contentsContainer u_d_fl _rs">
         <div class="termContainer">
+
+          <div class="btnFilterContainer">
+            <a href="" class="btnFilterContainer-btn">
+              <span class="txt">{{ t('filter') }}</span>
+              <span class="plus"></span>
+            </a>
+          </div>
+
           <div class="termList" v-for="(tax,index) in _fontsAllTerm" :key="index">
             
             <h3 class="termList-ttl" :class="{'on' :isOpen(index),'sel':sort_arr[index]}" @click="toggleInputList(index)">{{locale === 'ja' ? tax.name : tax.description }}
@@ -231,9 +245,9 @@ const toggleInputList = (index:number):void => {
 
 
                 <div class="inputListContainer" :class="{'on' :isOpen(index)}">
-                  <ul class="inputList">
-                    <li class="inputList-item" v-for="term in tax.terms" :key="term.id">
-                      <div class="input"><input :name="tax.slug" :id="term.slug" type="radio" :value="term.slug"  v-model="sort_back_arr[index]" ><label @click="() => onSort(index, term.slug)" :for="term.slug" class="txt"><span class="tx">{{ term.name }}</span></label></div>
+                  <ul class="inputList" :class="`tax_${tax.slug}`">
+                    <li class="inputList-item" :class="`term_${term.slug}`" v-for="term in tax.terms" :key="term.id">
+                      <div class="input"><input :name="tax.slug" :id="term.slug" type="radio" :value="term.slug"  v-model="sort_back_arr[index]" ><label @click="() => onSort(index, term.slug)" :for="term.slug" class="txt"><span class="tx" v-html="tax.slug === 'sort' ? repBr(term.name) : term.name"></span></label></div>
                       <!-- v-model="sort_arr[index]" -->
                     </li>
                   </ul>
@@ -243,7 +257,7 @@ const toggleInputList = (index:number):void => {
           </div>
         </div>
         <div class="fontListContainer  u_fx1">
-          <ul v-if="_posts" class="fontList" :style="`top:calc(${headerH} + clamp(1.125rem, 0.549rem + 2.46vw, 1.75rem) + 1em)`">
+          <ul v-if="_posts" class="fontList" :style="`top:calc(${headerH}`">
             <li :class="`fontList-item font_${font.id} font_${font.slug}`" v-for="font in _posts.filter(_p => fonts_list_arr.includes(_p.id))" :key="font.id" >
           <div class="image">
             <NuxtLinkLocale :to="`/fonts/${font.slug}`">
@@ -271,7 +285,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .page{
   &__container{
     position:relative;
-    padding-top:calc(clamp(1.25rem, 0.559rem + 2.95vw, 2rem) + 1em);
+    // padding-top:calc(clamp(1.25rem, 0.559rem + 2.95vw, 2rem) + 1em);
   }
   &__header{
     padding:.5em 0;
@@ -320,12 +334,12 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
       align-items: center;
 
       &:before{
-      content:"";
-      width:.7em;
-      aspect-ratio: 1/1;
-      border:1px solid;
-      display: block
-    }
+        content:"";
+        width:.85em;
+        aspect-ratio: 1/1;
+        border:1px solid;
+        display: block
+      }
     }
 }
 .contentsContainer{
@@ -405,6 +419,60 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   .inputList{
     padding-left:.7em;
     font-size:.875em;
+    > * + * {
+      margin-top:.1em;
+    }
+    
+    &.tax_sort{
+      > * + * {
+      margin-top:.5em;
+    }
+      .inputList-item{
+        .tx{
+          display: flex;
+          align-items: center;
+          line-height: 1.1;
+          gap:3px;
+
+          &:before{
+          content:"";
+          aspect-ratio: 1/1;
+          width:1.5em;
+          display: block;
+          background-size:contain;
+          background-repeat: no-repeat;
+        }
+        }
+      }
+      .term_sort1{
+        .tx{
+          &:before{
+            background-image:url(../../assets/images/img_fonts_category_s1.png);
+          }
+        }
+      }
+      .term_sort2{
+        .tx{
+          &:before{
+            background-image:url(../../assets/images/img_fonts_category_s2.png);
+          }
+        }
+      }
+      .term_sort3{
+        .tx{
+          &:before{
+            background-image:url(../../assets/images/img_fonts_category_s3.png);
+          }
+        }
+      }
+      .term_sort4{
+        .tx{
+          &:before{
+            background-image:url(../../assets/images/img_fonts_category_s4.png);
+          }
+        }
+      }
+    }
   }
 }
 
@@ -464,12 +532,67 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     }
 }
 
+.btnFilterContainer{
+   &-btn{
+    display: flex;
+    align-content: center;
+    line-height: 1;
+    gap:.5em;
+    .txt{
+
+    }
+    .plus{
+      width:1em;
+      height:1em;
+      position:relative;
+      &:before,
+      &:after{
+        content:"";
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        background-color: #909090;
+      }
+      &:before{
+        width:70%;
+        height:1px;
+      }
+      &:after{
+        height:70%;
+        width:1px;
+      }
+    }
+    &.on{
+      .plus{
+        &::after{
+          display: none;
+        }
+      }
+    }
+   }
+  }
 
 
+@media screen and (max-width: #{calc($ww * 1px)}) {
+  .contentsContainer{
+
+  .termContainer{
+    margin-left:calc(var(--wp--style--root--padding-left) * -1);
+    max-height: calc(100vh - v-bind(headerH));
+    padding-left:var(--wp--style--root--padding-left);
+    overflow-y: auto;
+    width:45%;
+  }
+}
+}
 
 
 
 @media screen and (min-width: #{calc($ww * 1px)}) {
+  .btnFilterContainer{
+    // display: none;
+  }
   .page{
     &__header{
       &-ttl{

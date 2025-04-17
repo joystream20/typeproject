@@ -7,6 +7,7 @@ const route = useRoute()
 const _slug = route.params.slug; //Number(route.params.slug)
 let langApi = config.public.wpApiKey
 const stClass = changeClass();
+const router = useRouter()
 
 import {Swiper} from "swiper";
 import 'swiper/css';
@@ -51,9 +52,7 @@ type Post = {
     rendered:string;
   },
   buy_tpconnect:string;
-  'font-type'?:{
-    id:number
-  }[],
+  'font-type'?:number[],
   tax_info:{
     slug:string,
     terms:{
@@ -79,15 +78,76 @@ const brChange = (txt:string):string => {
 
 const testText = ref("Excellent compatibility between Ja")
 
-const linkUrl = ref('')
+// const linkUrl = ref('')
 
+interface FontType {
+  id:number;
+  name:string;
+  slug:string;
+}
+
+const fontTypes = ref<FontType[]>([])
+
+const fetchFontTypes = async () => {
+  fontTypes.value = await useFontinuseFontType()
+  // console.log(fontTypes.value)
+
+
+  const btn_fiu = document.querySelector('.btn_fontinuse a');
+  if(btn_fiu){
+
+    // const fontTypes = useFontinuseFontType()
+    // console.log(fontTypes)
+    
+    
+    if(_post.value && _post.value[0]['font-type']){
+      const fontTypeData = _post.value[0]['font-type'];
+ 
+      const _id = fontTypeData[0]
+      const exists = fontTypes.value.some((font) => font.id === _id)
+
+      if(exists){
+        let fiu_url:string = "/fontinuse/font-type"
+        if(locale.value === 'en'){
+          fiu_url = '/en'+fiu_url
+        }
+        if(_post.value && _post.value[0]){
+          // btn_fiu?.setAttribute('href',`${fiu_url}/${String(_id)}`);
+          // console.log(`${fiu_url}/${String(_id)}`)
+          btn_fiu.addEventListener('click', (e) => {
+            e.preventDefault() 
+            router.push(`${fiu_url}/${String(_id)}`) 
+          })
+          //router.push(router.resolve(href).href)
+          // useLinkClickHandler()
+        }
+      }else{
+        if (btn_fiu && btn_fiu.parentElement && btn_fiu.parentElement.parentElement) {
+          btn_fiu.parentElement.parentElement.style.display = 'none';
+        }
+      }
+    }
+
+    
+  }
+
+
+}
+
+const changeLang = (url:string):string => {
+  let newurl:string = url
+  if(locale.value === 'en'){
+    newurl = `/en${url}`
+  }
+  return newurl
+}
 
 onUpdated(() => {
   // console.log('update')
   
 })
 onMounted(() => {
-  // console.log('mounted')
+  // console.log(_post)
   stClass.value = {type:"single",cls:`fonts ${_slug}`,lng:locale.value}
 
   if(_post.value && _post.value.length){
@@ -137,7 +197,7 @@ onMounted(() => {
   const keywordTerms = _post.value[0].tax_info.filter(item => item.slug === 'keyword').map(item => item.terms)
   keywordTerms[0].forEach(
     _term => {
-      items += `<li class="termList-item"><a class="_nuxtLink" href="/fonts?filter=${_term.slug}">${_term.name}</a></li>`
+      items += `<li class="termList-item"><a class="_nuxtLink" href="${changeLang("/fonts")}?filter=${_term.slug}">${_term.name}</a></li>`
     }
   )
   termList.innerHTML = items
@@ -145,17 +205,12 @@ onMounted(() => {
 
 
 }
-  const btn_fiu = document.querySelector('.btn_fontinuse a');
-  if(btn_fiu){
-    let fiu_url:string = "/fontinuse/font-type"
-    if(locale.value === 'en'){
-      fiu_url = '/en'+fiu_url
-    }
-    if(_post.value && _post.value[0]){
-      btn_fiu?.setAttribute('href',`${fiu_url}/${String(_post.value[0]['font-type'])}`);
-    }
-  }
   
+fetchFontTypes()
+  
+nextTick()
+useLinkClickHandler()
+
 }
 
   // const swiper = new Swiper('.swiper',{
@@ -167,7 +222,7 @@ onMounted(() => {
   //   }
   // })
 
-  useLinkClickHandler()
+  
 
 })
 

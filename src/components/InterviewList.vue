@@ -8,11 +8,12 @@ if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
 }
 type Props = {
-  taxonomy?:string,
-  term?:string
+  taxonomy?:string;
+  term?:string;
+  max?:string;
 }
-const {taxonomy, term} = defineProps<Props>()
-let _rest_url = `${langApi}/interviews?per_page=4&context=embed`
+const {taxonomy, term, max = '4'} = defineProps<Props>()
+let _rest_url = `${langApi}/interviews?per_page=${max}&context=embed`
 
 if(taxonomy && term){
   _rest_url = `${_rest_url}&taxonomy=${taxonomy}&term=${term}`

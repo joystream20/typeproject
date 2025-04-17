@@ -3,7 +3,7 @@ import { useWindowSize } from '@/composables/useWindowSize';
 const windowSize = useWindowSize()
 
 import { useHeaderSize } from '@/composables/useHeaderSize';
-const headerHeight = useHeaderSize()
+const {headerHeight} = useHeaderSize()
 
 const config = useRuntimeConfig()
 const defaultFont = ref<string>(config.public.defaultFontFamily)

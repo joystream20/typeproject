@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
 const {locale} = useI18n()
 const config = useRuntimeConfig()
 const route = useRoute()
@@ -48,6 +48,7 @@ const fontFamily = ref<string>(defaultFont)
 onMounted(() => {
   stClass.value = {type:"single",cls:"story",lng:locale.value}
   // console.log(fontFamily.value)
+  useLinkClickHandler()
 })
 </script>
 
