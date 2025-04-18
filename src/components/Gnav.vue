@@ -80,9 +80,9 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .gnavList{
   display: flex;
   gap:1em;
-  &-item{
+  // &-item{
     
-  }
+  // }
 }
 
 .socialContainer{

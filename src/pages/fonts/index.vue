@@ -71,7 +71,7 @@ onBeforeMount(() => {
         )
         fonts_arr.push({id:id,tax:_arr})
     });
-    
+    // console.log(fonts_list_arr)
   }
   // console.log(fonts_list_arr.value)
 
@@ -84,7 +84,7 @@ onBeforeMount(() => {
         // console.log(_tax.terms)
       }
     )
-    // console.log(sort_check_arr)
+    // console.log(sort_check_arr)//比較用
     // console.log(_fontsAllTerm)
 
   }
@@ -113,8 +113,9 @@ onMounted(() => {
   // console.log(sort_arr)
 })
 
-onBeforeRouteLeave(() => {
+onBeforeRouteLeave(() => {//before leave
   selectedOptions.value = []
+  openMenu.value = false
 })
 
 // onBeforeUnmount(() => {
@@ -128,7 +129,7 @@ type Result = {
 }
 const resultArr = ref<Result[]>([]);
 const selectedOptions = useState<Result[]>('selectedOptions', () => [])
-
+const openMenu = useState<boolean>('openMenu', () => false)
 
 const onSort = (index:number, slug:string) => {
   // console.log(index,slug)
@@ -136,6 +137,9 @@ const onSort = (index:number, slug:string) => {
   
   resultArr.value = []
   selectedOptions.value = []
+
+  // console.log(selectedOptions.value)
+  // console.log(sort_arr)
   setTimeout(() => {
     // console.log(sort_arr.value[index])
     if(sort_arr[index] === slug){
@@ -146,7 +150,7 @@ const onSort = (index:number, slug:string) => {
       sort_back_arr.value[index] = slug
     }
     // const _sort_arr = [...sort_arr]
-    const _sort_arr = sort_arr.filter(Boolean)
+    const _sort_arr = sort_arr.filter(Boolean) //trueのみ
     const judge_arr:string[] = []
     fonts_arr.forEach(
       _font => {
@@ -224,40 +228,33 @@ const repBr = (txt:string):string => {
 </script>
 
 <template>
-  <div class="is-layout-constrained has-global-padding">
+  <div class="is-layout-constrained ">
     <div class="alignwide page__container">
 
       <div class="contentsContainer u_d_fl _rs">
-        <div class="termContainer">
+        <div class="termContainer" :class="{'on' :openMenu}">
 
-          <div class="btnFilterContainer">
-            <a href="" class="btnFilterContainer-btn">
-              <span class="txt">{{ t('filter') }}</span>
-              <span class="plus"></span>
-            </a>
-          </div>
-
-          <div class="termList" v-for="(tax,index) in _fontsAllTerm" :key="index">
+          <div class="termContainer__inner">
+            <div class="termList" v-for="(tax,index) in _fontsAllTerm" :key="index">
             
-            <h3 class="termList-ttl" :class="{'on' :isOpen(index),'sel':sort_arr[index]}" @click="toggleInputList(index)">{{locale === 'ja' ? tax.name : tax.description }}
-              <span class="btn"></span>
-            </h3>
-
-
-                <div class="inputListContainer" :class="{'on' :isOpen(index)}">
-                  <ul class="inputList" :class="`tax_${tax.slug}`">
-                    <li class="inputList-item" :class="`term_${term.slug}`" v-for="term in tax.terms" :key="term.id">
-                      <div class="input"><input :name="tax.slug" :id="term.slug" type="radio" :value="term.slug"  v-model="sort_back_arr[index]" ><label @click="() => onSort(index, term.slug)" :for="term.slug" class="txt"><span class="tx" v-html="tax.slug === 'sort' ? repBr(term.name) : term.name"></span></label></div>
-                      <!-- v-model="sort_arr[index]" -->
-                    </li>
-                  </ul>
-                </div>
-             
-      
+              <h3 class="termList-ttl" :class="{'on' :isOpen(index),'sel':sort_arr[index]}" @click="toggleInputList(index)">{{locale === 'ja' ? tax.name : tax.description }}
+                <span class="btn"></span>
+              </h3>
+                  <div class="inputListContainer" :class="{'on' :isOpen(index)}">
+                    <ul class="inputList" :class="`tax_${tax.slug}`">
+                      <li class="inputList-item" :class="`term_${term.slug}`" v-for="term in tax.terms" :key="term.id">
+                        <div class="input"><input :name="tax.slug" :id="term.slug" type="radio" :value="term.slug"  v-model="sort_back_arr[index]" ><label @click="() => onSort(index, term.slug)" :for="term.slug" class="txt"><span class="tx" v-html="tax.slug === 'sort' ? repBr(term.name) : term.name"></span></label></div>
+                        <!-- v-model="sort_arr[index]" -->
+                      </li>
+                    </ul>
+                  </div>
+            </div>
           </div>
         </div>
-        <div class="fontListContainer  u_fx1">
+        <div class="fontListContainer  u_fx1 has-global-padding">
+          
           <ul v-if="_posts" class="fontList" :style="`top:calc(${headerH}`">
+            <li class="" v-if="fonts_list_arr.length === 0">not found</li>
             <li :class="`fontList-item font_${font.id} font_${font.slug}`" v-for="font in _posts.filter(_p => fonts_list_arr.includes(_p.id))" :key="font.id" >
           <div class="image">
             <NuxtLinkLocale :to="`/fonts/${font.slug}`">
@@ -348,12 +345,17 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   .termContainer{
     position:fixed;
     z-index: 1;
-    padding: 1em 1em 1em 0;
+    padding-left: var(--wp--style--root--padding-left);
     background-color: rgba(#f4f4f4, .95);
+    
     // height:calc(100vh);
-    > * + * {
-      margin-top:1.2em;
+    &__inner{
+      padding: 1em 1em 1em 0;
+      > * + * {
+      margin-top:1.5em;
     }
+    }
+    
   }
   .termList{
     &-ttl{
@@ -481,6 +483,8 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   flex-wrap:wrap;
   gap:20px;
   position:sticky;
+  padding-top:20px;
+  padding-bottom:20px;
 
   &-item{
     flex-basis: calc(50% - 10px);
@@ -532,57 +536,27 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     }
 }
 
-.btnFilterContainer{
-   &-btn{
-    display: flex;
-    align-content: center;
-    line-height: 1;
-    gap:.5em;
-    .txt{
 
-    }
-    .plus{
-      width:1em;
-      height:1em;
-      position:relative;
-      &:before,
-      &:after{
-        content:"";
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        background-color: #909090;
-      }
-      &:before{
-        width:70%;
-        height:1px;
-      }
-      &:after{
-        height:70%;
-        width:1px;
-      }
-    }
-    &.on{
-      .plus{
-        &::after{
-          display: none;
-        }
-      }
-    }
-   }
-  }
 
 
 @media screen and (max-width: #{calc($ww * 1px)}) {
   .contentsContainer{
 
   .termContainer{
-    margin-left:calc(var(--wp--style--root--padding-left) * -1);
-    max-height: calc(100vh - v-bind(headerH));
+    // margin-left:calc(var(--wp--style--root--padding-left) * -1);
+    height: calc(100vh - v-bind(headerH));
     padding-left:var(--wp--style--root--padding-left);
-    overflow-y: auto;
-    width:45%;
+    border-right: 1px solid #cfcfcf;
+    width:65%;
+    transition:transform .5s ease;
+    transform:translateX(-100%);
+    &.on{
+      transform:translateX(0);
+    }
+    &__inner{
+      height:calc(100% - 2em);
+      overflow-y: auto;
+    }
   }
 }
 }
@@ -590,9 +564,9 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 
 
 @media screen and (min-width: #{calc($ww * 1px)}) {
-  .btnFilterContainer{
-    // display: none;
-  }
+  // .btnFilterContainer{
+  //   display: none;
+  // }
   .page{
     &__header{
       &-ttl{
@@ -602,6 +576,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   }
   .fontList{
     gap:12px;
+    padding-top:12px;
     &-item{
       flex-basis:calc(100% / 4 - 9px);
     }
@@ -611,9 +586,9 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   }
   .contentsContainer{
   .termContainer{
-    width:clamp(220px,20%,280px);
+    width:clamp(230px,23%,280px);
     position:relative;
-    background-color: transparent;
+    // background-color: transparent;
   }
 }
 

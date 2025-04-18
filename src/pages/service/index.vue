@@ -32,9 +32,7 @@ onMounted(() => {
       <h2 class="sec-ttl">{{ t('service') }}</h2>
       
       <div v-if="_services">
-        <ul class="fontsList u_d_fl">
         <PostsList :posts="_services" type="service" />
-        </ul>
       </div>
       <div v-if="_error_service">
         <p>{{ _error_service }}</p>

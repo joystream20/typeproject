@@ -281,6 +281,12 @@ html{
         // z-index: 10;
       }
     }
+    .site{
+      &-main{
+        background-color: #fff;
+        padding-bottom: 0;
+      }
+    }
   }
 }
 .page{

@@ -5,7 +5,7 @@ const stClass = changeClass();
 const {locale,t} = useI18n()
 const route = useRoute()
 const _state = ref<boolean | null>(null)
-
+// const _menuState = ref<boolean>(true)
 
 const store_url = ref<string>('https://shop.typeproject.com/')
 watch(()=> _state.value, (newState) => {
@@ -38,9 +38,15 @@ type Result = {
   termName: string;
 }
 
+const onOpenMenu = () => {
+  openMenu.value = !openMenu.value
+}
+
 const selectedOptions = useState<Result[]>('selectedOptions', () => [])
 
 const isFontsPage = computed(() => route.path.endsWith('/fonts'))
+
+const openMenu = useState<boolean>('openMenu', () => false)
 
 </script>
 
@@ -59,7 +65,8 @@ const isFontsPage = computed(() => route.path.endsWith('/fonts'))
         </NuxtLinkLocale>
       </p>
       <div class="navContainer u_d_fl">
-        <Gnav v-model="_state" />
+        <Gnav />
+        <!-- <Gnav v-model="_state" /> -->
         <div id="btn_hm" class="btn_hm" :class="{'on': _state, 'off': !_state && _state !== null}" @click="btnClick()">
           <div class="btn_inner">
             <span class="bar"></span>
@@ -69,20 +76,30 @@ const isFontsPage = computed(() => route.path.endsWith('/fonts'))
         </div>
       </div>
     </div>
-    <div class="fonts_page__header" v-if="isFontsPage">
-      <!-- {{ selectedOptions }} -->
-      <div class="fonts_page__header-inner">
-          <h1 class="fonts_page__header-ttl u_f_bd">{{t('fontlist')}}</h1>
-          <div class="selectContainer">
-            <div class="selectContainer__inner" v-if="selectedOptions.length > 0">
-              <div class="selectContainer-item" v-for="(res, index) in selectedOptions" :key="index">
-                <span class="parent"><span class="tx">{{ locale === 'en' ? res.parentDescription :  res.parentName }}</span><span class="spa">:</span></span>
-                <span class="child">{{ res.termName }}</span>
+
+    <template v-if="isFontsPage">
+      <div class="fonts_page__header">
+        <!-- {{ selectedOptions }} -->
+        <div class="fonts_page__header-inner">
+            <h1 class="fonts_page__header-ttl u_f_bd">{{t('fontlist')}}</h1>
+            <div class="selectContainer">
+              <div class="selectContainer__inner" v-if="selectedOptions.length > 0">
+                <div class="selectContainer-item" v-for="(res, index) in selectedOptions" :key="index">
+                  <span class="parent"><span class="tx">{{ locale === 'en' ? res.parentDescription :  res.parentName }}</span><span class="spa">:</span></span>
+                  <span class="child">{{ res.termName }}</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-    </div>
+          
+      </div>
+      <div class="btnFilterContainer" >
+            <p class="btnFilterContainer-btn" :class="{'on': openMenu}" @click="onOpenMenu()">
+              <span class="txt">{{ t('filter') }}</span>
+              <span class="plus"></span>
+            </p>
+          </div>
+    </template>
     
     <div class="hmMenuContainer" :class="{'on': _state}">
       <div class="hmMenuContainer__inner">
@@ -119,6 +136,7 @@ const isFontsPage = computed(() => route.path.endsWith('/fonts'))
       </div>
       
     </div>
+    
   </header>
 </template>
 
@@ -132,7 +150,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   &__header{
     padding:.5em 0;
     border:none;
-    background-color: #eee;
+    background-color: #fff;
     width:100%;
     display: block;
     opacity:1;
@@ -172,7 +190,63 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     }
   }
 }
+
+.btnFilterContainer{
+  width:100%;
+  border-top: 1px solid #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
+   &-btn{
+    display: flex;
+    align-content: center;
+    line-height: 1;
+    gap:.5em;
+    padding:.7em;
+    padding-left: var(--wp--style--root--padding-left);
+    background-color: #fff;
+    width:100%;
+    // .txt{
+
+    // }
+    .plus{
+      width:1em;
+      height:1em;
+      position:relative;
+      &:before,
+      &:after{
+        content:"";
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        background-color: #909090;
+      }
+      &:before{
+        width:70%;
+        height:1px;
+      }
+      &:after{
+        height:70%;
+        width:1px;
+      }
+    }
+    &.on{
+      .plus{
+        &::after{
+          display: none;
+        }
+      }
+    }
+   }
+  }
+
+
+@media screen and (max-width: #{calc($ww * 1px)}) {
+  
+}
 @media screen and (min-width: #{calc($ww * 1px)}) {
+  .btnFilterContainer{
+    display: none;
+  }
   .fonts_page{
     &__header{
       &-ttl{
