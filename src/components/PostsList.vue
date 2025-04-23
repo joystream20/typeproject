@@ -100,18 +100,28 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+$wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .postList{
   &-item{
     flex-basis: calc(25% - 18px);
-    .txtContainer{
-      margin-top:.5em;
-    }
+    overflow: hidden;
+    
     .ttl{
       font-size:max(.875em, 13px);
     }
     .catContainer{
       font-size:.75em;
       margin-top:.3em;
+    }
+  }
+}
+
+@media screen and (min-width: #{calc($ww * 1px)}) {
+  .postList{
+    &-item{
+      .txtContainer{
+        margin-top:.5em;
+      }
     }
   }
 }

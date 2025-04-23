@@ -68,7 +68,11 @@ const {data: _post, status: _status, error:_error} = await useFetch<Post[]>(_res
   if (_error.value) {
     console.error('Error fetching data:', _error.value);
   } else {
-    
+    if(_post.value){
+      useHead({
+        title:`${_post.value[0].title.rendered} | ${config.public.siteTitle}`
+      })
+    }
   }
 const brChange = (txt:string):string => {
   const _txt = txt.replace(' ','<br>');
@@ -141,6 +145,7 @@ const changeLang = (url:string):string => {
   }
   return newurl
 }
+
 
 onUpdated(() => {
   // console.log('update')
@@ -469,8 +474,11 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 
 .contListWrap{
   padding-top:.7em;
+  
 }
 .colList{
+  padding-left: .7em;
+  padding-right: .7em;
   &-item{
     font-size:.75em;
     cursor: pointer;
@@ -671,7 +679,7 @@ overflow: hidden;
   .familyContainer{
     .image{
       overflow-x: auto;
-      height:120%;
+      height:100vw;
       img{
         height:100%;
         max-width:none;

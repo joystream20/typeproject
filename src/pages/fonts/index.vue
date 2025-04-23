@@ -93,7 +93,9 @@ onBeforeMount(() => {
 
   // console.log(fonts_arr)
 })
-
+useHead({
+    title:`${t('fontlist')} | ${config.public.siteTitle}`
+  })
 onMounted(() => {
   // console.log('onMounted')
   // setTimeout(()=> {

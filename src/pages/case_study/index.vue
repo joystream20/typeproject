@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
-const {locale} = useI18n()
+const {locale,t} = useI18n()
 let langApi = config.public.wpApiKey
 
 const stClass = changeClass();
@@ -34,6 +34,11 @@ if (_error.value) {
   } else {
     
   }
+
+  useHead({
+    title:`${t('case')} | ${config.public.siteTitle}`
+  })
+
 onMounted(() => {
   stClass.value = {type:"page",cls:"case",lng:locale.value}
   // console.log(_page)

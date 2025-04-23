@@ -31,8 +31,8 @@ if (_error.value) {
     
   }
   useHead({
-  title:`${t('about')} | ${config.public.siteTitle}`
-})
+    title:`${t('about')} | ${config.public.siteTitle}`
+  })
 
 
 

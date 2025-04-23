@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const {t} = useI18n()
+const {locale,t} = useI18n()
 
 const set_locale = (lang:'ja' | 'en'):void => {
   const { $i18n } = useNuxtApp() // NuxtAppからi18nインスタンスを取得
@@ -34,25 +34,25 @@ const set_locale = (lang:'ja' | 'en'):void => {
     </ul> -->
     <div class="gnav__rightContainer">
       <div class="langContainer ">
-        <button @click="set_locale('ja')">JA</button>
+        <button :class="{'u_f_bd':locale === 'ja'}" @click="set_locale('ja')">JA</button>
         <span class="bar"></span>
-        <button @click="set_locale('en')">EN</button>
+        <button :class="{'u_f_bd':locale === 'en'}" @click="set_locale('en')">EN</button>
       </div>
       <div class="socialContainer">
-        <a class="btn_x" href="">
+        <a class="btn_x" href="https://twitter.com/typeproject" target="_blank">
           <font-awesome :icon="['fab', 'x-twitter']" />
         </a>
-        <a class="btn_fa" href="">
+        <a class="btn_fa" href="https://www.facebook.com/typeproject" target="_blank">
           <font-awesome :icon="['fab', 'facebook-f']" />
         </a>
-        <a class="btn_ins" href="">
+        <a class="btn_ins" href="https://www.instagram.com/typeproject_official/" target="_blank">
           <font-awesome :icon="['fab', 'instagram']" />
         </a>
       </div>
       <div class="cartContainer">
         <a href="">
           <font-awesome :icon="['fas', 'cart-shopping']" />
-          <span class="txt">ストア</span>
+          <span class="txt">{{ t('store') }}</span>
         </a>
       </div>
       
@@ -73,7 +73,9 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     align-items: center;
     gap:.5em;
     @media screen and (max-width: #{calc($ww * 1px)}) { 
-    display: none;
+    // display: none;
+    margin-right: 3em;
+    
   }
   }
 }
@@ -108,6 +110,9 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .cartContainer{
   padding-left:.5em;
   border-left:1px solid;
+  @media screen and (max-width: #{calc($ww * 1px)}) { 
+    display: none;
+  }
   >a{
     font-size:1.1em;
     display: flex;

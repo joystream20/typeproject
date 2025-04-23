@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
 import { useRoute } from 'vue-router'
+import { useHeaderSize } from '../../../composables/useHeaderSize';
 
 const config = useRuntimeConfig()
 const {locale,t} = useI18n()
@@ -9,6 +10,8 @@ let langApi = config.public.wpApiKey
 const stClass = changeClass();
 
 const router = useRoute()
+
+const {headerHeight} = useHeaderSize()
 
 if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
@@ -48,7 +51,18 @@ useHead({
   title:matchDetail.value ? `${matchDetail.value.header_ttl} | ${config.public.siteTitle}` : `${t('support')} | ${config.public.siteTitle}`
 })
 
-onMounted(() => {
+onMounted(async () => {
+  if(router.hash){
+    await nextTick()
+    const el = document.querySelector(router.hash)
+    if(el){
+      const rect = el.getBoundingClientRect()
+      // console.log(headerHeight.value)
+      const scrollTarget = rect.top + window.scrollY - headerHeight.value
+      window.scrollTo({top:scrollTarget, behavior:'smooth'})
+      // el.scrollIntoView({behavior:'smooth'})
+    }
+  }
   stClass.value = {type:"page",cls:"support_detail",lng:locale.value}
   if(router.query.page && _page.value){
     // console.log(router.query.page)
@@ -98,7 +112,7 @@ onMounted(() => {
         <header class="item__header">
           <p class="back">
             <NuxtLinkLocale :to="{name: 'support'}">
-            <font-awesome :icon="['fas', 'turn-up']" /><span class="txt">サポート一覧に戻る</span>
+            <font-awesome :icon="['fas', 'turn-up']" /><span class="txt">{{t('backToSupport')}}</span>
           </NuxtLinkLocale>
           </p>
           <h1 class="item__header-ttl u_f_bd">{{ matchDetail.header_ttl }}</h1>

@@ -214,16 +214,18 @@ html{
     // padding:1em .5em;
 
     &__inner{
+      position:relative;
       padding:clamp(1rem, 0.56rem + 1.88vw, 2.25rem) .5em;
       // padding:1em .5em;
-      // display: flex;
+      display: flex;
       align-items: center;
       justify-content: space-between;
       flex-direction: column;
+      flex-direction: row;
       flex:1;
     }
     .gnav{
-      margin-top:.5em;
+      // margin-top:.5em;
     }
   }
   &-footer{
@@ -562,9 +564,14 @@ html{
     }
     .dlList{
       &-box{
-        background-color: #fff;
-        margin-top:1.5em;
+        // background-color: #fff;
+        // margin-top:1.5em;
         line-height: 1.7;
+        padding-top:65px;
+        margin-top:calc(-65px + 1.5em);
+        dt,dd{
+          background-color: #fff;
+        }
         dt{
           padding:1em;
           padding-right:3em;
@@ -588,6 +595,7 @@ html{
           transition:max-height .5s;
           .inner{
             padding:1em;
+            word-break: break-all;
             a{
               color:#ec3232;
             }
@@ -676,9 +684,37 @@ html{
     }
   }
   &.fonts{
+    @media screen and (max-width: #{calc($ww * 1px)}) { 
+      .ttlContainer{
+        .txt{
+          padding-left: 0 !important;
+          border:none;
+          margin-top:.3em !important;
+        }
+      }
+    }
+    .ttlContainer{
+      padding:.3em 0;
+    }
+    .page__header__btnContainer{
+      flex-wrap:nowrap;
+      > p{
+        a{
+          white-space: nowrap;
+        }
+      }
+      .wp-block-button__link{
+        white-space: nowrap;
+      }
+      .btn{
+        padding-top:0;
+        padding-bottom:0;
+      }
+    }
     .wp-block-post-title{
       font-size:clamp(1.125rem, 0.988rem + 0.59vw, 1.5rem);
-      min-width:10em;
+      white-space: nowrap;
+      // min-width:10em;
     }
     .topContainer{
       .listContainer{
@@ -896,8 +932,10 @@ html{
         }
       }
       .dlList{
-        &-item{
-        }
+        &-box{
+          padding-top:120px;
+          margin-top:calc(-120px + 1.5em);
+        } 
       }
     }
     &.support{

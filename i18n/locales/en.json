@@ -31,5 +31,6 @@
   "store": "Store",
   "otheruses":"Other uses of",
   "support":"Support",
-  "filter":"Filter"
+  "filter":"Filter",
+  "backToSupport":"Back to Support"
 }

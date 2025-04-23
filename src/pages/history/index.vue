@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
 const config = useRuntimeConfig()
-const {locale} = useI18n()
+const {locale,t} = useI18n()
 let langApi = config.public.wpApiKey
 
 const stClass = changeClass();
@@ -27,6 +27,10 @@ const {data:_page, status: _status, error:_error} = await useFetch<Post[]>(`${la
   } else {
     
   }
+
+  useHead({
+  title:`${t('history')} | ${config.public.siteTitle}`
+  })
 
 onMounted(() => {
   stClass.value = {type:"page",cls:"history",lng:locale.value}
