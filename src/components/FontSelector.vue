@@ -57,6 +57,7 @@ const onChangeFont = (e:Event) => {
   position:relative;
   background:transparent;
   padding-right:2em;
+  color:#000;
   &:focus{
     outline:none;
   }

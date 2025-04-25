@@ -35,7 +35,7 @@ const {data: _fontsdata, status:_fonts_status, error:_error} = await useFetch<Fo
     <div class="sec__inner">
       <header class="sec__header _wbt">
         <h2 class="sec__header-ttl">{{ t('fonts') }}</h2>
-        <p class="btn_specimen btn_all"><a :href="specimen" target="_blank"><span class="tx">書体見本をダウンロード</span></a></p>
+        <p class="btn_specimen btn_all"><a :href="specimen" target="_blank"><span class="tx">{{t('download_specimen')}}</span></a></p>
       </header>
       <div class="fontListContainer">
         <ul v-if="_fonts" class="fontList">

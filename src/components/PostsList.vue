@@ -31,7 +31,8 @@ onMounted(() => {
     </div>
     <div class="txtContainer">
       <!-- <p class="ttl">{{ post.title.rendered }}</p> -->
-      <p class="ttl" v-html="post.title.rendered"></p>
+      <p v-if="post.type === 'interviews'" class="ttl" v-html="post.acf?.company_name"></p>
+      <p v-else class="ttl" v-html="post.title.rendered"></p>
       <div class="catContainer">
         <div v-if="post.type === 'interviews'" class="u_d_fl u_gp0" >
           <div v-for="tax in post.tax_info" :key="tax.slug">
@@ -65,21 +66,21 @@ onMounted(() => {
             </ul>
           </div>
         </div>
-        <div v-if="post.type === 'fontinuse'" class="u_d_fl u_gp0 u_fl_w_w" >
-          <div v-for="tax in post.tax_info" :key="tax.slug">
+        <div v-if="post.type === 'fontinuse'" class="u_d_fl u_gp-5_e  u_fl_w_w" >
+          <div v-for="tax in post.tax_info" :key="tax.slug" :class="tax.slug">
+           
             <ul v-if="tax.slug === 'font-type'" class="fonttype u_d_fl u_fl_w_w u_gp-3_e">
               <li v-for="term in tax.terms" :key="term.id">
                 <NuxtLinkLocale :to="`/${type}/${term.tax}/${term.id}`">{{ term.name }}</NuxtLinkLocale>
                 </li>
             </ul>
-          </div>
-          <div v-for="tax in post.tax_info" :key="tax.slug">
             <ul v-if="tax.slug === 'scene'" class="scene u_d_fl u_fl_w_w u_gp-3_e">
               <li v-for="term in tax.terms" :key="term.id">
                 <NuxtLinkLocale :to="`/${type}/${term.tax}/${term.id}`">{{ term.name }}</NuxtLinkLocale>
                 </li>
             </ul>
           </div>
+          
         </div>
         <div v-else-if="post.type === 'news'" class="u_d_fl u_gp-5_e u_fl_w_w">
           <ul class="font_type u_d_fl u_fl_w_w u_gp-3_e">
@@ -104,7 +105,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .postList{
   &-item{
     flex-basis: calc(25% - 18px);
-    overflow: hidden;
+    // overflow: hidden;
     
     .ttl{
       font-size:max(.875em, 13px);

@@ -51,7 +51,7 @@ const set_locale = (lang:'ja' | 'en'):void => {
       </div>
       <div class="cartContainer">
         <a href="">
-          <font-awesome :icon="['fas', 'cart-shopping']" />
+          <!-- <font-awesome :icon="['fas', 'cart-shopping']" /> -->
           <span class="txt">{{ t('store') }}</span>
         </a>
       </div>
@@ -74,7 +74,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     gap:.5em;
     @media screen and (max-width: #{calc($ww * 1px)}) { 
     // display: none;
-    margin-right: 3em;
+    margin-right: 3.5em;
     
   }
   }
@@ -110,18 +110,25 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .cartContainer{
   padding-left:.5em;
   border-left:1px solid;
-  @media screen and (max-width: #{calc($ww * 1px)}) { 
-    display: none;
-  }
+  // @media screen and (max-width: #{calc($ww * 1px)}) { 
+  //   display: none;
+  // }
   >a{
     font-size:1.1em;
     display: flex;
     align-items: center;
     gap:.3em;
+    &:before{
+      content:"";
+      aspect-ratio: 1/1;
+      width:1.2em;
+      background: url(../../src/assets/images/img_shop.png) no-repeat center center;
+      background-size:contain;
+    }
     .txt{
       font-size:.9em;
       @media screen and (max-width: #{calc($wx * 1px)}) { 
-        // display: none;
+        display: none;
       }
     }
   }
@@ -133,6 +140,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     border:none;
     background: transparent;
     font-size:.75em;
+    color:#000;
   }
   .bar{
     display: inline-block;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
-const {locale} = useI18n()
+const {locale,t} = useI18n()
 const config = useRuntimeConfig()
 const route = useRoute()
 const _slug = route.params.slug;
@@ -17,6 +17,9 @@ if(locale.value === 'en'){
 }
 const _rest_url = `${langApi}/interviews?slug=${_slug}`
 type Post = {
+  title:{
+    rendered:string;
+  }
   acf:{
     hero:string
   },
@@ -44,6 +47,12 @@ if (_fonts_error.value) {
 }
 
 const fontFamily = ref<string>(defaultFont)
+
+if(_post.value){
+  useHead({
+  title:`${_post.value[0].title.rendered} | ${config.public.siteTitle}`
+  })
+}
   
 onMounted(() => {
   stClass.value = {type:"single",cls:"interviews",lng:locale.value}
@@ -60,9 +69,11 @@ onMounted(() => {
       <img v-else src="@/assets/images/img_dum.jpg" alt="">
     </div>
     <!-- <p>{{ fontFamily }}</p> -->
-    <div class="fontSelectContainer u_mx1000" v-if="_fonts">
-      <p class="fontSelectContainer-txt"><span class="_aa">Aa</span>現在のフォント</p>
-      <FontSelector :fonts="_fonts" v-model="fontFamily" />
+    <div class="fontSelectContainerWrap has-global-padding">
+      <div class="fontSelectContainer u_mx1000" v-if="_fonts">
+        <p class="fontSelectContainer-txt"><span class="_aa">Aa</span>{{ t('current_font') }}</p>
+        <FontSelector :fonts="_fonts" v-model="fontFamily" />
+      </div>
     </div>
     <div :style="{fontFamily:fontFamily}" class="postContainer" v-html="_post[0].content.rendered" v-if="fontFamily"></div>
   </div>
@@ -83,6 +94,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   max-width: 750px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-top:1px solid #a6a6a6;
   &-txt{
     ._aa{

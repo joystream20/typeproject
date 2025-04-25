@@ -228,7 +228,7 @@ onMounted(() => {
   position:absolute;
   top:0;right:0;bottom:0;left:0;
   background-color: #f5f5f5;
-  z-index: -1;
+  // z-index: -1;
   &:after{
     content:"";
     display: block;
@@ -259,6 +259,9 @@ select{
   border:1px solid #c7c7c7;
   background-color: transparent;
   padding:.5em 2em .5em 1em;
+  color:#000;
+  position: relative;
+  z-index: 1;
   // position:absolute;
   // top:0;left:0;
   // width:100%;

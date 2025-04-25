@@ -3,7 +3,7 @@
   "news_release":"ニュースリリース",
   "fonts": "フォント",
   "all" : "全て",
-  "all_posts" : "全ての記事を表示する",
+  "all_posts" : "すべて表示",
   "all_fonts": "全てのフォントを表示する",
   "buy": "購入",
   "interview":"インタビュー",
@@ -29,9 +29,11 @@
   "story" : "開発ストーリー",
   "selectfont": "選択してください",
   "letterspace": "レタースペースから",
-  "store": "ストア",
+  "store": "ショップ",
   "otheruses":"の他の使用例",
   "support":"サポート",
   "filter":"絞り込む",
-  "backToSupport":"サポート一覧に戻る"
+  "backToSupport":"サポート一覧に戻る",
+  "download_specimen":"書体見本をダウンロード",
+  "current_font":"現在のフォント"
 }

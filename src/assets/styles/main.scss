@@ -127,7 +127,9 @@ html{
   &-item{
     display: flex;
     flex-direction: row;
-
+    min-height: 0;
+    align-items: stretch;
+    min-height: 100px;
     .image,
     .txtContainer{
       flex-basis: 50%;
@@ -145,9 +147,11 @@ html{
     }
     .image{
       aspect-ratio: 1 / .6;
+      
       a{
         aspect-ratio: 1 / .6;
         display: block;
+        position: relative;
       }
       img{
         object-fit: cover;
@@ -264,7 +268,9 @@ html{
     padding:1.5em 0 .3em;
     border-bottom:1px solid #b3b3b3;
     .sec-ttl{
-      font-size:1.2em;
+      font-size:clamp(0.875rem, 0.279rem + 1.99vw, 1.25rem);
+      line-height: 1.2;
+      // font-size:1.2em;
     }
   }
   &.fonts{
@@ -287,6 +293,39 @@ html{
       &-main{
         background-color: #fff;
         padding-bottom: 0;
+      }
+    }
+  }
+  // &.news{
+  //   .page{
+  //     &__header{
+  //       display: flex;
+  //       justify-content: space-between;
+  //       align-items: center;
+
+  //       .selectContainer{
+  //         select{
+  //           max-width: 140px;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+  &.interviews{
+    .page{
+      &__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  &.fontinuse{
+    .page{
+      &__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
     }
   }
@@ -847,7 +886,7 @@ html{
   .sec_support{
     margin-top:3em;
     .sec__inner{
-      max-width:1000px;
+      // max-width:1000px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -1022,7 +1061,20 @@ html{
     }
     .page{
       &__header{
-       
+       .sec-ttl{
+        font-size:20px;
+       }
+      }
+    }
+    &.news{
+      .page{
+        &__header{
+          .selectContainer{
+            select{
+              max-width: none;
+            }
+          }
+        }
       }
     }
   }

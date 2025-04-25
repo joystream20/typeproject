@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const {locale,t} = useI18n()
-
+const thisY = new Date().getFullYear()
 </script>
 
 <template>
@@ -28,7 +28,7 @@ const {locale,t} = useI18n()
           </nav>
         </div>
       </div>
-      <p class="copy"><small> <span class="tx1">Copyright (c) 2014-2024 Type Project.</span> <span class="tx1">All right reserved. /</span> <span class="tx1">Powered by REALTYPE.jp web font service.</span> </small></p>
+      <p class="copy"><small> <span class="tx1">Copyright (c) 2014-{{ thisY }} Type Project.</span> <span class="tx1">All right reserved. /</span> <span class="tx1">Powered by REALTYPE.jp web font service.</span> </small></p>
     </div>
   </footer>
 </template>

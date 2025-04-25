@@ -61,7 +61,7 @@ const fetchData = async () => {
 onMounted(() => {
   stClass.value = {type:"archive",cls:"interviews",lng:locale.value}
   // _totalNum.value = _interviews.value[0].allPostsNum
-  // console.log(_posts)
+  console.log(_posts)
   fetchData();
 })
 </script>

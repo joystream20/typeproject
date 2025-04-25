@@ -19,6 +19,7 @@ export const useFontinuseFontType = async ():Promise<FontType[]> => {
   try {
     fontTypes.value = await $fetch(`${langApiCumtom}/fontinuseFontType?context=embed`)
     // console.log(fontTypes.value)
+    //記事があるterm取得
   } catch(error){
     console.error('fontinuseFontType', error)
   }

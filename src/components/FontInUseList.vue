@@ -30,8 +30,10 @@ if(locale.value === 'en'){
 
 let _rest_url = `${langApi}/fontinuse?per_page=4&context=embed`
 
+
 if(taxonomy && term){
   _rest_url = `${_rest_url}&taxonomy=${taxonomy}&term=${term}`
+  console.log(_rest_url)
 }
 
 // type Post = {
@@ -61,7 +63,7 @@ const {data: _posts, status:_status, error:_error} = await useFetch<Post[]>(`${_
 </script>
 
 <template>
- <section class="sec_interview sec">
+ <section v-if="_posts && _posts[0]" class="sec_interview sec">
       <div class="sec__inner">
         <header class="sec__header _wbt">
           <h2 class="sec__header-ttl">{{_ttl }}</h2>

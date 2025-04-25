@@ -3,8 +3,8 @@
   "news_release":"Product News",
   "fonts": "Fonts",
   "all" : "All",
-  "all_posts" : "Show All Posts",
-  "all_fonts": "Show All Fonts",
+  "all_posts" : "VIEW ALL",
+  "all_fonts": "View All Fonts",
   "buy": "Buy",
   "interview": "Interviews",
   "service": "Service",
@@ -28,9 +28,11 @@
   "story" : "Story",
   "selectfont": "Please select",
   "letterspace": "from Letter Space",
-  "store": "Store",
+  "store": "Shop",
   "otheruses":"Other uses of",
   "support":"Support",
   "filter":"Filter",
-  "backToSupport":"Back to Support"
+  "backToSupport":"Back to Support",
+  "download_specimen":"Download Specimen",
+  "current_font":"Current Font"
 }

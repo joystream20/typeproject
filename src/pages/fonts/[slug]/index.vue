@@ -8,6 +8,7 @@ const _slug = route.params.slug; //Number(route.params.slug)
 let langApi = config.public.wpApiKey
 const stClass = changeClass();
 const router = useRouter()
+const { bindSmoothScroll } = useSmoothAnchorScroll()
 
 import {Swiper} from "swiper";
 import 'swiper/css';
@@ -52,6 +53,7 @@ type Post = {
     rendered:string;
   },
   buy_tpconnect:string;
+  buy_tpconnect_en:string;
   'font-type'?:number[],
   tax_info:{
     slug:string,
@@ -90,6 +92,7 @@ interface FontType {
   slug:string;
 }
 
+const fonttype = ref('')
 const fontTypes = ref<FontType[]>([])
 
 const fetchFontTypes = async () => {
@@ -105,6 +108,9 @@ const fetchFontTypes = async () => {
     
     
     if(_post.value && _post.value[0]['font-type']){
+      fonttype.value = _post.value[0]['tax_info'].filter(_term => _term.slug === 'font-type').flatMap(_term => _term.terms.map(t => t.slug))[0] || ''
+     
+      // fonttype.value = _post.value[0]['font-type']
       const fontTypeData = _post.value[0]['font-type'];
  
       const _id = fontTypeData[0]
@@ -212,7 +218,8 @@ onMounted(() => {
 }
   
 fetchFontTypes()
-  
+bindSmoothScroll()
+
 nextTick()
 useLinkClickHandler()
 
@@ -307,13 +314,13 @@ const onChangeSlug = (slug:string):void => {
         </header>
         <div class="sec__container">
           <div class="image">
-            <NuxtImg :src="_post[0].acf.family.image" :alt="`${_post[0].title.rendered} family image`" loading="lazy" format="webp" />
+            <NuxtImg :src="_post[0].acf.family.image" :alt="`${_post[0].title.rendered} family image`" loading="eager" />
           </div>
           <div class="txtContainer" v-html="_post[0].acf.family.text"></div>
         </div>
       </div>
     </section>
-    <section class="buyContainer sec">
+    <section class="buyContainer sec" id="buy">
       <div class="sec__inner">
         <header class="sec__header">
           <h2 class="sec__header-ttl" style="line-height:2">{{ t('buy') }}</h2>
@@ -322,6 +329,10 @@ const onChangeSlug = (slug:string):void => {
 
           <template v-if="locale === 'ja'">
             <div class="tpcntContainer" v-if="_post[0].acf.tp_connect" v-html="_post[0].buy_tpconnect">
+            </div>
+          </template>
+          <template v-else>
+            <div class="tpcntContainer" v-if="_post[0].acf.tp_connect" v-html="_post[0].buy_tpconnect_en">
             </div>
           </template>
 
@@ -333,8 +344,11 @@ const onChangeSlug = (slug:string):void => {
         </div>
       </div>
     </section>
-    <InterviewList />
-    <FontInUseList />
+    <!--  -->
+    <template v-if="fonttype">
+      <InterviewList taxonomy="font-type" :term="fonttype" /> 
+      <FontInUseList taxonomy="font-type" :term="fonttype" />
+    </template>
     <LinkList />
   </div>
 </template>
@@ -618,7 +632,7 @@ overflow: hidden;
     text-align: center;
     padding: var(--wp--preset--spacing--50) 1em var(--wp--preset--spacing--40);
     flex-basis: 38%;
-    
+    align-self: flex-start;
 
     // .ttl{
       

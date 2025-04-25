@@ -44,7 +44,7 @@ const {data: _posts, status:_status, error:_error} = await useFetch<Post[]>(`${_
 </script>
 
 <template>
- <section class="sec_interview sec">
+ <section v-if="_posts && _posts[0]" class="sec_interview sec">
       <div class="sec__inner">
         <header class="sec__header _wbt">
           <h2 class="sec__header-ttl">{{ t('interview') }}</h2>

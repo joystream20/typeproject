@@ -137,7 +137,7 @@ onBeforeUnmount(() => {
         <div class="sec__inner">
           <header class="sec__header _wbt">
             <h2 class="sec-ttl">{{ t('fonts') }}</h2>
-            <p class="btn_all all"><NuxtLinkLocale :to="`/fonts`"><span class="txt">{{ t('all_fonts') }}</span></NuxtLinkLocale></p>
+            <p class="btn_all all"><NuxtLinkLocale :to="`/fonts`"><span class="txt">{{ t('all_posts') }}</span></NuxtLinkLocale></p>
           </header>
           <div v-if="_fonts" class="sec__container">
             <FontsList :fontsPosts="_fonts" />

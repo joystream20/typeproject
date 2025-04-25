@@ -32,6 +32,7 @@ export type Post = {
   acf?:{
     link?:boolean;
     url?:string;
+    company_name?:string;
   }
 }
 
