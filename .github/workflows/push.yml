@@ -55,3 +55,4 @@ jobs:
           server-dir: ${{ secrets.DEPLOY_DIR }} # アップロード先のリモートパス
           local-dir: ./dist/ # ローカルのアップロードしたいフォルダのパス
           useDiff: false
+          dangerous-clean-slate: true
