@@ -11,13 +11,13 @@ const fontawasomeUrl = 'https://kit.fontawesome.com/b1e6e0e757.js'
 
 export default defineNuxtConfig({
   // target: 'static',
-  ssr: false,
+  ssr: true,
 
   srcDir:'src/',
 
   nitro: {
     prerender: {
-      routes: ['/'],
+      routes: ['/','/en'],
       failOnError: false,
     }
   },

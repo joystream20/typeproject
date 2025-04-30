@@ -38,14 +38,21 @@ const format_date = (date:string):string => {
 </div>
 </template>
 <style lang="scss" scoped>
+$wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .newsList{
   // border-top: 1px solid #b3b3b3;
   &-item{
     padding:1em 0;
     border-bottom: 1px solid #b3b3b3;
+    .dateContainer{
+      margin-bottom:.5em;
+    }
   }
 }
 .catContainer{
+  flex-direction: column;
+  gap:.2em;
+
   .date{
     font-size:.75em;
   }
@@ -53,15 +60,34 @@ const format_date = (date:string):string => {
 .catList{
   display: flex;
   gap:.5em;
+  flex-wrap:wrap;
   &-item{
     font-size: .6875em;
+    .dateContainer{
+      margin-bottom: 0;
+    }
     a{
       border:1px solid #cdcdcd;
       display: inline-block;
-      padding:.15em .2em .1em;
+      padding:.5em .7em;
       line-height: 1;
       display: block;
     }
   }
+}
+
+@media screen and (min-width: #{calc($ww * 1px)}) { 
+  .catContainer{
+    flex-direction: row;
+    gap:1em;
+    align-items: center;
+  }
+  .catList{
+  &-item{
+    a{
+
+    }
+  }
+}
 }
 </style>

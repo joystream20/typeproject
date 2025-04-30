@@ -59,7 +59,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 
     .logo{
       img{
-        width:clamp(9.375rem, -0.714rem + 20.64vw, 12.188rem);
+        width:clamp(6.875rem, 0.149rem + 13.76vw, 8.75rem);
         display:inline-block
       }
     }

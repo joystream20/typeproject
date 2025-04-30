@@ -7,6 +7,8 @@ const {headerHeight} = useHeaderSize()
 
 const config = useRuntimeConfig()
 const defaultFont = ref<string>(config.public.defaultFontFamily)
+
+const {locale} = useI18n()
 // const site = ref<HTMLElement | null>(null)
 
 
@@ -18,6 +20,9 @@ const stClass = changeClass();
 
 useHead({
   title:`${config.public.siteTitle}`,
+  htmlAttrs: {
+    lang:locale.value
+  }
   // link: [
   //   {
   //     rel: "stylesheet",

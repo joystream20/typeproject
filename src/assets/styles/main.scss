@@ -716,6 +716,61 @@ html{
 }
 .single{
 
+  &.story{
+    .swiper{
+      &-slide{
+        margin-top:0 !important;
+        background-color: #fff;
+        figcaption{
+          margin:.5em;
+        }
+       }
+       &-pagination{
+        position:relative;
+        margin-top:.7em;
+        &-bullet{
+          margin-left:.25em !important;
+          margin-right:.25em !important;
+          &-active{
+            background-color: #000 !important;
+          }
+        }
+       }
+    }
+    .storyFontList{
+      gap:2% !important;
+      &-item{
+        font-size:.875em;
+        position: relative;
+        &.on{
+          &:after{
+            content:"";
+            position:absolute;
+            left:50%;
+            bottom:0;
+            transform:translate(-50%,140%);
+            width:0;
+            height:0;
+            $bw : .8em;
+            $aj : .6;
+            border-top:$bw solid;
+            border-right:$bw * $aj solid transparent;
+            border-bottom:0 solid transparent;
+            border-left:$bw * $aj solid transparent;
+          }
+        }
+      }
+    }
+    .storyFontListContainer{
+      &-box{
+        display: none;
+        &.on{
+          display: block;
+        }
+      }
+    }
+  }
+
   &.fontinuse{
     .contentsContainer{
       .txtContainer{

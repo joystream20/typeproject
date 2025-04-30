@@ -14,14 +14,14 @@ const {title, src, href, blank} = defineProps<Props>()
 <div class="customPost-item">
   <div class="image">
     <a v-if="blank" :href="href" target="_blank">
-      <NuxtImg :src="src" :alt="`${title}`" loading="lazy" format="webp" preload />
+      <NuxtImg :src="src" :alt="`${title}`" loading="eager" format="webp" preload />
     </a>
     <NuxtLinkLocale v-else :to="`/${href}`">
-    <NuxtImg :src="src" :alt="`${title}`" loading="lazy" format="webp" preload />
+    <NuxtImg :src="src" :alt="`${title}`" loading="eager" format="webp" preload />
     </NuxtLinkLocale>
   </div>
   <div class="txtContainer">
-    <h3 class="ttl">{{ title }}</h3>
+    <h2 class="ttl">{{ title }}</h2>
   </div>
 </div>
 </template>

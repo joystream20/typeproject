@@ -39,18 +39,18 @@ const set_locale = (lang:'ja' | 'en'):void => {
         <button :class="{'u_f_bd':locale === 'en'}" @click="set_locale('en')">EN</button>
       </div>
       <div class="socialContainer">
-        <a class="btn_x" href="https://twitter.com/typeproject" target="_blank">
+        <a class="btn_x" href="https://twitter.com/typeproject" target="_blank" aria-label="Twitter">
           <font-awesome :icon="['fab', 'x-twitter']" />
         </a>
-        <a class="btn_fa" href="https://www.facebook.com/typeproject" target="_blank">
+        <a class="btn_fa" href="https://www.facebook.com/typeproject" target="_blank" aria-label="Facebook">
           <font-awesome :icon="['fab', 'facebook-f']" />
         </a>
-        <a class="btn_ins" href="https://www.instagram.com/typeproject_official/" target="_blank">
+        <a class="btn_ins" href="https://www.instagram.com/typeproject_official/" target="_blank" aria-label="Instagram">
           <font-awesome :icon="['fab', 'instagram']" />
         </a>
       </div>
       <div class="cartContainer">
-        <a href="">
+        <a href="https://shop.typeproject.com/" target="_blank">
           <!-- <font-awesome :icon="['fas', 'cart-shopping']" /> -->
           <span class="txt">{{ t('store') }}</span>
         </a>
