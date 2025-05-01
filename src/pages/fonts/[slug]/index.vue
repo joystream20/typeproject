@@ -6,6 +6,7 @@ const {locale,t} = useI18n()
 const route = useRoute()
 const _slug = route.params.slug; //Number(route.params.slug)
 let langApi = config.public.wpApiKey
+let pageApi = config.public.siteUrl
 const stClass = changeClass();
 const router = useRouter()
 const { bindSmoothScroll } = useSmoothAnchorScroll()
@@ -18,8 +19,10 @@ const modules = [Thumbs, Autoplay]//[Autoplay]
 
 if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
+  pageApi = config.public.siteUrl+'/en'
 }
 const _rest_url = `${langApi}/fonts?slug=${_slug}`
+const _page_url = `${pageApi}/fonts/${_slug}`
 
 type Post = {
   acf:{
@@ -52,6 +55,9 @@ type Post = {
   content:{
     rendered:string;
   },
+  thumbnail:{
+    url:string;
+  },
   buy_tpconnect:string;
   buy_tpconnect_en:string;
   'font-type'?:number[],
@@ -71,8 +77,20 @@ const {data: _post, status: _status, error:_error} = await useFetch<Post[]>(_res
     console.error('Error fetching data:', _error.value);
   } else {
     if(_post.value){
+      const description = useSeoDescription(_post.value[0])
+      const imgUrl = _post.value[0].thumbnail.url || `${config.public.siteUrl}/_nuxt/assets/images/img_def.png`
       useHead({
-        title:`${_post.value[0].title.rendered} | ${config.public.siteTitle}`
+        title:`${_post.value[0].title.rendered} | ${config.public.siteTitle}`,
+        meta: [
+          { name: 'description',content: description},
+          {property: 'og:description',content: description},
+          {property: 'og:image',content:imgUrl },
+          {property: 'og:url',content: _page_url},
+          {property: 'og:title',content: _post.value[0].title.rendered},
+          {property: 'og:type',content: 'article'},
+          {property: 'twitter:title',content: _post.value[0].title.rendered},
+          {property: 'twitter:description',content: description}
+        ]
       })
     }
   }
@@ -314,7 +332,7 @@ const onChangeSlug = (slug:string):void => {
         </header>
         <div class="sec__container">
           <div class="image">
-            <NuxtImg :src="_post[0].acf.family.image" :alt="`${_post[0].title.rendered} family image`" loading="eager" />
+            <NuxtImg :src="`${_post[0].acf.family.image}.webp`" :alt="`${_post[0].title.rendered} family image`" loading="eager" />
           </div>
           <div class="txtContainer" v-html="_post[0].acf.family.text"></div>
         </div>

@@ -51,7 +51,7 @@ onMounted(() => {
   <div class="alignfull" v-if="_page[0].thumbnail">
     <div class="heroImage">
       <h1 class="page-ttl">{{ _page[0].title.rendered }}</h1>
-      <NuxtImg :src="`${_page[0].thumbnail.url_f}`" alt="" loading="lazy" format="webp" preload />
+      <NuxtImg :src="`${_page[0].thumbnail.url_f}.webp`" alt="" loading="lazy" format="webp" preload />
     </div>
   </div>
   <div v-if="_page[0].acf.case_list.length > 0" class="listContainer sec">

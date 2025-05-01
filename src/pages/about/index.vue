@@ -4,12 +4,16 @@ import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
 const config = useRuntimeConfig()
 const {locale,t} = useI18n()
 let langApi = config.public.wpApiKey
+let pageApi = config.public.siteUrl
 
 const stClass = changeClass();
 
 if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
+  pageApi = config.public.siteUrl+'/en'
 }
+
+const _page_url = `${pageApi}/about`
 
 type Post = {
   thumbnail:{
@@ -30,9 +34,24 @@ if (_error.value) {
   } else {
     
   }
-  useHead({
-    title:`${t('about')} | ${config.public.siteTitle}`
-  })
+  
+  if(_page.value){
+    const description = useSeoDescription(_page.value[0])
+    const imgUrl = _page.value[0].thumbnail.url || `${config.public.siteUrl}/_nuxt/assets/images/img_def.png`
+    useHead({
+      title:`${t('about')} | ${config.public.siteTitle}`,
+      meta: [
+        { name: 'description',content: description},
+        {property: 'og:description',content: description},
+        {property: 'og:image',content:imgUrl },
+        {property: 'og:url',content: _page_url},
+        {property: 'og:title',content: _page.value[0].title.rendered},
+        {property: 'og:type',content: 'article'},
+        {property: 'twitter:title',content: _page.value[0].title.rendered},
+        {property: 'twitter:description',content: description}
+      ]
+    })
+  }
 
 
 
@@ -47,7 +66,7 @@ onMounted(() => {
   <div class="alignfull" v-if="_page[0].thumbnail">
     <div class="heroImage">
       <h1 class="page-ttl">{{ _page[0].title.rendered }}</h1>
-      <NuxtImg :src="`${_page[0].thumbnail.url_f}`" loading="lazy" format="webp" alt="" preload />
+      <NuxtImg :src="`${_page[0].thumbnail.url_f}.webp`" loading="lazy" format="webp" alt="" preload />
     </div>
   </div>
   <PageNav current="about" />

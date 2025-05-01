@@ -55,4 +55,4 @@ jobs:
           server-dir: ${{ secrets.DEPLOY_DIR }} # アップロード先のリモートパス
           local-dir: ./dist/ # ローカルのアップロードしたいフォルダのパス
           useDiff: false
-          dangerous-clean-slate: true
+          #dangerous-clean-slate: true #全ファイルアップ前に削除　すごい時間かかる

@@ -7,6 +7,19 @@ const set_locale = (lang:'ja' | 'en'):void => {
     $i18n.setLocale(lang)
   }
 }
+const baseShopUrl = 'https://shop.typeproject.com/'
+const shopUrl = ref('')
+
+const updateShopUrl = () => {
+  shopUrl.value = locale.value === 'en' ? `${baseShopUrl}en/` : baseShopUrl
+}
+
+updateShopUrl()
+
+watch(locale, () => {
+  updateShopUrl()
+})
+
 
 // const _state = defineModel<boolean | null>()
 
@@ -50,7 +63,7 @@ const set_locale = (lang:'ja' | 'en'):void => {
         </a>
       </div>
       <div class="cartContainer">
-        <a href="https://shop.typeproject.com/" target="_blank">
+        <a :href="shopUrl" target="_blank">
           <!-- <font-awesome :icon="['fas', 'cart-shopping']" /> -->
           <span class="txt">{{ t('store') }}</span>
         </a>

@@ -17,7 +17,7 @@ export type Post = {
   title:{rendered:string};
   slug:string;
   type:string;
-  thumbnail:{url:string;url_f:string};
+  thumbnail:{url_s:string,url_m:string,url:string;url_f:string};
   tax_info:{
     id:number;
     name:string;

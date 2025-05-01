@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const {WP_API_KEY,SITE_DOMAIN,FONTAWESOME_URL} = process.env
-const siteUrl = 'https://damazeinc.xsrv.jp'
+const siteUrl = 'https://typeproject.com'
 const metaImage = '/ogp.png'
 const metaTitle = 'Type Project | タイププロジェクト'
 const metaDescription = 'タイププロジェクトは、機能性と独自性を核にした魅力ある書体づくりに挑む21世紀の文字カンパニーです。'
@@ -57,6 +57,7 @@ export default defineNuxtConfig({
 
   runtimeConfig:{
     public: {
+      siteUrl:siteUrl,
       wpApiKey:'https://damazeinc.xsrv.jp/wp-json/wp/v2',//`${process.env.WP_API_KEY}/wp-json/wp/v2`,
       wpApiKeyEn:'https://damazeinc.xsrv.jp/en/wp-json/wp/v2',//`${process.env.WP_API_KEY}/en/wp-json/wp/v2`,
       wpApiCustom:'https://damazeinc.xsrv.jp/wp-json/custom/v0',//`${process.env.WP_API_KEY}/wp-json/custom/v0`,
@@ -73,7 +74,11 @@ export default defineNuxtConfig({
   image: {
     // provider: 'static',
     dir: 'assets/images',
-    domains: [`${process.env.SITE_DOMAIN}`]
+    // domains: [`${process.env.SITE_DOMAIN}`],
+    // provider: 'ipx', // or leave empty to use default ipx
+    provider:'none', //ipxを無効
+    domains: ['damazeinc.xsrv.jp'],
+    formats: ['webp']
   },
 
   fontawesome: {
@@ -145,7 +150,7 @@ export default defineNuxtConfig({
       meta:[
         {name: 'description', content: metaDescription},
         {property: 'og:site_name', content: metaTitle},
-        {property: 'og:site', content: metaTitle},
+        {property: 'og:title', content: metaTitle},
         {property: 'og:description', content: metaDescription},
         {property: 'og:type', content: 'website'},
         {property: 'og:image', content: metaImage},

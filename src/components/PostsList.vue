@@ -21,11 +21,25 @@ onMounted(() => {
     <div class="image">
      <!-- <p v-if="post.acf">{{ post.acf.link }}</p> -->
       <a v-if="post.acf && post.acf.link" :href="`${post.acf.url}`" target="_blank">
-        <NuxtImg v-if="post.thumbnail.url" :src="`${post.thumbnail.url}`" :alt="`${post.title.rendered}`" width="246" format="webp" loading="lazy" />
+        <NuxtImg 
+        v-if="post.thumbnail.url_s" 
+        :src="post.thumbnail.url_s" 
+        :alt="post.title.rendered"
+        sizes="(max-width:480px) 400px, 700px"
+        width="700" 
+        format="webp" 
+        loading="lazy" />
         <img v-else src="@/assets/images/img_def.png" alt="" />
       </a>
       <NuxtLinkLocale v-else :to="`/${type}/${post.slug}`">
-        <NuxtImg v-if="post.thumbnail.url" :src="`${post.thumbnail.url}`" :alt="`${post.title.rendered}`" width="246" format="webp" loading="lazy" />
+        <NuxtImg 
+        v-if="post.thumbnail.url_s" 
+        :src="`${post.thumbnail.url_s}.webp`" 
+        :alt="post.title.rendered"
+        sizes="(max-width:480px) 400px, 700px"
+        width="700" 
+        format="webp"  
+        loading="lazy" />
         <img v-else src="@/assets/images/img_def.png"  />
       </NuxtLinkLocale>
     </div>

@@ -38,7 +38,7 @@ onMounted(() => {
    
     <div class="image">
       <NuxtLinkLocale :to="`/${post.post_type}/${post.post_name}`">
-        <NuxtImg v-if="post.thumbnail.url" :src="`${post.thumbnail.url}`" :alt="`${post.post_title}`" width="246" format="webp" loading="lazy" />
+        <NuxtImg v-if="post.thumbnail.url" :src="`${post.thumbnail.url}.webp`" :alt="`${post.post_title}`" width="246" format="webp" loading="lazy" />
         <img v-else src="@/assets/images/img_def.png"  />
       </NuxtLinkLocale>
     </div>

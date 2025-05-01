@@ -260,9 +260,9 @@ const repBr = (txt:string):string => {
             <li :class="`fontList-item font_${font.id} font_${font.slug}`" v-for="font in _posts.filter(_p => fonts_list_arr.includes(_p.id))" :key="font.id" >
           <div class="image">
             <NuxtLinkLocale :to="`/fonts/${font.slug}`">
-              <NuxtImg :src="`${font.thumbnail.url}`" :alt="`${font.title.rendered}`" width="246" loading="lazy" format="webp" />
+              <NuxtImg :src="`${font.thumbnail.url}.webp`" :alt="`${font.title.rendered}`" width="246" loading="lazy" format="webp" />
               <span class="back" :style="font.acf.hover_style">
-                <NuxtImg :src="`${font.thumbnail.url}`" :alt="`${font.title.rendered}`" width="246" loading="lazy" format="webp" />
+                <NuxtImg :src="`${font.thumbnail.url}.webp`" :alt="`${font.title.rendered}`" width="246" loading="lazy" format="webp" />
               </span>
             </NuxtLinkLocale>
           </div>

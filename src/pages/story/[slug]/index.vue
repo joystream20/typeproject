@@ -6,6 +6,7 @@ const config = useRuntimeConfig()
 const route = useRoute()
 const _slug = route.params.slug;
 let langApi = config.public.wpApiKey
+let pageApi = config.public.siteUrl
 let langApiCumtom = config.public.wpApiCustom
 
 
@@ -13,8 +14,10 @@ const stClass = changeClass();
 
 if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
+  pageApi = config.public.siteUrl+'/en'
 }
 const _rest_url = `${langApi}/story?slug=${_slug}`
+const _page_url = `${pageApi}/story/${_slug}`
 type Post = {
   title:{
     rendered:string;
@@ -22,6 +25,9 @@ type Post = {
   acf:{
     hero:string
   },
+  thumbnail:{
+    url:string
+  }
   content: {
     rendered:string
   }
@@ -37,8 +43,20 @@ if (_error.value) {
   console.error('Error fetching data:', _error.value);
 } else {
   if(_post.value){
+    const description = useSeoDescription(_post.value[0])
+  const imgUrl = _post.value[0].thumbnail.url || `${config.public.siteUrl}/_nuxt/assets/images/img_def.png`
     useHead({
-      title: `${_post.value[0].title.rendered} | ${config.public.siteTitle}`
+      title: `${_post.value[0].title.rendered} | ${config.public.siteTitle}`,
+  meta: [
+    { name: 'description',content: description},
+    {property: 'og:description',content: description},
+    {property: 'og:image',content:imgUrl },
+    {property: 'og:url',content: _page_url},
+    {property: 'og:title',content: _post.value[0].title.rendered},
+    {property: 'og:type',content: 'article'},
+    {property: 'twitter:title',content: _post.value[0].title.rendered},
+    {property: 'twitter:description',content: description}
+  ]
     })
     
   }
@@ -96,7 +114,7 @@ const listShow = async () => {
 <div>
   <div v-if="_post && _post[0]">
     <div class="heroImage">
-      <NuxtImg :src="_post[0].acf.hero" alt="" height="1000" width="2000" loading="lazy" format="webp" v-if="_post[0].acf.hero" preload />
+      <NuxtImg :src="`${_post[0].acf.hero}.webp`" alt="" height="1000" width="2000" loading="lazy" format="webp" v-if="_post[0].acf.hero" preload />
       <img v-else src="@/assets/images/img_dum.jpg" alt="">
     </div>
     <div class="postContainer" v-html="_post[0].content.rendered" ></div>
