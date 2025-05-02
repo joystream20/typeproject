@@ -200,9 +200,9 @@ onMounted(() => {
             </div>
       </div>
     <div class="contentsWrap"></div>
-    <InterviewList taxonomy="interview_category" term="fitfont" max="6" />
+    <InterviewList taxonomy="interview_category" term="fitfont" max="4" />
     
-    <DevelopmentStory taxonomy="story_category" term="fitfont" />
+    <!-- <DevelopmentStory taxonomy="story_category" term="fitfont" /> -->
   </div>
   <div v-else-if="_slug === 'tpconnect'">
     <FontsAllList :specimen="_post[0].acf.specimen" />
@@ -210,44 +210,6 @@ onMounted(() => {
   </div>
   <div v-html="_post[0].acf.support"></div>
 
-  <!-- <section v-if="_post[0].acf.useList && _post[0].acf.useList.length > 0" class="usageList u_mx1300 has-global-padding sec">
-    <div class="sec__inner">
-      
-      <ul class="postList">
-        <li class="postList-item" v-for="(child, index) of _post[0].acf.useList" :key="index">
-          <template v-if="child.blank"> 
-            
-              <div class="image">
-                <a :href="`${child.url}`" target="_blank">
-                <NuxtImg v-if="child.image" :src="child.image" :alt="child.text"  />
-                <img v-else src="@/assets/images/img_def.png" alt="">
-              </a>
-              </div>
-              <div class="txtContainer">
-                <p class="ttl" v-html="child.text"></p>
-              </div>
-            
-          </template>
-          <template v-else>
-           
-              <div class="image">
-                <NuxtLink :to="`${child.url}`">
-                <NuxtImg v-if="child.image" :src="child.image" :alt="child.text.replace(/<br\s*\/?>/gi, '')" />
-                <img v-else src="@/assets/images/img_def.png" alt="" />
-              </NuxtLink>
-              </div>
-              <div class="txtContainer">
-                <p class="ttl" v-html="child.text"></p>
-              </div>
-            
-          </template>
-          
-        </li>
-      </ul>
-      
-      
-    </div>
-  </section> -->
   <section v-if="_post[0].acf.usagelist && _post[0].acf.usagelist.length > 0" class="sec_usage u_mx1300 has-global-padding sec">
   <div class="sec__inner">
     <header class="sec__header _wbt">
