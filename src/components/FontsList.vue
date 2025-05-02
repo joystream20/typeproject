@@ -8,7 +8,7 @@ type Props = {
 const { fontsPosts } = defineProps<Props>()
 
 const onMounted = () => {
-  // console.log(fontsPosts)
+  
 }
 </script>
 

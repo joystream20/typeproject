@@ -18,7 +18,6 @@ if (_error.value) {
   }
 
   onMounted(() => {
-    // console.log(_linkList)
   })
 </script>
 

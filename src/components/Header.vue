@@ -5,16 +5,12 @@ const stClass = changeClass();
 const {locale,t} = useI18n()
 const route = useRoute()
 const _state = ref<boolean | null>(null)
-// const _menuState = ref<boolean>(true)
 
 const store_url = ref<string>('https://shop.typeproject.com/')
 watch(()=> _state.value, (newState) => {
-  // console.log(newState)
 })
 
 watch(route, (newRoute)=>{
-  // console.log(newRoute.path)
-  // console.log(locale.value)
   _state.value = false
   if(locale.value === 'en'){
     store_url.value = 'https://shop.typeproject.com/en/'
@@ -25,7 +21,6 @@ watch(route, (newRoute)=>{
 
 const btnClick = () => {
   _state.value = !_state.value
-  // console.log('click', _state.value)
 }
 
 if(locale.value === 'en'){
@@ -66,7 +61,6 @@ const openMenu = useState<boolean>('openMenu', () => false)
       </p>
       <div class="navContainer u_d_fl">
         <Gnav />
-        <!-- <Gnav v-model="_state" /> -->
         <div id="btn_hm" class="btn_hm" :class="{'on': _state, 'off': !_state && _state !== null}" @click="btnClick()">
           <div class="btn_inner">
             <span class="bar"></span>
@@ -79,7 +73,6 @@ const openMenu = useState<boolean>('openMenu', () => false)
 
     <template v-if="isFontsPage">
       <div class="fonts_page__header">
-        <!-- {{ selectedOptions }} -->
         <div class="fonts_page__header-inner">
             <h1 class="fonts_page__header-ttl u_f_bd">{{t('fontlist')}}</h1>
             <div class="selectContainer">
@@ -159,7 +152,6 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
       max-width:1440px;
       margin-left: auto;
       margin-right: auto;
-      // justify-content: space-between;
       align-items: center;
     }
 
@@ -204,9 +196,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     padding-left: var(--wp--style--root--padding-left);
     background-color: #fff;
     width:100%;
-    // .txt{
 
-    // }
     .plus{
       width:1em;
       height:1em;

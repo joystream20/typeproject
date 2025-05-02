@@ -48,7 +48,6 @@ const {data: _fontsAllTerm, status:_fonts_all_term_st, error:_fonts_all_term_err
     
   }
 
-// const _loading = ref(false)
 
 onBeforeMount(() => {
   // console.log('before mount')
@@ -97,10 +96,6 @@ useHead({
     title:`${t('fontlist')} | ${config.public.siteTitle}`
   })
 onMounted(() => {
-  // console.log('onMounted')
-  // setTimeout(()=> {
-  //   _loading.value = true
-  // },1000)
   
   stClass.value = {type:"archive",cls:"fonts",lng:locale.value}
   // console.log(_posts)
@@ -120,10 +115,6 @@ onBeforeRouteLeave(() => {//before leave
   openMenu.value = false
 })
 
-// onBeforeUnmount(() => {
-//   console.log('beforeUnmounted')
-//   _loading.value = false
-// })
 type Result = {
   parentName: string;
   parentDescription: string;
@@ -191,26 +182,9 @@ const onSort = (index:number, slug:string) => {
    
   },100)
 
-  //何もしてない
-  // fonts_arr.forEach(
-  //   _font => {
-      
-  //     setTimeout(()=>{
-  //       if(sort_arr[index] === slug){
-         
-  //       }
-  //     },100)
-      
-  //   }
-  // )
   
 }
 
-// const onFilterFonts = () => {
-  
-//   return _posts.filter(_p => {fonts_list_arr.value.includes(_p.id)})
-//   // return fonts_list_arr.includes(id)
-// }
 const openState = ref<boolean[]>(
   _fontsAllTerm.value ? _fontsAllTerm.value.map(() => true) : [])
 

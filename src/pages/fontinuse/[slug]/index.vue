@@ -69,19 +69,6 @@ onMounted(() => {
     if(_taxs){
       const _catsList = wrap.value?.querySelector('.catListContainer') as HTMLElement
       wrap.value?.querySelector('.catContainer')?.append(_catsList)
-      // const catList = document.createElement('div')
-      // catList.classList.add('catList')
-      // _taxs.forEach(
-      //   _tax => {
-      //     console.log(_tax.terms)
-      //     _tax.terms.forEach(
-      //       _term => {
-      //         console.log(_term.name)
-      //         const _item = `<dd><NuxtLinkLocale :to=''></NuxtLinkLocale></dd>`
-      //       }
-      //     )
-      //   }
-      // )
       
     }
 
@@ -94,9 +81,6 @@ onMounted(() => {
     container.appendChild(info)
   }
 
-  // nextTick(() => {
-  //   console.log('next')
-  // })
 })
 </script>
 

@@ -40,7 +40,6 @@ const format_date = (date:string):string => {
 <style lang="scss" scoped>
 $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .newsList{
-  // border-top: 1px solid #b3b3b3;
   &-item{
     padding:1em 0;
     border-bottom: 1px solid #b3b3b3;
@@ -82,12 +81,5 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     gap:1em;
     align-items: center;
   }
-  .catList{
-  &-item{
-    a{
-
-    }
-  }
-}
 }
 </style>

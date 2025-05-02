@@ -64,7 +64,9 @@ onMounted(() => {
             </NuxtLink>
           </div>
           <div class="txtContainer">
-            <p class="ttl">{{ child.text}}</p>
+            <NuxtLink :to="`${child.url}`">
+              <p class="ttl">{{ child.text}}</p>
+            </NuxtLink>
           </div>
         </li>
       </ul>

@@ -56,14 +56,7 @@ try {
 }
 
 };
-// const _rest_url = `${langApi}/fontinuse?font-type=${_id}&context=embed`
 
-// const {data: _posts, status: _status, error:_error} = await useFetch<Post[]>(_rest_url)
-// if (_error.value) {
-//     console.error('Error fetching data:', _error.value);
-//   } else {
-    
-//   }
 watch(()=> catName.value, (newCatName) => {
   // console.log(newCatName)
     useHead({

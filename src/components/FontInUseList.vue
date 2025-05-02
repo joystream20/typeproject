@@ -33,26 +33,8 @@ let _rest_url = `${langApi}/fontinuse?per_page=4&context=embed`
 
 if(taxonomy && term){
   _rest_url = `${_rest_url}&taxonomy=${taxonomy}&term=${term}`
-  // console.log(_rest_url)
 }
 
-// type Post = {
-//   id:number;
-//   title:{rendered:string};
-//   slug:string;
-//   thumbnail:{url:string;url_f:string};
-//   tax_info:{
-//     id:number;
-//     name:string;
-//     slug:string;
-//     terms:{
-//       id:number; name:string; tax:string;
-//     }[]
-//   }[];
-//   categories_info:{
-//     id:number;name:string;
-//   }[]
-// }
 
 const {data: _posts, status:_status, error:_error} = await useFetch<Post[]>(`${_rest_url}`)
   if (_error.value) {

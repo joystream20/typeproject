@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import { defineProps } from 'vue';
 
 type Props = {
   title:string,
@@ -16,8 +15,8 @@ const {title, src, href, blank} = defineProps<Props>()
     <a v-if="blank" :href="href" target="_blank">
       <NuxtImg 
       :src="`${src}.webp`" 
-      sizes="(max-width:480px) 400px, 700px"
-      width="700" 
+      width="700"
+      height="399" 
       :alt="title" 
       loading="eager" 
       format="webp" />
@@ -26,8 +25,8 @@ const {title, src, href, blank} = defineProps<Props>()
     <NuxtImg 
     :src="`${src}.webp`" 
     :alt="title" 
-    sizes="(max-width:480px) 400px, 700px"
-    width="700" 
+    width="700"
+    height="399" 
     loading="eager" 
     format="webp" />
     </NuxtLinkLocale>
@@ -41,11 +40,9 @@ const {title, src, href, blank} = defineProps<Props>()
 
   .customPost-item{
     .image{
-      // aspect-ratio: 1/.57;
       img{
       object-fit: cover;
       width:100%;
-      // height: 100%;
       aspect-ratio: 1/.57;
     }
     }

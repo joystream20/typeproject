@@ -23,10 +23,10 @@ onMounted(() => {
       <a v-if="post.acf && post.acf.link" :href="`${post.acf.url}`" target="_blank">
         <NuxtImg 
         v-if="post.thumbnail.url_s" 
-        :src="post.thumbnail.url_s" 
+        :src="`${post.thumbnail.url_s}.webp`" 
         :alt="post.title.rendered"
-        sizes="(max-width:480px) 400px, 700px"
-        width="700" 
+        :width="post.thumbnail.imgW"
+        :height="post.thumbnail.imgH"
         format="webp" 
         loading="lazy" />
         <img v-else src="@/assets/images/img_def.png" alt="" />
@@ -36,17 +36,21 @@ onMounted(() => {
         v-if="post.thumbnail.url_s" 
         :src="`${post.thumbnail.url_s}.webp`" 
         :alt="post.title.rendered"
-        sizes="(max-width:480px) 400px, 700px"
-        width="700" 
+        :width="post.thumbnail.imgW"
+        :height="post.thumbnail.imgH"
         format="webp"  
         loading="lazy" />
         <img v-else src="@/assets/images/img_def.png"  />
       </NuxtLinkLocale>
     </div>
     <div class="txtContainer">
-      <!-- <p class="ttl">{{ post.title.rendered }}</p> -->
+      <a v-if="post.acf && post.acf.link" :href="`${post.acf.url}`" target="_blank">
+        <p class="ttl" v-html="post.title.rendered"></p>
+      </a>
+      <NuxtLinkLocale v-else :to="`/${type}/${post.slug}`">
       <p v-if="post.type === 'interviews'" class="ttl" v-html="post.acf?.company_name"></p>
       <p v-else class="ttl" v-html="post.title.rendered"></p>
+      </NuxtLinkLocale>
       <div class="catContainer">
         <div v-if="post.type === 'interviews'" class="u_d_fl u_gp0" >
           <div v-for="tax in post.tax_info" :key="tax.slug">
@@ -57,7 +61,7 @@ onMounted(() => {
             </ul>
           </div>
           <div v-for="tax in post.tax_info" :key="tax.slug">
-            <ul v-if="tax.slug === 'interview_category'" class="scene u_d_fl u_fl_w_w u_gp-3_e">
+            <ul v-if="tax.slug === 'interview_category'" class="scene u_d_fl u_fl_w_w u_gp-5_e">
               <li v-for="term in tax.terms" :key="term.id">
                 <NuxtLinkLocale :to="`/${type}/category/${term.id}`"><span v-html="term.name"></span></NuxtLinkLocale>
                 </li>

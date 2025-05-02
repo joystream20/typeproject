@@ -22,7 +22,6 @@ const _totalItems = ref<string>('');
 const _posts = ref(null); 
 const _error = ref(null)
 
-// const _rest_url = `${langApi}/fontinuse?scene=${_id}&context=embed`
 let _params = ref(`scene=${_id}&per_page=${_perPage}&page=${_current}&context=embed`)
 
 
@@ -58,12 +57,6 @@ try {
 
 };
 
-// const {data: _posts, status: _status, error:_error} = await useFetch<Post[]>(_rest_url)
-// if (_error.value) {
-//     console.error('Error fetching data:', _error.value);
-//   } else {
-    
-//   }
 watch(()=> catName.value, (newCatName) => {
   // console.log(newCatName)
     useHead({

@@ -21,30 +21,11 @@ watch(locale, () => {
 })
 
 
-// const _state = defineModel<boolean | null>()
-
 
 </script>
 
 <template>
   <nav class="gnav ">
-    <!-- <ul class="gnavList ">
-      <li class="gnavList-item">
-        <NuxtLinkLocale :to="{name:'news'}">{{t('news')}}</NuxtLinkLocale>
-      </li>
-      <li class="gnavList-item">
-        <NuxtLinkLocale :to="{name:'fonts'}">{{t('fonts')}}</NuxtLinkLocale>
-      </li>
-      <li class="gnavList-item">
-        <NuxtLinkLocale :to="{name:'service'}">{{t('service')}}</NuxtLinkLocale>
-      </li>
-      <li class="gnavList-item">
-        <NuxtLinkLocale :to="{name:'fontinuse'}">{{t('fontinuse2')}}</NuxtLinkLocale>
-      </li>
-      <li class="gnavList-item">
-        <NuxtLinkLocale :to="{name:'about'}">{{ t('company') }}</NuxtLinkLocale>
-      </li>
-    </ul> -->
     <div class="gnav__rightContainer">
       <div class="langContainer ">
         <button :class="{'u_f_bd':locale === 'ja'}" @click="set_locale('ja')">JA</button>
@@ -64,7 +45,6 @@ watch(locale, () => {
       </div>
       <div class="cartContainer">
         <a :href="shopUrl" target="_blank">
-          <!-- <font-awesome :icon="['fas', 'cart-shopping']" /> -->
           <span class="txt">{{ t('store') }}</span>
         </a>
       </div>
@@ -95,9 +75,6 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
 .gnavList{
   display: flex;
   gap:1em;
-  // &-item{
-    
-  // }
 }
 
 .socialContainer{
@@ -116,16 +93,13 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
     font-size:1em;
     svg{
       fill:#fff;
-      // height:1em
     }
   }
 }
 .cartContainer{
   padding-left:.5em;
   border-left:1px solid;
-  // @media screen and (max-width: #{calc($ww * 1px)}) { 
-  //   display: none;
-  // }
+
   >a{
     font-size:1.1em;
     display: flex;

@@ -23,7 +23,6 @@ const catName = defineModel<string>()
 type Category = {
   term_id: string;
   name: string;
-  // 他のプロパティは無視する
 }
 
 
@@ -31,7 +30,6 @@ if(locale.value == 'en'){
   langApiCumtom = config.public.wpApiCustomEn
 }
 
-// const sortList = ref<HTMLElement | null>(null)
 if(type === 'news'){
   const {data: _catstax, status:_status, error:_error} = await useFetch(`${langApiCumtom}/newsCatTaxonomy?context=embed`)
   if (_error.value) {
@@ -71,14 +69,9 @@ if(type === 'news'){
 
 const onSort = (e:Event) => {
   const target = e.target as HTMLSelectElement
-  //window.location.href = target.value
   router.push(target.value)
 }
-// const onSort2 = (e:Event) => {
-//   const target = e.target as HTMLSelectElement
-//   window.location.href = target.value
-//   // router.push(target.value)
-// }
+
 const urlLocale = (url:string):string => {
   if(locale.value == 'en'){
       return `/en${url}`
@@ -246,12 +239,7 @@ onMounted(() => {
     }
   }
 }
-// .listWrap{
-//   max-height: 0px;
-//   overflow: hidden;
-//   transition:max-height .5s;
-//   position:relative;
-// }
+
 select{
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -262,9 +250,7 @@ select{
   color:#000;
   position: relative;
   z-index: 1;
-  // position:absolute;
-  // top:0;left:0;
-  // width:100%;
+
 }
 
 .btn_sort{

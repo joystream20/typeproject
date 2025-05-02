@@ -102,7 +102,6 @@ const brChange = (txt:string):string => {
 
 const testText = ref("Excellent compatibility between Ja")
 
-// const linkUrl = ref('')
 
 interface FontType {
   id:number;
@@ -140,14 +139,11 @@ const fetchFontTypes = async () => {
           fiu_url = '/en'+fiu_url
         }
         if(_post.value && _post.value[0]){
-          // btn_fiu?.setAttribute('href',`${fiu_url}/${String(_id)}`);
           // console.log(`${fiu_url}/${String(_id)}`)
           btn_fiu.addEventListener('click', (e) => {
             e.preventDefault() 
             router.push(`${fiu_url}/${String(_id)}`) 
           })
-          //router.push(router.resolve(href).href)
-          // useLinkClickHandler()
         }
       }else{
         if (btn_fiu && btn_fiu.parentElement && btn_fiu.parentElement.parentElement) {
@@ -242,15 +238,6 @@ nextTick()
 useLinkClickHandler()
 
 }
-
-  // const swiper = new Swiper('.swiper',{
-  //   loop:true,
-  //   modules:modules,
-  //   speed:1000,
-  //   autoplay:{
-  //     delay:2500
-  //   }
-  // })
 
   
 
@@ -633,11 +620,6 @@ overflow: hidden;
     padding-right:var(--wp--preset--spacing--30);
   }
   .sec{
-    // &__header{
-    //   &-ttl{
-    //   font-size: var(--wp--preset--font-size--large);
-    // }
-    // }
     &__container{
 
     margin-top:var(--wp--preset--spacing--30);

@@ -2,23 +2,27 @@ import axios from 'axios'
 
 const {WP_API_KEY,SITE_DOMAIN,FONTAWESOME_URL} = process.env
 const siteUrl = 'https://typeproject.com'
+const apiUrl = 'https://damazeinc.xsrv.jp'
 const metaImage = '/ogp.png'
 const metaTitle = 'Type Project | タイププロジェクト'
 const metaDescription = 'タイププロジェクトは、機能性と独自性を核にした魅力ある書体づくりに挑む21世紀の文字カンパニーです。'
-const maxNum = 10
 const _perPage = 24
 const fontawasomeUrl = 'https://kit.fontawesome.com/b1e6e0e757.js'
 
 export default defineNuxtConfig({
-  // target: 'static',
   ssr: true,
 
   srcDir:'src/',
 
+  experimental: {
+    payloadExtraction: true
+  },
+  
   nitro: {
     prerender: {
       routes: ['/'],
       failOnError: false,
+      crawlLinks: true
     }
   },
 
@@ -31,7 +35,6 @@ export default defineNuxtConfig({
   },
 
   generate: {
-    // fallback:true,
   },
 
   hooks: {
@@ -58,21 +61,24 @@ export default defineNuxtConfig({
   runtimeConfig:{
     public: {
       siteUrl:siteUrl,
-      wpApiKey:'https://damazeinc.xsrv.jp/wp-json/wp/v2',//`${process.env.WP_API_KEY}/wp-json/wp/v2`,
-      wpApiKeyEn:'https://damazeinc.xsrv.jp/en/wp-json/wp/v2',//`${process.env.WP_API_KEY}/en/wp-json/wp/v2`,
-      wpApiCustom:'https://damazeinc.xsrv.jp/wp-json/custom/v0',//`${process.env.WP_API_KEY}/wp-json/custom/v0`,
-      wpApiCustomEn:'https://damazeinc.xsrv.jp/en/wp-json/custom/v0',//`${process.env.WP_API_KEY}/en/wp-json/custom/v0`,
+      wpApiKey:`${apiUrl}/wp-json/wp/v2`,
+      wpApiKeyEn:`${apiUrl}/en/wp-json/wp/v2`,
+      wpApiCustom:`${apiUrl}/wp-json/custom/v0`,
+      wpApiCustomEn:`${apiUrl}/en/wp-json/custom/v0`,
       postsPerPage: _perPage,
       pagerNumPage:5,
       defaultFontFamily:"'A+mfCv-TPスカイ セミクラシック ロー M'",
       siteTitle:metaTitle
     }
   },
+//`${process.env.WP_API_KEY}/wp-json/wp/v2`,
+//`${process.env.WP_API_KEY}/en/wp-json/wp/v2`,
+//`${process.env.WP_API_KEY}/wp-json/custom/v0`,
+//`${process.env.WP_API_KEY}/en/wp-json/custom/v0`,
 
   modules: ['@nuxtjs/i18n', '@nuxtjs/device', "@nuxt/image", 'nuxt-simple-sitemap', '@vesp/nuxt-fontawesome'],
 
   image: {
-    // provider: 'static',
     dir: 'assets/images',
     // domains: [`${process.env.SITE_DOMAIN}`],
     // provider: 'ipx', // or leave empty to use default ipx
@@ -95,7 +101,6 @@ export default defineNuxtConfig({
     locales: [
       { code: 'ja', language: 'ja-JP', name: 'Japanese' },
       { code: 'en', language: 'en-US', name: 'English' },
-      // { code: 'fr', language: 'fr-FR', name: 'French', file: 'fr.ts' },
     ],
     lazy:true,
     // langDir: 'locales',
@@ -128,7 +133,6 @@ export default defineNuxtConfig({
     },
     resolve:{
       alias: {
-        // 'swiper': 'swiper/swiper-bundle.min.js'
       }
     }
   },
@@ -138,7 +142,6 @@ export default defineNuxtConfig({
     '@/plugins/days.ts'
   ],
 
-  // compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
 
   app: {
@@ -197,24 +200,24 @@ async function fetchWithRetry(url: string, retries: number = MAX_RETRIES): Promi
   }
 }
 
-async function fetchData(apiUrl:string, perPage: number, retries: number = MAX_RETRIES):Promise<string[] | undefined> {
+async function fetchData(_apiUrl:string, perPage: number, retries: number = MAX_RETRIES):Promise<string[] | undefined> {
   try {
-    const response = await axios.get(`${apiUrl}?per_page=${perPage}`)//totalの算出に関わるので、変えたくない
+    const response = await axios.get(`${_apiUrl}?per_page=${perPage}`)//totalの算出に関わるので、変えたくない
     const totalPages = Number(response.headers['x-wp-totalpages'])
-    console.log(`${apiUrl}?per_page=${perPage}--${totalPages}`)
+    console.log(`${_apiUrl}?per_page=${perPage}--${totalPages}`)
 
     const fetchDataList = []
     for(let page = 1; page <= totalPages; page++){
-      const pageResponse = await axios.get(`${apiUrl}?per_page=${perPage}&page=${page}`)
+      const pageResponse = await axios.get(`${_apiUrl}?per_page=${perPage}&page=${page}`)
       fetchDataList.push(...pageResponse.data)
     }
     return fetchDataList
   } catch (error){
     if (retries > 0) {
-      console.warn(`Retrying ${apiUrl}... Attempts left: ${retries}`);
+      console.warn(`Retrying ${_apiUrl}... Attempts left: ${retries}`);
       
       await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY));
-      return fetchData(apiUrl, perPage, retries - 1);
+      return fetchData(_apiUrl, perPage, retries - 1);
     }
   }
 }
@@ -241,19 +244,19 @@ async function fetchRoutes() {
   let dataList: string[] = [];
 
   // APIエンドポイントリスト
-  const apiEndpoints = [
-    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/posts', prefix: '/news' },
-    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/posts', prefix: '/en/news' },
-    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/fontinuse', prefix: '/fontinuse' },
-    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/fontinuse', prefix: '/en/fontinuse' },
-    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/fonts', prefix: '/fonts' },
-    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/fonts', prefix: '/en/fonts' },
-    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/service', prefix: '/service' },
-    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/service', prefix: '/en/service' },
-    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/interviews', prefix: '/interviews' },
-    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/interviews', prefix: '/en/interviews' },
-    { url: 'https://damazeinc.xsrv.jp//wp-json/wp/v2/story', prefix: '/story' },
-    { url: 'https://damazeinc.xsrv.jp//en/wp-json/wp/v2/story', prefix: '/en/story' },
+  const apiEndpoints: {url:string; prefix: string}[] = [
+    { url: `${apiUrl}/wp-json/wp/v2/posts`, prefix: '/news' },
+    { url: `${apiUrl}/en/wp-json/wp/v2/posts`, prefix: '/en/news' },
+    { url: `${apiUrl}/wp-json/wp/v2/fontinuse`, prefix: '/fontinuse' },
+    { url: `${apiUrl}/en/wp-json/wp/v2/fontinuse`, prefix: '/en/fontinuse' },
+    { url: `${apiUrl}/wp-json/wp/v2/fonts`, prefix: '/fonts' },
+    { url: `${apiUrl}/en/wp-json/wp/v2/fonts`, prefix: '/en/fonts' },
+    { url: `${apiUrl}/wp-json/wp/v2/service`, prefix: '/service' },
+    { url: `${apiUrl}/en/wp-json/wp/v2/service`, prefix: '/en/service' },
+    { url: `${apiUrl}/wp-json/wp/v2/interviews`, prefix: '/interviews' },
+    { url: `${apiUrl}/en/wp-json/wp/v2/interviews`, prefix: '/en/interviews' },
+    { url: `${apiUrl}/wp-json/wp/v2/story`, prefix: '/story' },
+    { url: `${apiUrl}/en/wp-json/wp/v2/story`, prefix: '/en/story' },
   ];
 
   try {

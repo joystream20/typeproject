@@ -20,7 +20,6 @@ const pages = computed(():any => {
   let start = current - Math.floor(value)
   let last = current + Math.ceil(value)
   // console.log('start='+start,'last='+last)
-
   // console.log('pager num:'+numPages, value, 'total:'+total, 'cur:'+current)
   // console.log('url_srug='+urlSlug)
 

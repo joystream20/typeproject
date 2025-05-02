@@ -19,11 +19,8 @@ const _totalItems = ref<string>('');
 const _posts = ref(null); 
 const _error_fontinuse = ref(null)
 let _params = ref(`per_page=${_perPage}&page=${_current}&context=embed`)
-// const {data: _fontinuses, status:_status_fontinuse, error:_error_fontinuse} = await 
-// (`${langApi}/fontinuse?context=embed`)
 
 const fetchData = async () => {
-  // const apiUrl = `${langApi}/fontinuse?per_page=${_perPage}&page=${_current}&context=embed`; 
 
   const apiUrl = computed(() => {
       return `${langApi}/fontinuse?${_params.value}`;
