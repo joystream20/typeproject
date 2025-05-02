@@ -33,7 +33,7 @@ let _rest_url = `${langApi}/fontinuse?per_page=4&context=embed`
 
 if(taxonomy && term){
   _rest_url = `${_rest_url}&taxonomy=${taxonomy}&term=${term}`
-  console.log(_rest_url)
+  // console.log(_rest_url)
 }
 
 // type Post = {
