@@ -48,6 +48,7 @@ type Post = {
       text:string;
     },
     tp_connect:boolean;
+    sample_text:string;
   },
   title:{
     rendered:string;
@@ -102,6 +103,9 @@ const brChange = (txt:string):string => {
 
 const testText = ref("Excellent compatibility between Ja")
 
+if(_post.value && _post.value[0].acf.sample_text){
+  testText.value = _post.value[0].acf.sample_text 
+}
 
 interface FontType {
   id:number;
