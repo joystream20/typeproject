@@ -31,7 +31,7 @@ const {data: _top_posts, status:_top_posts_st, error:_top_posts_error} = await u
     console.error('Error fetching data:', _top_posts_error.value);
   }
 
-const {data: _posts, status:_status, error:_error} = await useFetch<PostTopNews[]>(`${langApi}/posts?per_page=3&context=embed`)
+const {data: _posts, status:_status, error:_error} = await useFetch<PostTopNews[]>(`${langApi}/posts?exc_selective_use=90&exc=en&per_page=3&context=embed`)
   if (_error.value) {
     console.error('Error fetching data:', _error.value);
   }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
+const {locale} = useI18n()
 let langApi = config.public.wpApiKey
 let langApiCumtom = config.public.wpApiCustom
 let linkLlist_api = 'linkList'
@@ -8,6 +9,8 @@ type linkListType = {
   image:string;
   text:string;
   url:string;
+  text_en:string;
+  url_en:string;
 }
 
 const {data: _linkList, status:_status, error:_error} = await useFetch<linkListType[]>(`${langApiCumtom}/${linkLlist_api}`)
@@ -26,14 +29,26 @@ if (_error.value) {
   <div class="linkListContainer" v-if="_linkList">
     <ul class="linkList">
       <li class="linkList-item" v-for="(item, index) in _linkList" :key="index">
-        <a :href="item.url" target="_blank">
-          <div class="image">
-            <NuxtImg :src="item.image" alt="" loading="lazy" />
-          </div>
-          <div class="txtContainer">
-            <p class="txt" v-html="item.text"></p>
-          </div>
-        </a>
+        <template v-if="locale === 'ja'">
+          <a :href="item.url" target="_blank">
+            <div class="image">
+              <NuxtImg :src="item.image" alt="" loading="lazy" />
+            </div>
+            <div class="txtContainer">
+              <p class="txt" v-html="item.text"></p>
+            </div>
+          </a>
+        </template>
+        <template v-else>
+          <a :href="item.url_en" target="_blank">
+            <div class="image">
+              <NuxtImg :src="item.image" alt="" loading="lazy" />
+            </div>
+            <div class="txtContainer">
+              <p class="txt" v-html="item.text_en"></p>
+            </div>
+          </a>
+        </template>
       </li>
     </ul>
   </div>

@@ -25,14 +25,22 @@ const _posts = ref(null);
 const _error = ref(null)
 
 let _sort = ref('new')
-let _params = ref(`categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed`)
+// let _params = ref(`categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed`)
+let _params = ref('')
+const params = new URLSearchParams({
+  per_page: _perPage.toString(),
+  page : _current.toString(),
+  context: 'embed'
+})
 
-// if(route.query){
-//   if(route.query.sort == 'old'){
-//     _sort.value = 'old'
-//     _params += '&order=asc'
-//   }
-// }
+if(locale.value === 'en'){
+  langApi = config.public.wpApiKeyEn
+  params.set('exc_selective_use','90')
+  params.set('exc', 'en')
+}else{
+  params.delete('exc_selective_use')
+  params.delete('exc')
+}
 
 watch(() => route.query.sort, (newSort) => {
   if (newSort === 'old') {

@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/i18n": "^9.1.0",
     "@quasar/extras": "^1.16.17",
     "@vesp/nuxt-fontawesome": "^1.2.1",

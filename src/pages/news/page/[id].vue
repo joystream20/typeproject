@@ -21,23 +21,34 @@ const _totalItems = ref<string>('');
 const _posts = ref(null); 
 const _error = ref(null)
 let _sort = ref('new')
-let _params = ref(`per_page=${_perPage}&page=${_current}&context=embed`)
-// console.log(route.query.sort)
-// if(route.query){
-//   if(route.query.sort == 'old'){
-//     _sort.value = 'old'
-//     _params += '&order=asc'
-//   }
-// }
+let _params = ref('')
+// let _params = ref(`per_page=${_perPage}&page=${_current}&context=embed`)
+const params = new URLSearchParams({
+  per_page: _perPage.toString(),
+  page: _current.toString(),
+  context:'embed'
+})
+
+if(locale.value === 'en'){
+  langApi = config.public.wpApiKeyEn
+  params.set('exc_selective_use','90')
+  params.set('exc', 'en')
+}else{
+  params.delete('exc_selective_use')
+  params.delete('exc')
+}
+
 watch(() => route.query.sort, (newSort) => {
   if (newSort === 'old') {
     _sort.value = 'old'
-    _params.value = `per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    // _params.value = `per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    params.set('order','asc')
     fetchData()
   } else {
     // デフォルト処理
     _sort.value = 'new'
-    _params.value = `per_page=${_perPage}&page=${_current}&context=embed`
+    // _params.value = `per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
     fetchData()
   }
 })
@@ -45,6 +56,7 @@ watch(() => route.query.sort, (newSort) => {
 const fetchData = async () => {
   // const apiUrl = `${langApi}/posts?${_params.value}`; 
   const apiUrl = computed(() => {
+    _params.value = params.toString()
       return `${langApi}/posts?${_params.value}`;
     });
 
@@ -93,10 +105,12 @@ onMounted(() => {
   stClass.value = {type:"archive",cls:"news",lng:locale.value}
   if (route.query.sort === 'old') {
     _sort.value = 'old'
-    _params.value = `per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    // _params.value = `per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    params.set('order','asc')
   } else {
     _sort.value = 'new'
-    _params.value = `per_page=${_perPage}&page=${_current}&context=embed`
+    // _params.value = `per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
   }
   fetchData();
 })

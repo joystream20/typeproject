@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
+import { useSmoothAnchorScroll } from '@/composables/useSmoothAnchorScroll';
 const {locale,t} = useI18n()
 
 const config = useRuntimeConfig()
@@ -10,6 +11,7 @@ let langApi = config.public.wpApiKey
 let pageApi = config.public.siteUrl
 const stClass = changeClass();
 
+const { bindSmoothScroll } = useSmoothAnchorScroll()
 
 import Swiper from "swiper";
 import 'swiper/css';
@@ -76,9 +78,17 @@ const {data: _post, status: _status, error:_error} = await useFetch<Post[]>(_res
   }
 
   if(_post.value){
+
+    // const decodeHTMLEntities = (str: string): string => {
+    // const txt = document.createElement('textarea');
+    // txt.innerHTML = str;
+    // return txt.value;
+    // }
+
     const description = useSeoDescription(_post.value[0])
     const imgUrl = _post.value[0].thumbnail.url || `${config.public.siteUrl}/_nuxt/assets/images/img_def.png`
     useHead({
+    // title:`${decodeHTMLEntities(_post.value[0].title.rendered)} | ${config.public.siteTitle}`,
     title:`${_post.value[0].title.rendered} | ${config.public.siteTitle}`,
     meta: [
         { name: 'description',content: description},
@@ -92,6 +102,7 @@ const {data: _post, status: _status, error:_error} = await useFetch<Post[]>(_res
       ]
     })
   }
+  
   
 
 
@@ -142,10 +153,6 @@ onMounted(() => {
     const contentsList = document.querySelector('.contentsList') as HTMLElement | null
     const contentsWrap = document.querySelector('.contentsWrap') as HTMLElement | null
     const contentsListWrap = document.querySelector('.contentsListWrap') as HTMLElement | null
-    // console.log(contentsContainer)
-    // console.log(contentsList)
-    // console.log(contentsWrap)
-    // console.log(contentsListWrap)
 
     if(contentsContainer && contentsWrap){
       // console.log('wrap')
@@ -168,6 +175,7 @@ onMounted(() => {
   }
 
   useLinkClickHandler()
+  bindSmoothScroll()
 
 })
 </script>

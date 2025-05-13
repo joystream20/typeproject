@@ -73,6 +73,17 @@ type Post = {
   }[]
 }
 
+type Obj = {
+  contrast:string;
+  slug:string;
+  weights:[
+    {
+      weight:string;
+      family:string;
+    }
+]
+}
+
 const {data: _post, status: _status, error:_error} = await useFetch<Post[]>(_rest_url)
   if (_error.value) {
     console.error('Error fetching data:', _error.value);
@@ -101,11 +112,28 @@ const brChange = (txt:string):string => {
   return _txt
 }
 
-const testText = ref("Excellent compatibility between Ja")
+const testText = ref('')//ref("Excellent compatibility between Ja")
+const valText = ref('あたらしい文字の姿が映されるTypeface')
+let defText = "あたらしい文字の姿が映されるTypeface"
 
 if(_post.value && _post.value[0].acf.sample_text){
-  testText.value = _post.value[0].acf.sample_text 
+  defText = _post.value[0].acf.sample_text
+  valText.value = _post.value[0].acf.sample_text 
 }
+
+watch(() => testText.value, (text) => {
+  // console.log(text.length)
+  if(testText.value.length > 0){
+  valText.value = testText.value
+  }else{
+  if(_post.value && _post.value[0].acf.sample_text){
+     valText.value =  _post.value[0].acf.sample_text 
+    }else{
+      valText.value = defText
+    }
+  }
+ 
+})
 
 interface FontType {
   id:number;
@@ -253,12 +281,27 @@ const current_slug = ref<string>("")
 const range_val = ref<string>("58")
 const bw_cl = ref<string>('bk')
 
+// const ff = ref<string>('')
+
 const onChangeColor = (col:string):void => {
   bw_cl.value = col
 }
 
-const onChangeSlug = (slug:string):void => {
-  current_slug.value = slug
+const onChangeSlug = (obj:Obj):void => {
+  // obj.weights.find((item) => {
+  //   if(item.weight === 'R'){
+  //     ff.value = item.family
+  //   }
+    
+  // })
+  // console.log(ff.value)
+
+  current_slug.value = obj.slug
+}
+
+const get_R_FontFamily = (obj:Obj) => {
+ const found = obj.weights.find(item => item.weight === 'R')
+return found ? found.family : 'inherit'
 }
 </script>
 
@@ -275,8 +318,8 @@ const onChangeSlug = (slug:string):void => {
               <li :class="bw_cl === 'bk' ? `colList-item cur` : `colList-item`" @click="() => onChangeColor('bk')"><span class="txt">BLACK MODE</span></li>
             </ul>
             <ul class="contList">
-              <li :class="current_slug === _obj.slug ? `cur contList-item ${_obj.slug} ` : `contList-item ${_obj.slug}` " v-for="(_obj, key) in _post[0].acf.contrast_list" :key="key">
-                <div class="item__inner" @click="() => onChangeSlug(_obj.slug)">
+              <li :class="current_slug === _obj.slug ? `cur contList-item ${_obj.slug} ` : `contList-item ${_obj.slug}` " v-for="(_obj, key) in _post[0].acf.contrast_list" :key="key" :style="{fontFamily:get_R_FontFamily(_obj)}">
+                <div class="item__inner" @click="() => onChangeSlug(_obj)">
                   <span class="txt_a">A</span>
                   <span class="txt" v-html="brChange(_obj.contrast)"></span>
                 </div>
@@ -287,7 +330,7 @@ const onChangeSlug = (slug:string):void => {
             
             <div class="inputContainer u_d_fl _rs">
               <div class="txt">
-                <input type="text" v-model="testText">
+                <input type="text" v-model="testText" :placeholder="t('placeholder')">
               </div>
               <div class="range">
                 <input class="inputrange" type="range" v-model="range_val" min="16" max="100">
@@ -297,15 +340,15 @@ const onChangeSlug = (slug:string):void => {
               <template  v-for="(_obj, key) in _post[0].acf.contrast_list">
                 <div  :key="key" v-if="_obj.slug === current_slug" :class="`wtListContainer ${_obj.slug}`">
                   <ul class="wpList">
-                    <li class="wpList-item" v-for="(_wt, index) in  _obj.weights" :key="index" :style="{fontFamily:_wt.family}">
+                    <li class="wpList-item" v-for="(_wt, index) in  _obj.weights" :key="index" :style="{fontFamily:`${_wt.family},'A+mfCv-TPスカイ セミクラシック ロー M'`}">
                       <div class="wtContainer">
                         <div class="fontname">{{ _post[0].title.rendered }}</div>
-                        <div class="contrast" v-html="brChange(_obj.contrast)"></div>
+                        <div class="contrast" v-if="_slug !== 'tpskymodern'" v-html="brChange(_obj.contrast)"></div>
                         <div class="weight">{{ _wt.weight}}</div>
                       </div>
                       <div class="txtContainer">
                         <span class="txt">
-                          {{ testText }}
+                          {{ valText }}
                         </span>
                       </div>
                     </li>

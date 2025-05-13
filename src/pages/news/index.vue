@@ -10,9 +10,6 @@ const _current = 1
 
 const stClass = changeClass();
 
-if(locale.value === 'en'){
-  langApi = config.public.wpApiKeyEn
-}
 
 
 const _limit =  ref(1)
@@ -21,23 +18,36 @@ const _totalItems = ref<string>('');
 const _posts = ref(null); 
 const _error = ref(null)
 let _sort = ref('new')
-let _params = ref(`per_page=${_perPage}&page=${_current}&context=embed`)
+// let _params = ref(`per_page=${_perPage}&page=${_current}&context=embed`)
+let _params = ref('')
+const params = new URLSearchParams({
+  per_page: _perPage.toString(),
+  page: _current.toString(),
+  context: 'embed'
+})
 
-// if(route.query){
-//   if(route.query.sort == 'old'){
-//     _sort.value = 'old'
-//     _params.value += '&order=asc'
-//   }
-// }
+
+if(locale.value === 'en'){
+  langApi = config.public.wpApiKeyEn
+  params.set('exc_selective_use','90')
+  params.set('exc', 'en')
+}else{
+  params.delete('exc_selective_use')
+  params.delete('exc')
+}
+
+
 watch(() => route.query.sort, (newSort) => {
   if (newSort === 'old') {
     _sort.value = 'old'
-    _params.value = `per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    //_params.value = `per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    params.set('order','asc')
     fetchData()
   } else {
     // デフォルト処理
     _sort.value = 'new'
-    _params.value = `per_page=${_perPage}&page=${_current}&context=embed`
+    // _params.value = `per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
     fetchData()
   }
 })
@@ -46,6 +56,8 @@ watch(() => route.query.sort, (newSort) => {
   // const apiUrl = `${langApi}/posts?${_params}`; 
 
     const apiUrl = computed(() => {
+     _params.value = params.toString()
+    //  console.log(_params.value)
       return `${langApi}/posts?${_params.value}`;
     });
 
@@ -88,10 +100,12 @@ onMounted(() => {
   //ここが意味ない気がして一旦コメントアウト20250307
   if (route.query.sort === 'old') {
     _sort.value = 'old'
-    _params.value = `per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    // _params.value = `per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    params.set('order','asc')
   } else {
     _sort.value = 'new'
-    _params.value = `per_page=${_perPage}&page=${_current}&context=embed`
+    // _params.value = `per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
   }
 
   fetchData();

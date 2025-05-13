@@ -32,6 +32,7 @@ type Post = {
       name:string;
       tax:string;
       slug:string;
+      description:string;
     }[]
   }[]
 }
@@ -67,6 +68,7 @@ onMounted(() => {
   if(wrap.value && _post.value && _post.value[0]){
     const _taxs = _post.value[0].tax_info
     if(_taxs){
+      // console.log(_taxs)
       const _catsList = wrap.value?.querySelector('.catListContainer') as HTMLElement
       wrap.value?.querySelector('.catContainer')?.append(_catsList)
       
@@ -94,9 +96,16 @@ onMounted(() => {
             <dt v-if="_tax.slug === 'font-type'">{{ t('font-type') }}</dt>
             <dt v-else-if="_tax.slug === 'scene'">{{ t('scene') }}</dt>
             <dd v-for="_term in _tax.terms" :key="_term.id">
-              <NuxtLinkLocale :to="`/fontinuse/${_term.tax}/${_term.id}`">
-                {{ _term.name }}
-              </NuxtLinkLocale>
+              <template v-if="_tax.slug === 'scene'">
+                <NuxtLinkLocale :to="`/fontinuse/${_term.tax}/${_term.id}`">
+                  {{ _term.name }}
+                </NuxtLinkLocale>
+              </template>
+              <template v-else-if="_tax.slug === 'font-type'">
+                <NuxtLinkLocale :to="`/fonts/${_term.description}`">
+                  {{ _term.name }}
+                </NuxtLinkLocale>
+              </template>
             </dd>
           </div>
         </dl>

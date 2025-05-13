@@ -76,8 +76,11 @@ export default defineNuxtConfig({
 //`${process.env.WP_API_KEY}/wp-json/custom/v0`,
 //`${process.env.WP_API_KEY}/en/wp-json/custom/v0`,
 
-  modules: ['@nuxtjs/i18n', '@nuxtjs/device', "@nuxt/image", 'nuxt-simple-sitemap', '@vesp/nuxt-fontawesome'],
-
+  modules: ['@nuxtjs/i18n', '@nuxtjs/device', "@nuxt/image", 'nuxt-simple-sitemap', '@vesp/nuxt-fontawesome'],//,'@nuxtjs/google-gtag'
+  //// @ts-expect-error
+  // googleGtag: {
+  //   id: 'G-E3QC2KK3Y7'
+  // },
   image: {
     dir: 'assets/images',
     // domains: [`${process.env.SITE_DOMAIN}`],

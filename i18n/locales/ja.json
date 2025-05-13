@@ -35,5 +35,6 @@
   "filter":"絞り込む",
   "backToSupport":"サポート一覧に戻る",
   "download_specimen":"書体見本をダウンロード",
-  "current_font":"現在のフォント"
+  "current_font":"現在のフォント",
+  "placeholder":"テキストを入力してください"
 }

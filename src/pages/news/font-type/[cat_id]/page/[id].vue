@@ -26,24 +26,35 @@ const _posts = ref(null);
 const _error = ref(null)
 
 let _sort = ref('new')
-let _params = ref(`font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`)
+// let _params = ref(`font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`)
+let _params = ref('')
+const params = new URLSearchParams({
+  per_page: _perPage.toString(),
+  page:_current.toString(),
+  context: 'embed'
+})
 
-// if(route.query){
-//   if(route.query.sort == 'old'){
-//     _sort.value = 'old'
-//     _params += '&order=asc'
-//   }
-// }
+if(locale.value === 'en'){
+  langApi = config.public.wpApiKeyEn
+  params.set('exc_selective_use','90')
+  params.set('exc', 'en')
+}else{
+  params.delete('exc_selective_use')
+  params.delete('exc')
+}
+
 
 watch(() => route.query.sort, (newSort) => {
   if (newSort === 'old') {
     _sort.value = 'old'
-    _params.value = `font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    // _params.value = `font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    params.set('order', 'asc')
     fetchData()
   } else {
     // デフォルト処理
     _sort.value = 'new'
-    _params.value = `font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    // _params.value = `font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
     fetchData()
   }
 })
@@ -51,6 +62,8 @@ watch(() => route.query.sort, (newSort) => {
 const fetchData = async () => {
 
     const apiUrl = computed(() => {
+      _params.value = params.toString()
+      
       return `${langApi}/posts?${_params.value}`;
     });
 
@@ -101,10 +114,12 @@ onMounted(() => {
   stClass.value = {type:"archive",cls:"posts font-type tax",lng:locale.value}
   if (route.query.sort === 'old') {
     _sort.value = 'old'
-    _params.value = `font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    // _params.value = `font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    params.set('order', 'asc')
   } else {
     _sort.value = 'new'
-    _params.value = `font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    // _params.value = `font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
   }
   // console.log(_posts)
   fetchData();

@@ -67,7 +67,9 @@ onMounted(() => {
               </a>
               </div>
               <div class="txtContainer">
+                <a :href="`${child.url}`" target="_blank">
                 <p class="ttl">{{ child.text}}</p>
+              </a>
               </div>
             
           </template>
@@ -80,7 +82,9 @@ onMounted(() => {
               </NuxtLink>
               </div>
               <div class="txtContainer">
+                <NuxtLink :to="`${child.url}`">
                 <p class="ttl">{{ child.text}}</p>
+              </NuxtLink>
               </div>
             
           </template>

@@ -26,24 +26,26 @@ const _posts = ref(null);
 const _error = ref(null)
 
 let _sort = ref('new')
-let _params = ref(`categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`)
+// let _params = ref(`categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`)
+let _params = ref('')
+const params = new URLSearchParams({
+  per_page: _perPage.toString(),
+  page: _current.toString(),
+  context:'embed'
+})
 
-// if(route.query){
-//   if(route.query.sort == 'old'){
-//     _sort.value = 'old'
-//     _params += '&order=asc'
-//   }
-// }
 
 watch(() => route.query.sort, (newSort) => {
   if (newSort === 'old') {
     _sort.value = 'old'
-    _params.value = `categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    // _params.value = `categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    params.set('order','asc')
     fetchData()
   } else {
     // デフォルト処理
     _sort.value = 'new'
-    _params.value = `categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    // _params.value = `categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
     fetchData()
   }
 })
@@ -52,6 +54,7 @@ const fetchData = async () => {
   // const apiUrl = `${langApi}/posts?${_params}`; 
 
     const apiUrl = computed(() => {
+      _params.value = params.toString()
       return `${langApi}/posts?${_params.value}`;
     });
 

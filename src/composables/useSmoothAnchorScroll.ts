@@ -11,6 +11,7 @@ export const useSmoothAnchorScroll = (rootSelector = '') => {
     if(!id) return
 
     const el = document.getElementById(id)
+    // console.log(el)
 
     if(el){
       e.preventDefault()

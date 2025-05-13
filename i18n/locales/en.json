@@ -34,5 +34,6 @@
   "filter":"Filter",
   "backToSupport":"Back to Support",
   "download_specimen":"Download Specimen",
-  "current_font":"Current Font"
+  "current_font":"Current Font",
+  "placeholder":"Please enter text"
 }
