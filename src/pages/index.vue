@@ -71,7 +71,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="secContainer">
+    <div class="secContainer __secContainer">
       <section v-if="_top_posts" class="sec sec_customPost">
         <div class="sec__inner">
           <div class="customPost">
