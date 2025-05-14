@@ -55,5 +55,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }} # FTPサーバのパスワード
           server-dir: ${{ secrets.DEPLOY_DIR }} # アップロード先のリモートパス
           local-dir: ./dist/ # ローカルのアップロードしたいフォルダのパス
-          useDiff: false
+          useDiff: false #全ファイルアップする設定。trueにすれば差分だけアップして軽いが、wordpressからの更新はデータのみの更新なのでファイルはアップされない
           #dangerous-clean-slate: true #全ファイルアップ前に削除　すごい時間かかる

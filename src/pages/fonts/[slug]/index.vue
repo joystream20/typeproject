@@ -343,7 +343,7 @@ return found ? found.family : 'inherit'
                     <li class="wpList-item" v-for="(_wt, index) in  _obj.weights" :key="index" :style="{fontFamily:`${_wt.family},'A+mfCv-TPスカイ セミクラシック ロー M'`}">
                       <div class="wtContainer">
                         <div class="fontname">{{ _post[0].title.rendered }}</div>
-                        <div class="contrast" v-if="_slug !== 'tpskymodern'" v-html="brChange(_obj.contrast)"></div>
+                        <div class="contrast" v-html="brChange(_obj.contrast)"></div>
                         <div class="weight">{{ _wt.weight}}</div>
                       </div>
                       <div class="txtContainer">
