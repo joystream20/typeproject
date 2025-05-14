@@ -37,7 +37,7 @@ jobs:
       - name: npm install # パッケージをインストール
         run: npm install
       - name: generate # SSG
-        run: npm run generate
+        #run: npm run generate #下記を追記したのでコメントアウト
         run: NODE_OPTIONS="--max-old-space-size=4096" npm run generate #メモリ上限を増やす
         env:
           WP_API_KEY: ${{ secrets.WP_API_KEY }}
