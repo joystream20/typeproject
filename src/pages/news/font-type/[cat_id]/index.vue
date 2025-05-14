@@ -14,9 +14,6 @@ const _current = 1
 
 const catName = ref<string>('font name')
 
-if(locale.value === 'en'){
-  langApi = config.public.wpApiKeyEn
-}
 
 const _limit =  ref(1)
 const _postType = "news"
@@ -28,7 +25,10 @@ let _sort = ref('new')
 let _params = ref('')
 // let _params = ref(`font-type=${_id}&per_page=${_perPage}&page=${_current}&context=embed`)
 
+const isLoading = ref(true)
+
 const params = new URLSearchParams({
+  'font-type':_id,
   per_page: _perPage.toString(),
   page: _current.toString(),
   context: 'embed'
@@ -89,6 +89,9 @@ const fetchData = async () => {
       _error.value = error
       console.error('Error fetching data:', error);
     }
+    finally{
+      isLoading.value = false
+    }
     
   };
 
@@ -138,6 +141,7 @@ onMounted(() => {
       <div v-if="_posts">
         <PostsList :posts="_posts" type="news" />
       </div>
+      <p v-if="Number(_totalItems) === 0 && !isLoading" class="u_mt1_e">not found.</p>
       <div v-if="_error">
         <p>{{ _error }}</p>
       </div>

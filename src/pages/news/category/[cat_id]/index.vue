@@ -30,6 +30,7 @@ let _params = ref('')
 const params = new URLSearchParams({
   per_page: _perPage.toString(),
   page : _current.toString(),
+  categories:_id,
   context: 'embed'
 })
 
@@ -45,12 +46,14 @@ if(locale.value === 'en'){
 watch(() => route.query.sort, (newSort) => {
   if (newSort === 'old') {
     _sort.value = 'old'
-    _params.value = `categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    // _params.value = `categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc` // 新しいパラメータを追加
+    params.set('order','asc')
     fetchData()
   } else {
     // デフォルト処理
     _sort.value = 'new'
-    _params.value = `categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
+    // _params.value = `categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed`
     fetchData()
   }
 })
@@ -59,6 +62,8 @@ const fetchData = async () => {
   // const apiUrl = `${langApi}/posts?${_params}`; 
 
     const apiUrl = computed(() => {
+      _params.value = params.toString()
+      // console.log(_params.value)
       return `${langApi}/posts?${_params.value}`;
     });
 
@@ -106,12 +111,15 @@ const fetchData = async () => {
 
 onMounted(() => {
   stClass.value = {type:"archive",cls:"news cat",lng:locale.value}
+  params.set('categories',_id)
   if (route.query.sort === 'old') {
     _sort.value = 'old'
-    _params.value = `categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    // _params.value = `categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    params.set('order','asc')
   } else {
     _sort.value = 'new'
-    _params.value = `categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    // _params.value = `categories=${_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
   }
   // console.log(_posts)
   fetchData();

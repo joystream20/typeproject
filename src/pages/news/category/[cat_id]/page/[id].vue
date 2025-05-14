@@ -15,9 +15,6 @@ const _current = Number(route.params.id);
 
 const catName = ref<string>('category')
 
-if(locale.value === 'en'){
-  langApi = config.public.wpApiKeyEn
-}
 
 const _limit =  ref(1)
 const _postType = "news"
@@ -31,8 +28,18 @@ let _params = ref('')
 const params = new URLSearchParams({
   per_page: _perPage.toString(),
   page: _current.toString(),
+  categories:_cat_id,
   context:'embed'
 })
+
+if(locale.value === 'en'){
+  langApi = config.public.wpApiKeyEn
+  params.set('exc_selective_use','90')
+  params.set('exc', 'en')
+}else{
+  params.delete('exc_selective_use')
+  params.delete('exc')
+}
 
 
 watch(() => route.query.sort, (newSort) => {
@@ -55,6 +62,7 @@ const fetchData = async () => {
 
     const apiUrl = computed(() => {
       _params.value = params.toString()
+      // console.log(_params.value)
       return `${langApi}/posts?${_params.value}`;
     });
 
@@ -105,10 +113,12 @@ onMounted(() => {
   stClass.value = {type:"archive",cls:"news cat",lng:locale.value}
   if (route.query.sort === 'old') {
     _sort.value = 'old'
-    _params.value = `categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    // _params.value = `categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed&order=asc`
+    params.set('order','asc')
   } else {
     _sort.value = 'new'
-    _params.value = `categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    // _params.value = `categories=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`
+    params.delete('order')
   }
   // console.log(_posts)
   fetchData();

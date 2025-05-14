@@ -29,6 +29,7 @@ let _sort = ref('new')
 // let _params = ref(`font-type=${_cat_id}&per_page=${_perPage}&page=${_current}&context=embed`)
 let _params = ref('')
 const params = new URLSearchParams({
+  'font-type':_id,
   per_page: _perPage.toString(),
   page:_current.toString(),
   context: 'embed'

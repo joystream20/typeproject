@@ -157,7 +157,8 @@ onMounted(() => {
     <div class="cats_taxContainer selContainer">
       <select class="cats_taxList" @change="onSort">
         <option value="">{{ t('category') }}</option>
-        <option value="/news">{{ t('all') }}</option>
+        <option v-if="locale === 'ja'" value="/news">{{ t('all') }}</option>
+        <option v-else-if="locale === 'en'" value="/en/news">{{ t('all') }}</option>
         <option :value="urlLocale(`/news/category/${_cat.term_id}`)" v-for="_cat in _cats_tax.categories" :key="_cat.term_id" :selected="catid == _cat.term_id">{{ _cat.name }}</option>
         <option :value="urlLocale(`/news/font-type/${_tax.term_id}`)" v-for="_tax in _cats_tax.font_type" :key="_tax.term_id" :selected="catid == _tax.term_id">{{ _tax.name }}</option>
       </select>
