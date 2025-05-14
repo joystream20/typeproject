@@ -77,31 +77,31 @@ const {data: _post, status: _status, error:_error} = await useFetch<Post[]>(_res
     
   }
 
-  if(_post.value){
+  // if(_post.value){
 
-    // const decodeHTMLEntities = (str: string): string => {
-    // const txt = document.createElement('textarea');
-    // txt.innerHTML = str;
-    // return txt.value;
-    // }
+  //   const decodeHTMLEntities = (str: string): string => {
+  //   const txt = document.createElement('textarea');
+  //   txt.innerHTML = str;
+  //   return txt.value;
+  //   }
 
-    const description = useSeoDescription(_post.value[0])
-    const imgUrl = _post.value[0].thumbnail.url || `${config.public.siteUrl}/_nuxt/assets/images/img_def.png`
-    useHead({
-    // title:`${decodeHTMLEntities(_post.value[0].title.rendered)} | ${config.public.siteTitle}`,
-    title:`${_post.value[0].title.rendered} | ${config.public.siteTitle}`,
-    meta: [
-        { name: 'description',content: description},
-        {property: 'og:description',content: description},
-        {property: 'og:image',content:imgUrl },
-        {property: 'og:url',content: _page_url},
-        {property: 'og:title',content: _post.value[0].title.rendered},
-        {property: 'og:type',content: 'article'},
-        {property: 'twitter:title',content: _post.value[0].title.rendered},
-        {property: 'twitter:description',content: description}
-      ]
-    })
-  }
+  //   const description = useSeoDescription(_post.value[0])
+  //   const imgUrl = _post.value[0].thumbnail.url || `${config.public.siteUrl}/_nuxt/assets/images/img_def.png`
+  //   useHead({
+  //   title:`${decodeHTMLEntities(_post.value[0].title.rendered)} | ${config.public.siteTitle}`,
+  //   // title:`${_post.value[0].title.rendered} | ${config.public.siteTitle}`,
+  //   meta: [
+  //       { name: 'description',content: description},
+  //       {property: 'og:description',content: description},
+  //       {property: 'og:image',content:imgUrl },
+  //       {property: 'og:url',content: _page_url},
+  //       {property: 'og:title',content: _post.value[0].title.rendered},
+  //       {property: 'og:type',content: 'article'},
+  //       {property: 'twitter:title',content: _post.value[0].title.rendered},
+  //       {property: 'twitter:description',content: description}
+  //     ]
+  //   })
+  // }
   
   
 
@@ -109,6 +109,41 @@ const {data: _post, status: _status, error:_error} = await useFetch<Post[]>(_res
 onMounted(() => {
   stClass.value = {type:"single",cls:"service",lng:locale.value}
   // console.log(_post)
+
+
+
+
+
+  if(_post.value){
+
+const decodeHTMLEntities = (str: string): string => {
+const txt = document.createElement('textarea');
+txt.innerHTML = str;
+return txt.value;
+}
+
+const description = useSeoDescription(_post.value[0])
+const imgUrl = _post.value[0].thumbnail.url || `${config.public.siteUrl}/_nuxt/assets/images/img_def.png`
+useHead({
+title:`${decodeHTMLEntities(_post.value[0].title.rendered)} | ${config.public.siteTitle}`,
+// title:`${_post.value[0].title.rendered} | ${config.public.siteTitle}`,
+meta: [
+    { name: 'description',content: description},
+    {property: 'og:description',content: description},
+    {property: 'og:image',content:imgUrl },
+    {property: 'og:url',content: _page_url},
+    {property: 'og:title',content: _post.value[0].title.rendered},
+    {property: 'og:type',content: 'article'},
+    {property: 'twitter:title',content: _post.value[0].title.rendered},
+    {property: 'twitter:description',content: description}
+  ]
+})
+}
+
+
+
+
+
 
   if(_slug === "goods"){
     const swiperContainers = document.querySelectorAll('.swiperContainer');
