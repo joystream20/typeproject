@@ -38,6 +38,7 @@ jobs:
         run: npm install
       - name: generate # SSG
         run: npm run generate
+        run: NODE_OPTIONS="--max-old-space-size=4096" npm run generate #メモリ上限を増やす
         env:
           WP_API_KEY: ${{ secrets.WP_API_KEY }}
           SITE_DOMAIN: ${{ secrets.SITE_DOMAIN }}
