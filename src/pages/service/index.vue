@@ -6,6 +6,8 @@ let langApi = config.public.wpApiKey
 
 const stClass = changeClass();
 
+const _desc = "年間定額プランのTPコネクト、書体属性を精緻に調整できるフィットフォント、コーポレートフォントをリーズナブルに実現する法人プラン、Webフォントなど、タイププロジェクトの提供している各種サービス。"
+
 if(locale.value === 'en'){
   langApi = config.public.wpApiKeyEn
 }
@@ -18,7 +20,11 @@ if (_error_service.value) {
   }
 
   useHead({
-    title:`${t('service')} | ${config.public.siteTitle}`
+    title:`${t('service')} | ${config.public.siteTitle}`,
+    meta: [
+    { name: 'description',content: _desc},
+    {property: 'og:description',content: _desc},
+    {property: 'twitter:description',content: _desc}]
   })
 onMounted(() => {
   stClass.value = {type:"archive",cls:"service",lng:locale.value}

@@ -5,6 +5,7 @@ const {locale,t} = useI18n()
 let langApi = config.public.wpApiKey
 let langApiCumtom = config.public.wpApiCustom
 let top_posts_api = 'top_posts'
+const _desc = "フォントによるブランディングの強化を支援。AXIS Font、TP明朝、TPスカイなどの次世代標準を目指した書体を提供するとともに、都市フォント、四季フォントなどユニークなプロジェクトを進めています。"
 
 
 if(locale.value === 'en'){
@@ -46,6 +47,14 @@ if (_error_service.value) {
   }
 
 const loading = ref('on')
+
+useHead({
+  meta: [
+    { name: 'description',content: _desc},
+    {property: 'og:description',content: _desc},
+    {property: 'twitter:description',content: _desc}
+  ]
+})
 
 onBeforeMount(() => {
   // console.log(_top_posts)
@@ -95,7 +104,7 @@ onMounted(() => {
             <h2 class="sec__header-ttl">{{ t('news') }}</h2>
             <p class="btn_all all"><NuxtLinkLocale :to="`/news`"><span class="txt">{{ t('all_posts') }}</span></NuxtLinkLocale></p>
           </header>
-          <div v-if="_posts" class="sec__container">
+          <div v-if="_posts" class="sec__container u_mt0_i">
             <NewsList :newsPosts="_posts" />
           </div>
           <div v-if="_error">

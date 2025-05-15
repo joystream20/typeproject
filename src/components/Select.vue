@@ -177,7 +177,8 @@ onMounted(() => {
     <div class="cats_taxContainer selContainer">
       <select class="cats_taxList" @change="onSort">
         <option value="">{{ t('category') }}</option>
-        <option value="/fontinuse">{{ t('all') }}</option>
+        <option v-if="locale === 'ja'" value="/fontinuse">{{ t('all') }}</option>
+        <option v-else-if="locale === 'en'" value="/en/fontinuse">{{ t('all') }}</option>
         <option :value="urlLocale(`/fontinuse/scene/${_cat.term_id}`)" v-for="_cat in _cats_tax.scene" :key="_cat.term_id" :selected="catid == _cat.term_id">{{ _cat.name }}</option>
         <option :value="urlLocale(`/fontinuse/font-type/${_tax.term_id}`)" v-for="_tax in _cats_tax.font_type" :key="_tax.term_id" :selected="catid == _tax.term_id">{{ _tax.name }}</option>
       </select>
@@ -188,7 +189,8 @@ onMounted(() => {
     <div class="cats_taxContainer selContainer">
       <select class="cats_taxList" @change="onSort">
         <option value="">{{ t('category') }}</option>
-        <option value="/interviews">{{ t('all') }}</option>
+        <option v-if="locale === 'ja'" value="/interviews">{{ t('all') }}</option>
+        <option v-else-if="locale === 'en'" value="/en/interviews">{{ t('all') }}</option>
         <option :value="urlLocale(`/interviews/category/${_cat.term_id}`)" v-for="_cat in _cats_tax.interview_category" :key="_cat.term_id" :selected="catid == _cat.term_id" v-html="_cat.name"></option>
         <option :value="urlLocale(`/interviews/font-type/${_tax.term_id}`)" v-for="_tax in _cats_tax.font_type" :key="_tax.term_id" :selected="catid == _tax.term_id">{{ _tax.name }}</option>
       </select>
@@ -199,7 +201,8 @@ onMounted(() => {
     <div class="cats_taxContainer selContainer">
       <select class="cats_taxList" @change="onSort">
         <option value="">{{ t('category') }}</option>
-        <option value="/story">{{ t('all') }}</option>
+        <option v-if="locale === 'ja'" value="/story">{{ t('all') }}</option>
+        <option v-else-if="locale === 'en'" value="/en/story">{{ t('all') }}</option>
         <option :value="urlLocale(`/story/category/${_cat.term_id}`)" v-for="_cat in _cats_tax.story_category" :key="_cat.term_id" :selected="catid == _cat.term_id" v-html="_cat.name"></option>
         <option :value="urlLocale(`/story/font-type/${_tax.term_id}`)" v-for="_tax in _cats_tax.font_type" :key="_tax.term_id" :selected="catid == _tax.term_id">{{ _tax.name }}</option>
       </select>

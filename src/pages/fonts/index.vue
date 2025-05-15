@@ -22,6 +22,7 @@ const fonts_list_arr:Ref<Array<string>> = ref([])
 const parent_check_arr:Ref<Array<boolean>> = ref([])
 const stClass = changeClass();
 const router = useRoute()
+const _desc = "わかりやすい図解で、それぞれのフォントのバックグラウンドと特徴を紹介します。書体カテゴリ、ウエイト、字幅、コントラスト、フトコロ、キーワード、テーマを指定して、目的にあった書体を検索できます。"
 
 const {headerHeight} = useHeaderSize()
 
@@ -93,7 +94,12 @@ onBeforeMount(() => {
   // console.log(fonts_arr)
 })
 useHead({
-    title:`${t('fontlist')} | ${config.public.siteTitle}`
+    title:`${t('fontlist')} | ${config.public.siteTitle}`,
+    meta: [
+    { name: 'description',content: _desc},
+    {property: 'og:description',content: _desc},
+    {property: 'twitter:description',content: _desc}
+    ]
   })
 onMounted(() => {
   
