@@ -10,6 +10,8 @@ let pageApi = config.public.siteUrl
 const stClass = changeClass();
 const router = useRouter()
 const { bindSmoothScroll } = useSmoothAnchorScroll()
+import { useHeaderSize } from '@/composables/useHeaderSize';
+const {headerHeight} = useHeaderSize()
 
 import {Swiper} from "swiper";
 import 'swiper/css';
@@ -303,6 +305,13 @@ const get_R_FontFamily = (obj:Obj) => {
  const found = obj.weights.find(item => item.weight === 'R')
 return found ? found.family : 'inherit'
 }
+
+
+const headerH = computed(() => {
+  return headerHeight.value + "px"
+})
+
+
 </script>
 
 <template>
@@ -313,18 +322,20 @@ return found ? found.family : 'inherit'
       <div class="typeContainer__inner">
         <div class="typeWrap">
           <div class="contListWrap">
-            <ul class="colList">
-              <li :class="bw_cl === 'wh' ? `colList-item cur` : `colList-item`" @click="() => onChangeColor('wh')"><span class="txt">WHITE MODE</span></li>
-              <li :class="bw_cl === 'bk' ? `colList-item cur` : `colList-item`" @click="() => onChangeColor('bk')"><span class="txt">BLACK MODE</span></li>
-            </ul>
-            <ul class="contList">
-              <li :class="current_slug === _obj.slug ? `cur contList-item ${_obj.slug} ` : `contList-item ${_obj.slug}` " v-for="(_obj, key) in _post[0].acf.contrast_list" :key="key" :style="{fontFamily:get_R_FontFamily(_obj)}">
-                <div class="item__inner" @click="() => onChangeSlug(_obj)">
-                  <span class="txt_a">A</span>
-                  <span class="txt" v-html="brChange(_obj.contrast)"></span>
-                </div>
-              </li>
-            </ul>
+            <div class="contListWrap__inner">
+              <ul class="colList">
+                <li :class="bw_cl === 'wh' ? `colList-item cur` : `colList-item`" @click="() => onChangeColor('wh')"><span class="txt">WHITE MODE</span></li>
+                <li :class="bw_cl === 'bk' ? `colList-item cur` : `colList-item`" @click="() => onChangeColor('bk')"><span class="txt">BLACK MODE</span></li>
+              </ul>
+              <ul class="contList">
+                <li :class="current_slug === _obj.slug ? `cur contList-item ${_obj.slug} ` : `contList-item ${_obj.slug}` " v-for="(_obj, key) in _post[0].acf.contrast_list" :key="key" :style="{fontFamily:get_R_FontFamily(_obj)}">
+                  <div class="item__inner" @click="() => onChangeSlug(_obj)">
+                    <span class="txt_a">A</span>
+                    <span class="txt" v-html="brChange(_obj.contrast)"></span>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="wtListWrap">
             
@@ -731,6 +742,13 @@ overflow: hidden;
     gap:1em;
     &-item{
       width:6em;
+    }
+  }
+  .contListWrap{
+    &__inner{
+      position:sticky;
+      top:v-bind(headerH);
+      padding-top:.7em;
     }
   }
 }
