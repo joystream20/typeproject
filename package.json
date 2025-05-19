@@ -23,7 +23,7 @@
     "swiper": "^11.2.1",
     "vue": "latest",
     "vue-fitfont-animation": "github:typeproject/vue-fitfont-animation#v1.0.2",
-    "vue-fitfont-simulator": "github:typeproject/vue-fitfont-simulator#v1.0.0",
+    "vue-fitfont-simulator": "github:typeproject/vue-fitfont-simulator#v1.0.3",
     "vue-router": "latest"
   },
   "devDependencies": {

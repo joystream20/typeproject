@@ -14,7 +14,7 @@ if(locale.value === 'en'){
   <div>
     <ClientOnly>
       <Suspense>
-        <AnimationAsync :lang="lang" assets-root="/assets" />
+        <AnimationAsync :lang="lang" assets-root="/assets/animation" />
       </Suspense>
     </ClientOnly>
   </div>
