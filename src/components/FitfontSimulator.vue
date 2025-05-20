@@ -14,7 +14,7 @@ if(locale.value === 'en'){
  <div>
     <ClientOnly>
       <Suspense>
-        <SimulatorAsync :lang="lang" assets-path="/assets" />
+        <SimulatorAsync :lang="lang" assets-root="/assets/simulator" />
       </Suspense>
     </ClientOnly>
   </div> 
