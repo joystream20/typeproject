@@ -46,12 +46,14 @@ type Post = {
       url:string;
       blank:boolean;
     }[];
+    list_title?:string;
     usagelist?:{
       ID:string;
     post_title:string;
     post_name:string;
     thumbnail:{url:string;url_f:string};
     post_type:string;
+    company_name?:string;
     tax_info:{
       slug:string;
       label:string;
@@ -243,7 +245,7 @@ meta: [
             </div>
       </div>
     <div class="contentsWrap"></div>
-    <InterviewList taxonomy="interview_category" term="fitfont" max="4" />
+    <!-- <InterviewList taxonomy="interview_category" term="fitfont" max="4" /> -->
     
     <!-- <DevelopmentStory taxonomy="story_category" term="fitfont" /> -->
   </div>
@@ -255,8 +257,8 @@ meta: [
 
   <section v-if="_post[0].acf.usagelist && _post[0].acf.usagelist.length > 0" class="sec_usage u_mx1300 has-global-padding sec">
   <div class="sec__inner">
-    <header class="sec__header _wbt">
-          <h2 class="sec__header-ttl">{{ t('case') }}</h2>
+    <header class="sec__header _wbt" v-if="_post[0].acf.list_title">
+          <h2 class="sec__header-ttl">{{ _post[0].acf.list_title || '' }}</h2>
         </header>
     <PostListAcf :posts="_post[0].acf.usagelist ?? []" />
   </div>

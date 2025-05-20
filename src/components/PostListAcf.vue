@@ -6,6 +6,7 @@ type Props = {
     post_name:string;
     thumbnail:{url:string;url_f:string};
     post_type:string;
+    company_name?:string;
     tax_info:{
       slug:string;
       label:string;
@@ -43,7 +44,8 @@ onMounted(() => {
       </NuxtLinkLocale>
     </div>
     <div class="txtContainer">
-      <p class="ttl" v-html="post.post_title"></p>
+      <p v-if="post.post_type === 'interviews'" class="ttl" v-html="post.company_name"></p>
+      <p v-else class="ttl" v-html="post.post_title"></p>
       <div class="catContainer">
         <div v-if="post.post_type === 'interviews'" class="u_d_fl u_gp0 u1" >
           <div v-for="tax in post.tax_info" :key="tax.slug">
