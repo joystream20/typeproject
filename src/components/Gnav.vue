@@ -28,7 +28,7 @@ watch(locale, () => {
   <nav class="gnav ">
     <div class="gnav__rightContainer">
       <div class="langContainer ">
-        <button :class="{'u_f_bd':locale === 'ja'}" @click="set_locale('ja')">JA</button>
+        <button :class="{'u_f_bd':locale === 'ja'}" @click="set_locale('ja')">JP</button>
         <span class="bar"></span>
         <button :class="{'u_f_bd':locale === 'en'}" @click="set_locale('en')">EN</button>
       </div>

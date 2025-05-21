@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useLinkClickHandler } from '@/composables/useLinkClickHandler';
 import { useSeoDescription } from '@/composables/useSeoDescription';
+// import { decodeHTMLEntities } from '@/composables/decodeHTMLEntities'
 const {locale} = useI18n()
 
 const config = useRuntimeConfig()
@@ -39,27 +40,28 @@ const {data: _post, status: _status, error:_error} = await useFetch<Post[]>(_res
   }
 const wrap = ref<HTMLDivElement | null>(null)
 
+
+onMounted(() => {
+
 if(_post.value){
   const description = useSeoDescription(_post.value[0])
   const imgUrl = _post.value[0].thumbnail.url || `${config.public.siteUrl}/_nuxt/assets/images/img_def.png`
+  const pageTitle = _post.value[0].title.rendered//decodeHTMLEntities(_post.value[0].title.rendered)
   useHead({
-  title:`${_post.value[0].title.rendered} | ${config.public.siteTitle}`,
+  title:`${pageTitle} | ${config.public.siteTitle}`,
   meta: [
     { name: 'description',content: description},
     {property: 'og:description',content: description},
     {property: 'og:image',content:imgUrl },
     {property: 'og:url',content: _page_url},
-    {property: 'og:title',content: _post.value[0].title.rendered},
+    {property: 'og:title',content: pageTitle},
     {property: 'og:type',content: 'article'},
-    {property: 'twitter:title',content: _post.value[0].title.rendered},
+    {property: 'twitter:title',content: pageTitle},
     {property: 'twitter:description',content: description}
   ]
   })
 }
 
-
-
-onMounted(() => {
   // console.log(_post)
   stClass.value = {type:"single",cls:"news",lng:locale.value}
   
