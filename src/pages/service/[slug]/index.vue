@@ -205,6 +205,7 @@ meta: [
     }else{
       // console.log('list not found')
     }
+    console.log('fitfont ja/en')
   }
 
   initFitfont()
