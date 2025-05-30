@@ -190,7 +190,7 @@ $wxx : 1440;$wx : 1240;$ww : 782;$ws : 640;$wss : 480;$wsx : 375;
   }
   margin-top:5em;
   &__header{
-    margin-bottom:.7em;
+    margin-bottom:0;
     border-bottom:1px solid #b3b3b3;
     padding:.3em 0;
     &-ttl{
