@@ -20,7 +20,11 @@ export default defineNuxtConfig({
   
   nitro: {
     prerender: {
-      routes: ['/'],
+      routes: [
+        '/',
+        '/shared-header-ja',
+        '/shared-header-en'
+      ],
       failOnError: false,
       crawlLinks: true
     }

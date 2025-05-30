@@ -18,6 +18,13 @@ const { isMobile, isTablet, isDesktop } = useDevice()
 
 const stClass = changeClass();
 
+const route = useRoute()
+
+const layout = computed(() => route.meta.layout ?? 'default' )
+
+const showLayoutElements = computed(() => layout.value  !== false)
+
+
 useHead({
   title:`${config.public.siteTitle}`,
   htmlAttrs: {
@@ -83,12 +90,12 @@ onActivated(() => {
 </script>
 <template>
   <div :class="`site ${stClass.lng} ${dv} ${stClass.type} ${stClass.cls}`" ref="site" :style="{fontFamily:defaultFont}">
-    <Header />
+    <Header v-if="showLayoutElements" />
     <!-- <p class="av">{{ txt }}</p> -->
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <Footer />
+    <Footer v-if="showLayoutElements" />
   </div>
 </template>
 

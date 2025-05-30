@@ -28,7 +28,7 @@ type Props = {
 const { posts } = defineProps<Props>()
 
 onMounted(() => {
-  // console.log(posts)
+  console.log(posts)
 })
 
 </script>
@@ -44,8 +44,12 @@ onMounted(() => {
       </NuxtLinkLocale>
     </div>
     <div class="txtContainer">
-      <p v-if="post.post_type === 'interviews'" class="ttl" v-html="post.company_name"></p>
-      <p v-else class="ttl" v-html="post.post_title"></p>
+      <p class="ttl">
+        <NuxtLinkLocale :to="`/${post.post_type}/${post.post_name}`">
+        <span v-if="post.post_type === 'interviews'" class="ttl" v-html="post.company_name"></span>
+        <span v-else class="ttl" v-html="post.post_title"></span>
+      </NuxtLinkLocale>
+      </p>
       <div class="catContainer">
         <div v-if="post.post_type === 'interviews'" class="u_d_fl u_gp0 u1" >
           <div v-for="tax in post.tax_info" :key="tax.slug">
