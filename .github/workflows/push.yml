@@ -4,6 +4,9 @@ on: # トリガー
   repository_dispatch:
     type: after_saving_wordpress
   push:
+    branches:
+      - main
+      - staging
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,8 +28,27 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - name: Set API_KEY environment variable
-        run: echo "WP_API_KEY=${{ secrets.WP_API_KEY }}" >> $GITHUB_ENV
+      - name: Set environment variables for staging
+        if: github.ref == 'refs/heads/staging'
+        run: |
+          echo "WP_API_KEY=${{ secrets.STAGING_WP_API_KEY }}" >> $GITHUB_ENV
+          echo "SITE_DOMAIN=${{ secrets.STAGING_SITE_DOMAIN }}" >> $GITHUB_ENV
+          echo "FTP_SERVER=${{ secrets.STAGING_FTP_SERVER }}" >> $GITHUB_ENV
+          echo "FTP_USERNAME=${{ secrets.STAGING_FTP_USERNAME }}" >> $GITHUB_ENV
+          echo "FTP_PASSWORD=${{ secrets.STAGING_FTP_PASSWORD }}" >> $GITHUB_ENV
+          echo "DEPLOY_DIR=${{ secrets.STAGING_DEPLOY_DIR }}" >> $GITHUB_ENV
+      - name: Set environment variables for production
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "WP_API_KEY=${{ secrets.PROD_WP_API_KEY }}" >> $GITHUB_ENV
+          echo "SITE_DOMAIN=${{ secrets.PROD_SITE_DOMAIN }}" >> $GITHUB_ENV
+          echo "FTP_SERVER=${{ secrets.PROD_FTP_SERVER }}" >> $GITHUB_ENV
+          echo "FTP_USERNAME=${{ secrets.PROD_FTP_USERNAME }}" >> $GITHUB_ENV
+          echo "FTP_PASSWORD=${{ secrets.PROD_FTP_PASSWORD }}" >> $GITHUB_ENV
+          echo "DEPLOY_DIR=${{ secrets.PROD_DEPLOY_DIR }}" >> $GITHUB_ENV
+
+      # - name: Set API_KEY environment variable
+      # run: echo "WP_API_KEY=${{ env.WP_API_KEY }}" >> $GITHUB_ENV
       - name: Verify WP_API_KEY
         run: |
           if [ -z "$WP_API_KEY" ]; then
@@ -39,9 +61,9 @@ jobs:
       - name: generate # SSG
         #run: npm run generate #下記を追記したのでコメントアウト
         run: NODE_OPTIONS="--max-old-space-size=8192" npm run generate #メモリ上限を8Gに増やす
-        env:
-          WP_API_KEY: ${{ secrets.WP_API_KEY }}
-          SITE_DOMAIN: ${{ secrets.SITE_DOMAIN }}
+        # env:
+        #   WP_API_KEY: ${{ env.WP_API_KEY }}
+        #   SITE_DOMAIN: ${{ env.SITE_DOMAIN }}
         #continue-on-error: true #エラーをスルー
 
       - name: List output files
@@ -50,10 +72,10 @@ jobs:
       - name: Deploy via FTP⏫
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          server: ${{ secrets.FTP_SERVER }} # FTPサーバのホスト
-          username: ${{ secrets.FTP_USERNAME }} # FTPサーバのアカウント名
-          password: ${{ secrets.FTP_PASSWORD }} # FTPサーバのパスワード
-          server-dir: ${{ secrets.DEPLOY_DIR }} # アップロード先のリモートパス
+          server: ${{ env.FTP_SERVER }} # FTPサーバのホスト
+          username: ${{ env.FTP_USERNAME }} # FTPサーバのアカウント名
+          password: ${{ env.FTP_PASSWORD }} # FTPサーバのパスワード
+          server-dir: ${{ env.DEPLOY_DIR }} # アップロード先のリモートパス
           local-dir: ./dist/ # ローカルのアップロードしたいフォルダのパス
           useDiff: false #全ファイルアップする設定。trueにすれば差分だけアップして軽いが、wordpressからの更新はデータのみの更新なのでファイルはアップされない
           #dangerous-clean-slate: true #全ファイルアップ前に削除　すごい時間かかる
