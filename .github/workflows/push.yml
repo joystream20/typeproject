@@ -61,9 +61,9 @@ jobs:
       - name: generate # SSG
         #run: npm run generate #下記を追記したのでコメントアウト
         run: NODE_OPTIONS="--max-old-space-size=8192" npm run generate #メモリ上限を8Gに増やす
-        # env:
-        #   WP_API_KEY: ${{ env.WP_API_KEY }}
-        #   SITE_DOMAIN: ${{ env.SITE_DOMAIN }}
+        env:
+          WP_API_KEY: ${{ env.WP_API_KEY }}
+          SITE_DOMAIN: ${{ env.SITE_DOMAIN }}
         #continue-on-error: true #エラーをスルー
 
       - name: List output files

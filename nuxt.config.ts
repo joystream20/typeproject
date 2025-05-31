@@ -1,13 +1,16 @@
 import axios from 'axios'
 
-const {WP_API_KEY,SITE_DOMAIN,FONTAWESOME_URL} = process.env
-const siteUrl = 'https://typeproject.com'
-const apiUrl = 'https://damazeinc.xsrv.jp'
+// const {WP_API_KEY,SITE_DOMAIN,FONTAWESOME_URL} = process.env
+// const siteUrl = 'https://typeproject.com'
+// const config = useRuntimeConfig()
+// const wpApi = config.public.wpApiKey
+// const apiUrl = 'https://damazeinc.xsrv.jp'
+// const fontawasomeUrl =  process.env.FONTAWESOME_URL || 'https://kit.fontawesome.com/b1e6e0e757.js'
+
 const metaImage = '/ogp.png'
 const metaTitle = 'Type Project | タイププロジェクト'
 const metaDescription = 'タイププロジェクトは、機能性と独自性を核にした魅力ある書体づくりに挑む21世紀の文字カンパニーです。'
 const _perPage = 24
-const fontawasomeUrl = 'https://kit.fontawesome.com/b1e6e0e757.js'
 
 export default defineNuxtConfig({
   ssr: true,
@@ -31,7 +34,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: siteUrl
+    url: process.env.SITE_DOMAIN
   },
 
   sitemap: {
@@ -64,22 +67,19 @@ export default defineNuxtConfig({
 
   runtimeConfig:{
     public: {
-      siteUrl:siteUrl,
-      wpApiKey:`${apiUrl}/wp-json/wp/v2`,
-      wpApiKeyEn:`${apiUrl}/en/wp-json/wp/v2`,
-      wpApiCustom:`${apiUrl}/wp-json/custom/v0`,
-      wpApiCustomEn:`${apiUrl}/en/wp-json/custom/v0`,
+      siteUrl:process.env.SITE_DOMAIN || 'https://typeproject.com',
+      fontawasomeUrl: process.env.FONTAWESOME_URL || 'https://kit.fontawesome.com/b1e6e0e757.js',
+      apiKey: process.env.WP_API_KEY,
+      wpApiKey:`${process.env.WP_API_KEY}/wp-json/wp/v2`,
+      wpApiKeyEn:`${process.env.WP_API_KEY}/en/wp-json/wp/v2`,
+      wpApiCustom:`${process.env.WP_API_KEY}/wp-json/custom/v0`,
+      wpApiCustomEn:`${process.env.WP_API_KEY}/en/wp-json/custom/v0`,
       postsPerPage: _perPage,
       pagerNumPage:5,
       defaultFontFamily:"'A+mfCv-TPスカイ セミクラシック ロー M'",
       siteTitle:metaTitle
     }
   },
-//`${process.env.WP_API_KEY}/wp-json/wp/v2`,
-//`${process.env.WP_API_KEY}/en/wp-json/wp/v2`,
-//`${process.env.WP_API_KEY}/wp-json/custom/v0`,
-//`${process.env.WP_API_KEY}/en/wp-json/custom/v0`,
-
   modules: ['@nuxtjs/i18n', '@nuxtjs/device', "@nuxt/image", 'nuxt-simple-sitemap', '@vesp/nuxt-fontawesome'],//,'@nuxtjs/google-gtag'
   //// @ts-expect-error
   // googleGtag: {
@@ -174,7 +174,7 @@ export default defineNuxtConfig({
         {
           src: 'https://font.realtype.jp/api/script/v4?rt-input=true&rt-nofliker=true&rt-manual=false&rt-layout=true&rt-user=xfabeMF7lgt6U3zLVEC31IIBywNVt4Xm',
         },
-        {src: fontawasomeUrl, defer:true}
+        {src: process.env.FONTAWESOME_URL, defer:true}
       ],
       link: [
         {rel: 'icon', type: 'image/x-icon', href:'/favicon.ico'},
@@ -250,20 +250,23 @@ function getPages(name: string, pageRoutes: string[], perPage: number){
 async function fetchRoutes() {
   let dataList: string[] = [];
 
+  const config = useRuntimeConfig()
+  const apiKey = config.public.apiKey
+
   // APIエンドポイントリスト
   const apiEndpoints: {url:string; prefix: string}[] = [
-    { url: `${apiUrl}/wp-json/wp/v2/posts`, prefix: '/news' },
-    { url: `${apiUrl}/en/wp-json/wp/v2/posts`, prefix: '/en/news' },
-    { url: `${apiUrl}/wp-json/wp/v2/fontinuse`, prefix: '/fontinuse' },
-    { url: `${apiUrl}/en/wp-json/wp/v2/fontinuse`, prefix: '/en/fontinuse' },
-    { url: `${apiUrl}/wp-json/wp/v2/fonts`, prefix: '/fonts' },
-    { url: `${apiUrl}/en/wp-json/wp/v2/fonts`, prefix: '/en/fonts' },
-    { url: `${apiUrl}/wp-json/wp/v2/service`, prefix: '/service' },
-    { url: `${apiUrl}/en/wp-json/wp/v2/service`, prefix: '/en/service' },
-    { url: `${apiUrl}/wp-json/wp/v2/interviews`, prefix: '/interviews' },
-    { url: `${apiUrl}/en/wp-json/wp/v2/interviews`, prefix: '/en/interviews' },
-    { url: `${apiUrl}/wp-json/wp/v2/story`, prefix: '/story' },
-    { url: `${apiUrl}/en/wp-json/wp/v2/story`, prefix: '/en/story' },
+    { url: `${apiKey}/wp-json/wp/v2/posts`, prefix: '/news' },
+    { url: `${apiKey}/en/wp-json/wp/v2/posts`, prefix: '/en/news' },
+    { url: `${apiKey}/wp-json/wp/v2/fontinuse`, prefix: '/fontinuse' },
+    { url: `${apiKey}/en/wp-json/wp/v2/fontinuse`, prefix: '/en/fontinuse' },
+    { url: `${apiKey}/wp-json/wp/v2/fonts`, prefix: '/fonts' },
+    { url: `${apiKey}/en/wp-json/wp/v2/fonts`, prefix: '/en/fonts' },
+    { url: `${apiKey}/wp-json/wp/v2/service`, prefix: '/service' },
+    { url: `${apiKey}/en/wp-json/wp/v2/service`, prefix: '/en/service' },
+    { url: `${apiKey}/wp-json/wp/v2/interviews`, prefix: '/interviews' },
+    { url: `${apiKey}/en/wp-json/wp/v2/interviews`, prefix: '/en/interviews' },
+    { url: `${apiKey}/wp-json/wp/v2/story`, prefix: '/story' },
+    { url: `${apiKey}/en/wp-json/wp/v2/story`, prefix: '/en/story' },
   ];
 
   try {
