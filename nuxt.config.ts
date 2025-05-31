@@ -225,6 +225,8 @@ async function fetchData(_apiUrl:string, perPage: number, retries: number = MAX_
       
       await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY));
       return fetchData(_apiUrl, perPage, retries - 1);
+    }else{
+      throw error
     }
   }
 }
@@ -250,8 +252,9 @@ function getPages(name: string, pageRoutes: string[], perPage: number){
 async function fetchRoutes() {
   let dataList: string[] = [];
 
-  const config = useRuntimeConfig()
-  const apiKey = config.public.apiKey
+  // const config = useRuntimeConfig()
+  // const apiKey = config.public.apiKey
+  const apiKey = process.env.WP_API_KEY
 
   // APIエンドポイントリスト
   const apiEndpoints: {url:string; prefix: string}[] = [
